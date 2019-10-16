@@ -1,0 +1,17 @@
+<div class="body-container">
+    <mat-form-field class="form">
+      <input matInput placeholder="Search..." [formControl]="searchTags">
+    </mat-form-field>
+  
+    <button mat-raised-button (click)="onGo()">Go</button>
+</div>
+<!--
+<div class="results" *ngFor="let i of videoNames">
+    {{videoNames}}
+</div>
+-->
+<div>
+    {{names}}
+</div>
+
+
