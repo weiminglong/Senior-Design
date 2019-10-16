@@ -12,6 +12,7 @@ import uuid
 
 app = Flask(__name__)
 
+#config
 app.config["MONGODB_NAME"] = "qa-classifier"
 app.config["MONGO_URI"] = "mongodb+srv://rachell:<password>@cluster0-hu9je.mongodb.net/qa-classifier?retryWrites=true&w=majority"
 mongo = PyMongo(app)
