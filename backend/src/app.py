@@ -4,6 +4,8 @@ from flask_pymongo import PyMongo, MongoClient
 
 import json
 
+from werkzeug.wrappers import Response
+
 # handle requests and allow front end to access backend
 from flask_cors import CORS
 import os
@@ -35,7 +37,7 @@ def add_tags():
     # collection.insert_one(post)
 
     tags_collection = mongo.db.tags
-    tags_collection.insert_one({"title": "TESTING", "duration": 90, "tags": ["funny", "cat", "gag"]})
+    tags_collection.insert_one({"title": "Physics: Mechanics, Lecture 2", "duration": 90, "tags": ["kinematics", "momentum", "vectors", "force"]})
     return "<h1>added new video tags</h1>"
 
 
@@ -56,7 +58,7 @@ def search_tags():
         print("array:")
         print(array)
 
-    return jsonify(array)
+    return json.dumps(array)
 
 
 if __name__ == "__main__":

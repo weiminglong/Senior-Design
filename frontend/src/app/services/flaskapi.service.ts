@@ -20,7 +20,6 @@ export class FlaskapiService {
     console.log("sending: " + tag);
 
     let testObj: Test = { search: tag }
-
-    return this.httpClient.post<string>(this.server + "tags", testObj);
+    return this.httpClient.post<string[]>(this.server + "tags", testObj);
   }
 }

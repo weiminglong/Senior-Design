@@ -5,13 +5,11 @@
   
     <button mat-raised-button (click)="onGo()">Go</button>
 </div>
-<!--
-<div class="results" *ngFor="let i of videoNames">
-    {{videoNames}}
-</div>
--->
-<div>
-    {{names}}
-</div>
 
+<div class="results" *ngFor="let i of videoNames">
+    <mat-list>
+        <mat-list-item>{{i}}</mat-list-item>
+        <mat-divider></mat-divider>
+    </mat-list>
+</div>
 
