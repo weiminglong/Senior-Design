@@ -5,3 +5,26 @@ Use the master branch of this repository for your **working** code.  You should 
 The gh-pages branch of this repository has starter files for your web page. You should upload PDF versions of all your assignments and keep your web page up to date.
 
 **Once you understand the structure listed above, you should replace this readme with something specific to your project.**
+
+#Topic Modeling libraries
+ 	To download spacy:
+
+	conda install -c conda-forge spacy 
+
+	pip install spacy
+
+	To download English library:
+	python -m spacy download en_core_web_sm
+	python -m spacy download en
+
+	for Gensim: 
+	pip install -U gensim
+
+	Install pyLDAvis
+
+	pip install pyLDAvis
+
+	Install nltk:
+	pip install nltk
+
+
