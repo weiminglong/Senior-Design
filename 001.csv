@@ -1,0 +1,7 @@
+word:time start_time:1:23 end_time:1:44
+word:process start_time:2:23 end_time:2:44
+word:scheduling start_time:3:23 end_time:3:44
+word:processes  start_time:4:23 end_time:4:44
+word:cpu start_time:5:23 end_time:5:44
+link:https://www.youtube.com/watch?v=eRBOgtp0Hac
+
