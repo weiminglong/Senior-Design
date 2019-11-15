@@ -28,3 +28,6 @@ The gh-pages branch of this repository has starter files for your web page. You 
 	pip install nltk
 
 
+***TFIDF required libraries:
+	pandas: pip install pandas
+	numpy: pip install numpy
