@@ -37,7 +37,7 @@ def add_tags():
     # collection.insert_one(post)
 
     tags_collection = mongo.db.tags
-    tags_collection.insert_one({"title": "Physics: Mechanics, Lecture 2", "duration": 90, "tags": ["kinematics", "momentum", "vectors", "force"]})
+    tags_collection.insert_one({"title": "Physics 2: Electromagnetism, Lecture 3", "duration": 90, "tags": ["charge", "force", "work"]})
     return "<h1>added new video tags</h1>"
 
 
