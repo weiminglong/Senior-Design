@@ -1,5 +1,7 @@
 import argparse
 import io
+from nltk.stem import PorterStemmer
+from nltk.tokenize import word_tokenize
 
 #local
 def transcribe_file_with_word_time_offsets(speech_file):
@@ -9,6 +11,7 @@ def transcribe_file_with_word_time_offsets(speech_file):
     from google.cloud.speech import enums
     from google.cloud.speech import types
     client = speech.SpeechClient()
+    ps = PorterStemmer()
 
     with io.open(speech_file, 'rb') as audio_file:
         content = audio_file.read()
@@ -54,6 +57,7 @@ def transcribe_gcs_with_word_time_offsets(gcs_uri):
     from google.cloud.speech import enums
     from google.cloud.speech import types
     client = speech.SpeechClient()
+    ps = PorterStemmer()
 
     audio = types.RecognitionAudio(uri=gcs_uri)
     config = types.RecognitionConfig(
@@ -73,8 +77,8 @@ def transcribe_gcs_with_word_time_offsets(gcs_uri):
         alternative = result.alternatives[0]
         print(u'Transcript: {}'.format(alternative.transcript))
         #print('Confidence: {}'.format(alternative.confidence))
-        with open("Output1.txt", "a") as text_file:
-                    text_file.write(u'{} '.format(alternative.transcript))
+        #with open("txt/Output.txt", "a") as text_file:
+                    #text_file.write(u'{} '.format(alternative.transcript))
 
         for word_info in alternative.words:
             word = word_info.word
@@ -84,9 +88,11 @@ def transcribe_gcs_with_word_time_offsets(gcs_uri):
                 word,
                 int(start_time.seconds), #+ start_time.nanos * 1,
                 end_time.seconds + end_time.nanos * 1e-9))
+            with open("Output.txt", "a") as text_file:
+                text_file.write("{}\n".format(ps.stem(word)))
             with open('time.csv', 'a') as csv_file:
                 csv_file.write('word:{} start_time:{}:{} end_time:{}:{}\n'.format(
-                word,
+                ps.stem(word),
                 int(start_time.seconds)//60, #+ start_time.nanos * 1,
                 int(start_time.seconds)%60,
                 end_time.seconds//60,
