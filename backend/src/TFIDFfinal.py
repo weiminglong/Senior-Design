@@ -2,11 +2,15 @@ import pandas as pd
 import os,glob
 import numpy as np
 import json
+from textblob import TextBlob
 
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 from scipy.sparse.csr import csr_matrix #need this if you want to save tfidf_matrix
+
+from nltk.stem import PorterStemmer
+from nltk.tokenize import sent_tokenize, word_tokenize
 
 
 #path is that of the current directory
@@ -15,6 +19,7 @@ path = os.getcwd()
 
 #empty list of corpus
 corpus = []
+
 fullData = []
 fullData2 = []
 #append each file with .txt extension to the corpus
@@ -22,19 +27,22 @@ fullData2 = []
 for filename in sorted(glob.glob(os.path.join(path, '*.txt'))):
     with open(filename, 'r') as f:
         text = f.read()
-        #print (filename)
-        #print (len(text))
         corpus.append(text)
 
-cv=CountVectorizer(analyzer='word', stop_words = 'english',lowercase=True,strip_accents='unicode')
+vectorizer = TfidfVectorizer(analyzer='word',stop_words = 'english')
+tfidf_matrix = vectorizer.fit_transform(corpus)
+
+cv=CountVectorizer(analyzer='word', stop_words = 'english',lowercase=True)
 
 # this steps generates word counts for the words in your docs
 word_count_vector=cv.fit_transform(corpus)
 
 word_count_vector.shape
 
+
 tfidf_transformer=TfidfTransformer(smooth_idf=True)
 tfidf_transformer.fit(word_count_vector)
+
 
 count_vector=cv.transform(corpus)
 tf_idf_vector=tfidf_transformer.transform(count_vector)
@@ -43,9 +51,10 @@ feature_names = cv.get_feature_names()
 
 top5AllFiles = []
 
+
 #build dataframe of first document. Determined by the index od tf-idf_vector below
 
-corpusLength = len(corpus)-1
+corpusLength = len(corpus)
 
 for i in range(0,corpusLength):
     #print(i)
@@ -60,13 +69,14 @@ for i in range(0,corpusLength):
         data1.append(i)
         data1.append(j.tfidf)
 
-    # open output file for writing
     array.append(data1)
     top5AllFiles.append(array)
 
-
+#print(top5AllFiles)
+#print()
 
 def timeData(filename, listwords):
+
     tempfullData = []
     foundWords= []
         #try:
@@ -74,11 +84,10 @@ def timeData(filename, listwords):
     file = open(filename,"r")
     read= file.readlines()
     file.close()
-    #print(read)
     linkval=""
     linktemp = []
     link = []
-   
+
     for word in listwords:
         lower = word.lower()
         count = 0
@@ -89,28 +98,26 @@ def timeData(filename, listwords):
                 line2=line2.strip("!@#$%^&*(()_+=)")
                 line3=line2.split(":")
                 topword = []
-                if line3[0]=="word" and lower == line3[1] and lower not in foundWords:
+                if line3[0]=="word" and lower == line3[1].lower() and lower not in foundWords:
                     temptopword = []
                     name= lower
                     startTime = line[1]
                     endTime = line[2]
                     val2=line3[1]
                     foundWords.append(lower)
-                    topword = "word: "+name+"  "+ startTime+"  "+ endTime
+                    topword = "word: "+val2+"  "+ startTime+"  "+ endTime
                     temptopword.append(topword)
                     tempfullData= tempfullData+temptopword
                     wordPresent= True
-                    
+                    print()
                 if line3[0]=="link" and wordPresent == True and line[0] not in link:
                     link.append(line[0])
- 
+
     tempfullData =  tempfullData + link
+    if(len(tempfullData)<=2):
+        tempfullData = []
     fullData.append(tempfullData)
 
-
-
-#parse through top5words list and get weights and string in seperate list
-    
 listwords = []
 listweights = []
 for i in top5AllFiles:
@@ -129,41 +136,45 @@ for i in top5AllFiles:
     listwords.append(temp)
     listweights.append(tempfloat)
 
+
 for i in listwords:
-  
     #parse through file and get time stamp
-    for filename in sorted(glob.glob(os.path.join(path, '*.csv'))):
-        timeData(filename,i)
+      for filename in sorted(glob.glob(os.path.join(path, '*.csv'))):
+            timeData(filename,i)
 
 #stip empty list within a list
 fullData2 = [e for e in fullData if e]
-
 
 #variable definition
 dictCorpus = {}
 count = 0
 
+#print(fullData2)
+
+
 for i in fullData2:
-    myDict = {} 
+    myDict = {}
     #print(i)
     size = len(listweights[count])
     #print(size)
+    #print(size)
     increment = 0
-    for j in range(size):
+    #print(i)
+    for j in range(0,size):
         #print(len(i))
         test = []
         temper = []
         temper.append(listweights[count][j])
+        #print(i[j])
         test.append(i[j])
         myDict[increment] =test+temper
         if(j==size-1):
             myDict[increment].append(i[size])
         increment+=1
-    dictCorpus[count]=myDict   
+    dictCorpus[count]=myDict
     count+=1
 print(dictCorpus)
 
 #write to json file
 with open('top5Words.json', 'w') as filehandle:
         json.dump(dictCorpus, filehandle)
-   

@@ -1,4 +1,4 @@
-Why do we need scheduling?
+ Why do we need scheduling?
 A typical process involves both I/O time and CPU time. In a uniprogramming system like MS-DOS, time spent waiting for I/O is wasted and CPU is free during this time. In multiprogramming systems, one process can use CPU while another is waiting for I/O. This is possible only with process scheduling.
 
 Objectives of Process Scheduling Algorithm:
