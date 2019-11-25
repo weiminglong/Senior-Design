@@ -3,7 +3,7 @@ import os, glob
 import numpy as np
 import json
 from textblob import TextBlob
-
+from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
@@ -15,7 +15,7 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 # path is that of the current directory
 path = os.getcwd()
 # print(location)
-
+ps = PorterStemmer()
 # empty list of corpus
 corpus = []
 
@@ -31,7 +31,22 @@ for filename in sorted(glob.glob(os.path.join(path, '*.txt'))):
 vectorizer = TfidfVectorizer(analyzer='word', stop_words='english')
 tfidf_matrix = vectorizer.fit_transform(corpus)
 
-cv = CountVectorizer(analyzer='word', stop_words='english', lowercase=True)
+stop_words = set(stopwords.words('english'))
+
+# ps = PorterStemmer()
+analyzer = CountVectorizer().build_analyzer()
+
+
+# def stem_words(doc):
+# return[port.stem(word) for word in analyzer(doc) if word not in stop_words]
+
+def stem_words(doc):
+    return [ps.stem(word) for word in analyzer(doc) if word not in stop_words]
+
+
+cv = CountVectorizer(analyzer=stem_words, stop_words='english', lowercase=True)
+
+# cv=CountVectorizer(analyzer='word', stop_words = 'english',lowercase=True)
 
 # this steps generates word counts for the words in your docs
 word_count_vector = cv.fit_transform(corpus)
@@ -96,7 +111,11 @@ def timeData(filename, listwords):
                 line2 = line2.strip("!@#$%^&*(()_+=)")
                 line3 = line2.split(":")
                 topword = []
-                if line3[0] == "word" and lower == line3[1].lower() and lower not in foundWords:
+                comparedword = line3[1].lower()
+                stemmedWord = ps.stem(comparedword)
+                # print(comparedword,":",stemmedWord)
+                #if line3[0]=="word" and lower == line3[1].lower() and lower not in foundWords:
+                if line3[0] == "word" and lower == stemmedWord and lower not in foundWords:
                     temptopword = []
                     name = lower
                     startTime = line[1]
@@ -153,7 +172,7 @@ for i in listwords:
 
 # stip empty list within a list
 fullData2 = [e for e in fullData if e]
-
+#print(fullData2)
 # variable definition
 dictCorpus = {}
 
@@ -163,30 +182,18 @@ lengthLimit = len(listweights)
 # print("size")
 # print(sizeI)
 # print(len(listweights)
-print(sizeI)
+# print(sizeI)
 for i in fullData2:
     increment = 0
     myDict = {}
-    # print(count)
-    # print(i[count])
-    # print(listweights[count])
-    # print()
-    # print()
-    # print(len(listweights[count])
-    # if count < lengthLimit:
+
     for j in range(0, sizeI):
         if count < lengthLimit:
             test = []
             tester = []
-            # print(count)
-            # print(j)
-            # print(listweights[count][j])
-            # print(count)
             tester.append(listweights[count][j])
             # print(count)
             test.append(i[j])
-            # print(listweights[count][j])
-            # print(i[j])
             myDict[increment] = test + tester
             # print(myDict[increment])
             # print(myDict)
@@ -197,10 +204,15 @@ for i in fullData2:
             increment += 1
     dictCorpus[count] = myDict
     count += 1
+
+
+print("corpus: $$$$$$$$$$$$$$$$$$############")
 print(dictCorpus)
 # store dictionary in json file
 with open('top5Words.json', 'w') as filehandle:
     json.dump(dictCorpus, filehandle)
 # store json format in database
-#json.dump(dictCorpus, sort_keys=True, indent=5)
+# json.dump(dictCorpus,sort_keys= True,indent = 5)
+
+
 
