@@ -253,12 +253,6 @@ for i in fullData2:
             # print(count)
             test.append(i[j])
             myDict[str(increment)] = test + tester
-            # print("------")
-            # print(tester)
-            # print(listweights[count][j])
-            # print(test)
-            # print(test + tester)
-            # print("------")
             # print(myDict[increment])
             # print(myDict)
             if (j == sizeI - 1):
@@ -266,14 +260,9 @@ for i in fullData2:
                 continue
             # print(i[j])
             increment += 1
-    # print(myDict)
-    # print("------")
     # Check if the dictionary exists before inserting into list
     if myDict:
         dictCorpus[str(count)] = myDict
-        # print("dictCorpus:")
-        # print(dictCorpus[count])
-
 
     count += 1
 
