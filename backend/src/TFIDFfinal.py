@@ -18,6 +18,9 @@ from scipy.sparse.csr import csr_matrix  # need this if you want to save tfidf_m
 from nltk.stem import PorterStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
 
+# Speech-to-Text file import
+import offset as offset
+
 
 #######################
 # Instantiate app
@@ -68,6 +71,13 @@ def search_tags():
         print(array)
 
     return json.dumps(array)
+
+# ------------------------
+
+# Call function to convert audio to text from offset.py file
+# offset.convert()
+
+# ------------------------
 
 
 # path is that of the current directory

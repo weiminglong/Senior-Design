@@ -101,7 +101,7 @@ def transcribe_gcs_with_word_time_offsets(gcs_uri):
 #
 
 
-if __name__ == '__main__':
+def convert():
     parser = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -112,3 +112,17 @@ if __name__ == '__main__':
         transcribe_gcs_with_word_time_offsets(args.path)
     else:
         transcribe_file_with_word_time_offsets(args.path)
+
+# if __name__ == '__main__':
+#     parser = argparse.ArgumentParser(
+#         description=__doc__,
+#         formatter_class=argparse.RawDescriptionHelpFormatter)
+#     parser.add_argument(
+#         'path', help='File or GCS path for audio file to be recognized')
+#     args = parser.parse_args()
+#     if args.path.startswith('gs://'):
+#         transcribe_gcs_with_word_time_offsets(args.path)
+#     else:
+#         transcribe_file_with_word_time_offsets(args.path)
+
+
