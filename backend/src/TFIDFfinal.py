@@ -1,3 +1,9 @@
+# Flask app imports
+from flask import Flask, request, jsonify
+from flask_pymongo import PyMongo, MongoClient
+from flask_cors import CORS
+
+# TFIDF imports
 import pandas as pd
 import os, glob
 import numpy as np
@@ -11,6 +17,58 @@ from scipy.sparse.csr import csr_matrix  # need this if you want to save tfidf_m
 
 from nltk.stem import PorterStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
+
+
+#######################
+# Instantiate app
+
+app = Flask(__name__)
+
+#config
+app.config["MONGODB_NAME"] = "qa-classifier"
+app.config["MONGO_URI"] = "mongodb+srv://rachell:leaf1234@cluster0-hu9je.mongodb.net/qa-classifier?retryWrites=true&w=majority"
+mongo = PyMongo(app)
+
+CORS(app)
+
+#######################
+
+
+@app.route("/")
+def index():
+    return "<h1>Hello World</h1>"
+
+
+@app.route("/test")
+def add_tags():
+
+    # post = {"title": "harold the cat part 2", "duration": 120, "tags": "cat"}
+    # collection.insert_one(post)
+
+    tags_collection = mongo.db.tags
+    tags_collection.insert_one({"title": "Physics 2: Electromagnetism, Lecture 3", "duration": 90, "tags": ["charge", "force", "work"]})
+    return "<h1>added new video tags</h1>"
+
+
+@app.route("/api/tags", methods=['GET', "POST"])
+def search_tags():
+    if request.method == "POST":
+        text = request.json
+        tag = text["search"]
+
+        tags_collection = mongo.db.tags
+        videos = tags_collection.find({"tags": tag})
+
+        array = []
+        for i in videos:
+            print(i)
+            array.append(i["title"])
+
+        print("array:")
+        print(array)
+
+    return json.dumps(array)
+
 
 # path is that of the current directory
 path = os.getcwd()
@@ -194,25 +252,46 @@ for i in fullData2:
             tester.append(listweights[count][j])
             # print(count)
             test.append(i[j])
-            myDict[increment] = test + tester
+            myDict[str(increment)] = test + tester
+            # print("------")
+            # print(tester)
+            # print(listweights[count][j])
+            # print(test)
+            # print(test + tester)
+            # print("------")
             # print(myDict[increment])
             # print(myDict)
             if (j == sizeI - 1):
-                myDict[increment].append(i[j])
+                myDict[str(increment)].append(i[j])
                 continue
             # print(i[j])
             increment += 1
-    dictCorpus[count] = myDict
+    # print(myDict)
+    # print("------")
+    # Check if the dictionary exists before inserting into list
+    if myDict:
+        dictCorpus[str(count)] = myDict
+        # print("dictCorpus:")
+        # print(dictCorpus[count])
+
+
     count += 1
 
 
 print("corpus: $$$$$$$$$$$$$$$$$$############")
 print(dictCorpus)
+
+
 # store dictionary in json file
 with open('top5Words.json', 'w') as filehandle:
     json.dump(dictCorpus, filehandle)
 # store json format in database
 # json.dump(dictCorpus,sort_keys= True,indent = 5)
 
+tags_collection = mongo.db.tags
+tags_collection.insert_one(dictCorpus)
+# for i in dictCorpus:
+#     tags_collection.insert_one(dictCorpus[i])
 
-
+if __name__ == "__main__":
+    app.run(debug=True)
