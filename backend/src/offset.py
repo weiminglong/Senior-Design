@@ -29,7 +29,7 @@ def transcribe_file_with_word_time_offsets(speech_file):
     for result in response.results:
         alternative = result.alternatives[0]
         print(u'Transcript: {}'.format(alternative.transcript))
-        with open("Output1.txt", "a") as text_file:
+        with open("txt/Output1.txt", "a") as text_file:
             text_file.write(u'{} '.format(alternative.transcript))
 
 
@@ -41,7 +41,7 @@ def transcribe_file_with_word_time_offsets(speech_file):
                 word,
                 start_time.seconds, #+ start_time.nanos * 1e-9,
                 end_time.seconds + end_time.nanos * 1e-9))
-            with open('time.csv', 'a') as csv_file:
+            with open('txt/time.csv', 'a') as csv_file:
                 csv_file.write('word:{} start_time:{}:{} end_time:{}:{}\n'.format(
                 word,
                 int(start_time.seconds)//60, #+ start_time.nanos * 1,
@@ -50,7 +50,7 @@ def transcribe_file_with_word_time_offsets(speech_file):
                 end_time.seconds%60))
 
 #cloud storage
-def transcribe_gcs_with_word_time_offsets(gcs_uri):
+def transcribe_gcs_with_word_time_offsets(gcs_uri, fileName):
     """Transcribe the given audio file asynchronously and output the word time
     offsets."""
     from google.cloud import speech
@@ -71,11 +71,11 @@ def transcribe_gcs_with_word_time_offsets(gcs_uri):
     operation = client.long_running_recognize(config, audio)
 
     print('Waiting for operation to complete...')
-    result = operation.result(timeout=900)
+    result = operation.result(timeout=9000)
 
     for result in result.results:
         alternative = result.alternatives[0]
-        print(u'Transcript: {}'.format(alternative.transcript))
+        #print(u'Transcript: {}'.format(alternative.transcript))
         #print('Confidence: {}'.format(alternative.confidence))
         #with open("txt/Output.txt", "a") as text_file:
                     #text_file.write(u'{} '.format(alternative.transcript))
@@ -84,24 +84,26 @@ def transcribe_gcs_with_word_time_offsets(gcs_uri):
             word = word_info.word
             start_time = word_info.start_time
             end_time = word_info.end_time
-            print('word: {}, start_time: {}, end_time: {}'.format(
-                word,
-                int(start_time.seconds), #+ start_time.nanos * 1,
-                end_time.seconds + end_time.nanos * 1e-9))
-            with open("Output.txt", "a") as text_file:
-                text_file.write("{}\n".format(ps.stem(word)))
-            with open('time.csv', 'a') as csv_file:
+            #print('word: {}, start_time: {}, end_time: {}'.format(
+                #word,
+                #int(start_time.seconds), #+ start_time.nanos * 1,
+                #end_time.seconds + end_time.nanos * 1e-9))
+            with open(fileName + ".txt", "a") as text_file:
+                text_file.write("{}\n".format(word))#ps.stem(word)))
+            with open(fileName + ".csv", 'a') as csv_file:
                 csv_file.write('word:{} start_time:{}:{} end_time:{}:{}\n'.format(
-                ps.stem(word),
+                word,#ps.stem(word),
                 int(start_time.seconds)//60, #+ start_time.nanos * 1,
                 int(start_time.seconds)%60,
                 end_time.seconds//60,
                 end_time.seconds%60))
+    
+    print("Audio transcription completed")
 
 #
 
 
-def convert():
+if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -112,17 +114,3 @@ def convert():
         transcribe_gcs_with_word_time_offsets(args.path)
     else:
         transcribe_file_with_word_time_offsets(args.path)
-
-# if __name__ == '__main__':
-#     parser = argparse.ArgumentParser(
-#         description=__doc__,
-#         formatter_class=argparse.RawDescriptionHelpFormatter)
-#     parser.add_argument(
-#         'path', help='File or GCS path for audio file to be recognized')
-#     args = parser.parse_args()
-#     if args.path.startswith('gs://'):
-#         transcribe_gcs_with_word_time_offsets(args.path)
-#     else:
-#         transcribe_file_with_word_time_offsets(args.path)
-
-

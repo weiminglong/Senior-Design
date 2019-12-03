@@ -19,7 +19,7 @@ from nltk.stem import PorterStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
 
 # Speech-to-Text file import
-import offset as offset
+import auto as auto
 
 
 #######################
@@ -75,7 +75,7 @@ def search_tags():
 # ------------------------
 
 # Call function to convert audio to text from offset.py file
-# offset.convert()
+auto.convert_auto()
 
 # ------------------------
 
@@ -244,7 +244,7 @@ fullData2 = [e for e in fullData if e]
 # variable definition
 dictCorpus = {}
 
-sizeI = len(fullData2[0]) - 1
+sizeI = len(fullData2[0])
 count = 0
 lengthLimit = len(listweights)
 # print("size")
