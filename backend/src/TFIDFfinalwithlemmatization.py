@@ -130,10 +130,16 @@ def timeData(filename, listwords):
                     temptopword = []
                     name = lower
                     startTime = line[1]
+                    start = startTime.split("start_time:")
+                    startFin = start[1]
+                    #print(k[1])
                     endTime = line[2]
+                    end = endTime.split("end_time:")
+                    endFin = end[1]
+                    #print(endTime.split("end_time:"))
                     val2 = line3[1]
                     foundWords.append(lower)
-                    topword = "word: " + val2 + "  " + startTime + "  " + endTime
+                    topword = lower + ", " + startFin+ " , " + endFin
                     temptopword.append(topword)
                     tempfullData = tempfullData + temptopword
                     wordPresent = True
@@ -236,12 +242,15 @@ for i in fullData2:
         test1.append(listFiles[counter])
         myDict[str(increment)] = line+test1
         counter +=1
-        print(myDict)
+        #print(myDict)
     # Check if the dictionary exists before inserting into list
     if myDict:
         dictCorpus[str(count)] = myDict
     count += 1
 
+
+print()
+print()
 
 print("corpus: $$$$$$$$$$$$$$$$$$############")
 print(dictCorpus)
