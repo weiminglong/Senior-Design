@@ -141,7 +141,8 @@ def timeData(filename, listwords):
                     foundWords.append(lower)
                     topword = lower + ", " + startFin+ " , " + endFin
                     temptopword.append(topword)
-                    tempfullData = tempfullData + temptopword
+                    #tempfullData = tempfullData + temptopword
+                    tempfullData.append(temptopword)
                     wordPresent = True
                     filesName.append(filename)
                     # print(filename)
@@ -168,6 +169,8 @@ def timeData(filename, listwords):
     #tempfullData = tempfullData + filesName
     #fullData.append(tempfullData)
 
+
+
 listwords = []
 listweights = []
 for i in top5AllFiles:
@@ -186,11 +189,13 @@ for i in top5AllFiles:
     listwords.append(temp)
     listweights.append(tempfloat)
 
+
 for i in listwords:
     # parse through file and get time stamp
     for filename in sorted(glob.glob(os.path.join(path, '*.csv'))):
         # print(filename)
         timeData(filename, i)
+
 
 # stip empty list within a list
 fullData2 = [e for e in fullData if e]
@@ -210,55 +215,53 @@ lengthLimit = len(listweights)
      # lenght = len(listFiles[i])
      #k =
      #listFiles[i] = [x[x.index('c/'):] if 'src/' in x else x for x in listFiles[i]]
-print(listFiles)
+#print(fullData2)
 print()
 print()
 
+#print(listweights[1])
+print()
+print()
+dictCorpus = {}
 counter = 0
+incr = 0
+count = 0
+index=0
+
+fulLeng= len(fullData2)
 for i in fullData2:
-    increment = 0
-    myDict = {}
+    indexIn = 0
+    incr = 0
+    myDict = []
     test1 = []
     line = []
-    for j in range(0, sizeI):
-       # test1 = []
-        if count < lengthLimit:
-            test = []
-            tester = []
-            tester.append(listweights[count][j])
-            # print(count)
-            test.append(i[j])
-            #test1.append(listFiles[j])
-            myDict[str(increment)] = test + tester
-            if (j == sizeI - 1):
-               myDict[str(increment)].append(i[j])
-               # myDict[str(increment)].append(test1)
-                #continue
-            # print(i[j])
-            increment += 1
-    if(counter <len(listFiles)):
-        name = "filename: "
-        line.append(name)
-        test1.append(listFiles[counter])
-        myDict[str(increment)] = line+test1
-        counter +=1
-        #print(myDict)
-    # Check if the dictionary exists before inserting into list
-    if myDict:
-        dictCorpus[str(count)] = myDict
-    count += 1
+    for j in i:
+        if (count<lengthLimit and incr<sizeI):
+            #tester.append(listweights[0][incr])
+           # print(j[0])
+            weight = " ,"+'%.3f'%(listweights[count][incr])
+           # print(weight)
+            j[0] += weight
+            incr+=1
+        count+=1
+
+
+
+
+
+
+
 
 
 print()
-print()
-
+print(fullData2)
 print("corpus: $$$$$$$$$$$$$$$$$$############")
-print(dictCorpus)
+#print(dictCorpus)
 #print(listFiles)
 
 # store dictionary in json file
-with open('top5Words.json', 'w') as filehandle:
-    json.dump(dictCorpus, filehandle)
+#with open('top5Words.json', 'w') as filehandle:
+    #json.dump(dictCorpus, filehandle)
 # store json format in database
 # json.dump(dictCorpus,sort_keys= True,indent = 5)
 
