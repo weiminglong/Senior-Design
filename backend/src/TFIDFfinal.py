@@ -80,84 +80,91 @@ auto.convert_auto()
 # ------------------------
 
 
-def tfidf_Lemmatization():
-    # path is that of the current directory
-    path = os.getcwd()
-    # print(location)
-    ps = PorterStemmer()
-    # empty list of corpus
-    corpus = []
+top5AllFiles = []
+listFiles = []
+listwords = []
+listweights = []
+lemmatizer = WordNetLemmatizer()
+fullData = []
+fullData2 = []
+path = os.getcwd()
 
-    fullData = []
-    fullData2 = []
-    # append each file with .txt extension to the corpus
 
-    for filename in sorted(glob.glob(os.path.join(path, '*.txt'))):
-        with open(filename, 'r') as f:
-            text = f.read()
-            corpus.append(text)
+def top5words():
+        # path is that of the current directory
+        # path = os.getcwd()
+        # print(location)
+        ps = PorterStemmer()
+        # empty list of corpus
+        corpus = []
 
-    vectorizer = TfidfVectorizer(analyzer='word', stop_words='english')
-    tfidf_matrix = vectorizer.fit_transform(corpus)
+        # append each file with .txt extension to the corpus
 
-    stop_words = set(stopwords.words('english'))
+        for filename in sorted(glob.glob(os.path.join(path, '*.txt'))):
+            with open(filename, 'r') as f:
+                text = f.read()
+                corpus.append(text)
 
-    # ps = PorterStemmer()
-    analyzer = CountVectorizer().build_analyzer()
+        vectorizer = TfidfVectorizer(analyzer='word', stop_words='english')
+        tfidf_matrix = vectorizer.fit_transform(corpus)
 
-    lemmatizer = WordNetLemmatizer()
+        stop_words = set(stopwords.words('english'))
 
-    # def stem_words(doc):
-    # return[port.stem(word) for word in analyzer(doc) if word not in stop_words]
+        # ps = PorterStemmer()
+        analyzer = CountVectorizer().build_analyzer()
 
-    def stem_words(doc):
-        return [lemmatizer.lemmatize(word) for word in analyzer(doc) if word not in stop_words]
+        # lemmatizer = WordNetLemmatizer()
 
-    cv = CountVectorizer(analyzer=stem_words, stop_words='english', lowercase=True)
+        # def stem_words(doc):
+        # return[port.stem(word) for word in analyzer(doc) if word not in stop_words]
 
-    # cv=CountVectorizer(analyzer='word', stop_words = 'english',lowercase=True)
+        def stem_words(doc):
+            return [lemmatizer.lemmatize(word) for word in analyzer(doc) if word not in stop_words]
 
-    # this steps generates word counts for the words in your docs
-    word_count_vector = cv.fit_transform(corpus)
+        cv = CountVectorizer(analyzer=stem_words, stop_words='english', lowercase=True)
 
-    word_count_vector.shape
+        # cv=CountVectorizer(analyzer='word', stop_words = 'english',lowercase=True)
 
-    tfidf_transformer = TfidfTransformer()
-    tfidf_transformer.fit(word_count_vector)
+        # this steps generates word counts for the words in your docs
+        word_count_vector = cv.fit_transform(corpus)
 
-    count_vector = cv.transform(corpus)
-    tf_idf_vector = tfidf_transformer.transform(count_vector)
+        word_count_vector.shape
 
-    feature_names = cv.get_feature_names()
+        tfidf_transformer = TfidfTransformer()
+        tfidf_transformer.fit(word_count_vector)
 
-    top5AllFiles = []
+        count_vector = cv.transform(corpus)
+        tf_idf_vector = tfidf_transformer.transform(count_vector)
 
-    # build dataframe of first document. Determined by the index od tf-idf_vector below
+        feature_names = cv.get_feature_names()
 
-    corpusLength = len(corpus)
+        #top5AllFiles = []
 
-    for i in range(0, corpusLength):
-        # print(i)
-        df = pd.DataFrame(tf_idf_vector[i].T.todense(), index=feature_names, columns=["tfidf"])
-        df.sort_values(by=["tfidf"], ascending=False)
-        # get top 5 words
-        top5 = df.nlargest(5, "tfidf")
-        # print(top5)
-        array = []
-        data1 = []
-        for i, j in top5.iterrows():
-            data1.append(i)
-            data1.append(j.tfidf)
+        # build dataframe of first document. Determined by the index od tf-idf_vector below
 
-        array.append(data1)
-        top5AllFiles.append(array)
+        corpusLength = len(corpus)
 
-    # print(top5AllFiles)
-    # print()
+        for i in range(0, corpusLength):
+            # print(i)
+            df = pd.DataFrame(tf_idf_vector[i].T.todense(), index=feature_names, columns=["tfidf"])
+            df.sort_values(by=["tfidf"], ascending=False)
+            # get top 5 words
+            top5 = df.nlargest(5, "tfidf")
+            # print(top5)
+            array = []
+            data1 = []
+            for i, j in top5.iterrows():
+                data1.append(i)
+                data1.append(j.tfidf)
 
-    listFiles = []
+            array.append(data1)
+            top5AllFiles.append(array)
 
-    def timeData(filename, listwords):
+        # print(top5AllFiles)
+        # print()
+
+
+def time_data(filename, listwords):
         tempfullData = []
         foundWords = []
         # try:
@@ -226,8 +233,8 @@ def tfidf_Lemmatization():
         # tempfullData = tempfullData + filesName
         # fullData.append(tempfullData)
 
-    listwords = []
-    listweights = []
+
+def weights():
     for i in top5AllFiles:
         size = len(i[0])
         temp = []
@@ -244,11 +251,13 @@ def tfidf_Lemmatization():
         listwords.append(temp)
         listweights.append(tempfloat)
 
+
+def words_time():
     for i in listwords:
         # parse through file and get time stamp
         for filename in sorted(glob.glob(os.path.join(path, '*.csv'))):
             # print(filename)
-            timeData(filename, i)
+            time_data(filename, i)
 
     # stip empty list within a list
     fullData2 = [e for e in fullData if e]
@@ -256,25 +265,13 @@ def tfidf_Lemmatization():
     # variable definition
     dictCorpus = {}
     # print(listFiles)
+
+
+def words_weight():
     sizeI = len(fullData2[0])
     count = 0
     lengthLimit = len(listweights)
-    # print("size")
-    # print(sizeI)
-    # print(len(listweights)
-    # print(sizeI)
-    # incr = 0;
-    # for i in range(0,len(listFiles)):
-    # lenght = len(listFiles[i])
-    # k =
-    # listFiles[i] = [x[x.index('c/'):] if 'src/' in x else x for x in listFiles[i]]
-    # print(fullData2)
-    print()
-    print()
 
-    # print(listweights[1])
-    print()
-    print()
     dictCorpus = {}
     counter = 0
     incr = 0
@@ -311,3 +308,8 @@ def tfidf_Lemmatization():
     # json.dump(dictCorpus,sort_keys= True,indent = 5)
 
 
+if __name__ == "__main__":
+    top5words()
+    words_time()
+    weights()
+    words_weight()
