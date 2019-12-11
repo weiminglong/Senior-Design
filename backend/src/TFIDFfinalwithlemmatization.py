@@ -94,10 +94,13 @@ for i in range(0, corpusLength):
     array.append(data1)
     top5AllFiles.append(array)
 
-# print(top5AllFiles)
+#print(top5AllFiles)
 # print()
 
 listFiles = []
+testWord = []
+
+#this function get the start and end time from csv files that are all in a given list of words
 
 def timeData(filename, listwords):
     tempfullData = []
@@ -126,6 +129,7 @@ def timeData(filename, listwords):
                 stemmedWord = lemmatizer.lemmatize(comparedword)
                 # print(comparedword,":",stemmedWord)
                 #if line3[0]=="word" and lower == line3[1].lower() and lower not in foundWords:
+
                 if line3[0] == "word" and lower == stemmedWord and lower not in foundWords:
                     temptopword = []
                     name = lower
@@ -139,8 +143,11 @@ def timeData(filename, listwords):
                     #print(endTime.split("end_time:"))
                     val2 = line3[1]
                     foundWords.append(lower)
-                    topword = lower + ", " + startFin+ " , " + endFin
-                    temptopword.append(topword)
+                   # topword = str(lower) + ", " + str(startFin)+ " , " + str(endFin)
+                   # temptopword.append(topword)
+                    temptopword.append(lower)
+                    temptopword.append(startFin)
+                    temptopword.append(endFin)
                     #tempfullData = tempfullData + temptopword
                     tempfullData.append(temptopword)
                     wordPresent = True
@@ -148,29 +155,20 @@ def timeData(filename, listwords):
                     # print(filename)
                     # print(tempfullData)
                     # print()
-                if line3[0] == "link" and wordPresent == True and line[0] not in link:
-                    link.append(line[0])
+                #if line3[0] == "link" and wordPresent == True and line[0] not in link:
+                   # link.append(line[0])
                 if(len(tempfullData) >=5 and filesName not in listFiles and len(filesName)!=0):
                     listFiles.append(filesName)
+    testWord = foundWords
 
-    # if(len(tempfullData) <5 and len(tempfullData) >0):
-    # continue
-    # print(tempfullData)
-    # print(listFiles)
-    # print()
-    tempfullData = tempfullData+ link
+    #tempfullData = tempfullData+ link
     if (len(tempfullData) <= 2):
         tempfullData = []
     if (len(tempfullData) < 5):
         tempfullData = []
     fullData.append(tempfullData)
 
-
-    #tempfullData = tempfullData + filesName
-    #fullData.append(tempfullData)
-
-
-
+#get the weight from tfidf data above
 listwords = []
 listweights = []
 for i in top5AllFiles:
@@ -178,9 +176,11 @@ for i in top5AllFiles:
     temp = []
     tempfloat = []
     for j in range(0, size):
+        #print(j)
         tempVar = []
         tempWeight = []
         if (j % 2 == 0):
+            #print(i[0][j])
             weight = i[0][j + 1]
             tempVar.append(i[0][j])
             tempWeight.append(i[0][j + 1])
@@ -190,6 +190,7 @@ for i in top5AllFiles:
     listweights.append(tempfloat)
 
 
+#parameter to be passed in time_data function
 for i in listwords:
     # parse through file and get time stamp
     for filename in sorted(glob.glob(os.path.join(path, '*.csv'))):
@@ -199,70 +200,56 @@ for i in listwords:
 
 # stip empty list within a list
 fullData2 = [e for e in fullData if e]
-#print(fullData2)
-# variable definition
 dictCorpus = {}
-#print(listFiles)
 sizeI = len(fullData2[0])
-count = 0
-lengthLimit = len(listweights)
-# print("size")
-# print(sizeI)
-# print(len(listweights)
-# print(sizeI)
-#incr = 0;
-#for i in range(0,len(listFiles)):
-     # lenght = len(listFiles[i])
-     #k =
-     #listFiles[i] = [x[x.index('c/'):] if 'src/' in x else x for x in listFiles[i]]
-#print(fullData2)
-print()
-print()
-
-#print(listweights[1])
-print()
-print()
-dictCorpus = {}
 counter = 0
 incr = 0
 count = 0
 index=0
 
+lengthLimit = len(listweights)
 fulLeng= len(fullData2)
 for i in fullData2:
-    indexIn = 0
+   # print(i)
     incr = 0
+    indexIn = 0
     myDict = []
     test1 = []
     line = []
+    #print("printing j")
     for j in i:
-        if (count<lengthLimit and incr<sizeI):
-            #tester.append(listweights[0][incr])
-           # print(j[0])
-            weight = " ,"+'%.3f'%(listweights[count][incr])
-           # print(weight)
-            j[0] += weight
+      if (incr<sizeI and count<lengthLimit):
+            weight ='%.3f'%(listweights[count][incr])
+            j.append(weight)
             incr+=1
-        count+=1
+    count+=1
 
 
 
-
-
-
-
-
-
-print()
-print(fullData2)
-print("corpus: $$$$$$$$$$$$$$$$$$############")
-#print(dictCorpus)
 #print(listFiles)
+count =0
+my_dict = {}
+
+for i in fullData2:
+    if count == len(listFiles)-1:
+        break
+    indv_dict = {
+        "words": "",
+        "filename": ""
+    }
+   # print(listFiles[count])
+    indv_dict["words"] = i
+    indv_dict["filename"] = listFiles[count]
+    my_dict[str(count)] = indv_dict
+    count +=1
+
+# store dictionary in json file
+with open('top5Words.json', 'w') as filehandle:
+    json.dump(my_dict,filehandle,indent =5)
 
 # store dictionary in json file
 #with open('top5Words.json', 'w') as filehandle:
     #json.dump(dictCorpus, filehandle)
 # store json format in database
 # json.dump(dictCorpus,sort_keys= True,indent = 5)
-
 
