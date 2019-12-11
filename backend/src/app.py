@@ -4,6 +4,9 @@ from flask_pymongo import PyMongo, MongoClient
 
 import json
 
+import auto as auto
+import TFIDFfinalwithlemmatization as nlp
+
 from werkzeug.wrappers import Response
 
 # handle requests and allow front end to access backend
@@ -48,17 +51,40 @@ def search_tags():
         tag = text["search"]
 
         tags_collection = mongo.db.tags
-        videos = tags_collection.find({"tags": tag})
+        videos = tags_collection.find({"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
 
         array = []
         for i in videos:
             print(i)
-            array.append(i["title"])
+            array.append(i["filename"])
 
         print("array:")
         print(array)
 
     return json.dumps(array)
+
+
+@app.route("/api/upload", methods=['GET', "POST"])
+def upload_and_process():
+    if request.method == "POST":
+        text = request.json
+        tag = text["search"]
+
+        print(tag)
+
+        # Call function to convert audio to text from offset.py file
+        auto.convert_auto()
+
+        top5 = {}
+        top5 = nlp.TFIDF()
+
+        tags_collection = mongo.db.tags
+
+        for i in top5:
+            # print(top5[i])
+            tags_collection.insert_one(top5[i])
+
+        return json.dumps("Successfully uploaded and processed video Taxonomy.mp4")
 
 
 if __name__ == "__main__":

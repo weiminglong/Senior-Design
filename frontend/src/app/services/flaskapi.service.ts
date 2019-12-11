@@ -22,4 +22,9 @@ export class FlaskapiService {
     let testObj: Test = { search: tag }
     return this.httpClient.post<string[]>(this.server + "tags", testObj);
   }
+
+  public upload(tag: string){
+    let testObj: Test = { search: tag }
+    return this.httpClient.post<string>(this.server + "upload", testObj);
+  }
 }
