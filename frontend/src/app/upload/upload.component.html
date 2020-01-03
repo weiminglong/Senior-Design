@@ -6,7 +6,7 @@
             <input matInput placeholder="No file selected" [value]="selectedVideo" readonly>
         </mat-form-field>
         <button class="video-button" mat-raised-button color="primary" (click)="videoInput.click()">Select video
-            <input hidden type="file" #videoInput accept="video/mp4" (change)="onVideoSelect($event.target.files)">
+            <input hidden type="file" #videoInput accept="video/mp4" (change)="onVideoSelect($event.target.files)" [formControl]="videoFile">
         </button>
         </span>
 
@@ -31,10 +31,9 @@
             <input matInput placeholder="Name of new course" [formControl]="newSubject">
         </mat-form-field>
 
-
         <div class="upload-button"> 
             <button mat-raised-button (click)="onUpload()" color="accent" style="width: 100px;"
-            [disabled]="!videoTitle.valid || !(videoSubject.valid || newSubject.valid)">Upload</button>
+            [disabled]="!videoFile.valid || !videoTitle.valid || !(videoSubject.valid || newSubject.valid)">Upload</button>
         </div>
     </div>
 </div>

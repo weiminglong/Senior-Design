@@ -13,6 +13,7 @@ export class UploadComponent implements OnInit {
   selectedVideo: string = "";
   isChecked: boolean = false;
 
+  videoFile = new FormControl('', Validators.required);
   videoTitle = new FormControl('', Validators.required);
   videoSubject = new FormControl('', Validators.required);
   newSubject = new FormControl('', Validators.required);
@@ -23,12 +24,18 @@ export class UploadComponent implements OnInit {
   }
 
   onVideoSelect(files: FileList){
-    this.videoToUpload = files.item(0);
-    this.selectedVideo = files.item(0).name;
+
+    if (files.item(0) != null){
+      this.videoToUpload = files.item(0);
+      this.selectedVideo = files.item(0).name;
+    } else {
+      this.selectedVideo = "";
+    }
   }
 
   onUpload(){
     // upload video...
+    console.log(this.videoToUpload);
   }
 
   resetForms(){
