@@ -1,0 +1,52 @@
+<div class="upload-container">
+    <div class="forms">
+
+        <span class="temp">
+        <mat-form-field class="video-name" style="width: 460px;" appearance="fill">
+            <input matInput placeholder="No file selected" [value]="selectedVideo" readonly>
+        </mat-form-field>
+        <button class="video-button" mat-raised-button color="primary" (click)="videoInput.click()">Select video
+            <input hidden type="file" #videoInput accept="video/mp4" (change)="onVideoSelect($event.target.files)">
+        </button>
+        </span>
+
+        <mat-form-field class="title" style="width: 600px;" appearance="standard">
+            <input matInput placeholder="Choose a title">
+        </mat-form-field>
+
+        <mat-form-field class="category" style="width: 600px;" appearance="standard">
+            <mat-label class="label">Category</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let category of categories" [value]="category">
+                    {{ category }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <span>
+            <mat-checkbox style="margin-right: 10px;"></mat-checkbox>
+            <mat-form-field class="new-category" style="width: 575px;" appearance="standard">
+                <input matInput placeholder="Create a new course...">
+            </mat-form-field>
+        </span>
+
+        <div class="upload-button"> 
+            <button mat-raised-button (click)="onUpload()" color="accent" style="width: 100px;">Upload</button>
+        </div>
+    </div>
+</div>
+
+
+<!--
+<input type="file" accept="video/mp4" (change)="onVideoSelect($event.target.files)">
+
+
+
+<span>
+    <mat-form-field style="width: 265px;"><input matInput placeholder="File name" readonly></mat-form-field>
+    <button mat-raised-button color="primary" style="width: 130px; height: 40px; margin-left: 10px;">Choose Video
+        <input hidden type="file" accept="video/mp4" (change)="onVideoSelect($event.target.files)">
+    </button>
+    
+</span>
+-->

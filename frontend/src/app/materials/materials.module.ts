@@ -7,6 +7,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -15,7 +17,9 @@ const MaterialComponents = [
   MatSelectModule,
   MatToolbarModule,
   MatListModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatCheckboxModule,
+  MatIconModule
 ]
 
 @NgModule({

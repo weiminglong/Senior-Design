@@ -10,12 +10,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MaterialsModule } from './materials/materials.module';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { UploadComponent } from './upload/upload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,

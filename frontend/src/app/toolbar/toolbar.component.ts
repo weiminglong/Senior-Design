@@ -15,17 +15,4 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  onUpload(){
-    this.flaskService.upload("upload video").subscribe(
-      resp => {
-        console.log(resp);
-        this.snackBar.open(resp, 'Dismiss')
-
-      },
-      err => {
-        console.log("something went wrong:" + err);
-      }
-    )
-  }
 }
