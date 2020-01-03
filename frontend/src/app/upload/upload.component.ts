@@ -10,6 +10,7 @@ export class UploadComponent implements OnInit {
   videoToUpload: File = null;
   categories: String[] = ["Math", "Physics", "Computer Science", "English", "History"];
   selectedVideo: string = "";
+  isChecked: boolean = false;
 
   constructor() { }
 

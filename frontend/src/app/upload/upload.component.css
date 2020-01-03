@@ -9,15 +9,30 @@
     flex-direction: column;
 }
 
+.title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.subject {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.new-category {
+    margin-top: 35px;
+}
+
 .upload-button {
     display: flex;
     justify-content: flex-end;
 }
 
-.temp {
+.file-browser-span {
     display: flex;
     align-items: flex-end;
     margin-bottom: 20px;
+
 }
 
 .video-name {
@@ -25,13 +40,11 @@
 }
 
 .video-button {
-
     margin-left: 10px; 
     padding-top:5px;
     padding-bottom:5px;
     padding-left: 25px;
     padding-right: 25px;
-
 }
 
 ::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
