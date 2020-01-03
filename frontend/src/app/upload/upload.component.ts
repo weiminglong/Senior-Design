@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-upload',
@@ -12,6 +13,10 @@ export class UploadComponent implements OnInit {
   selectedVideo: string = "";
   isChecked: boolean = false;
 
+  videoTitle = new FormControl('', Validators.required);
+  videoSubject = new FormControl('', Validators.required);
+  newSubject = new FormControl('', Validators.required);
+
   constructor() { }
 
   ngOnInit() {
@@ -24,6 +29,11 @@ export class UploadComponent implements OnInit {
 
   onUpload(){
     // upload video...
+  }
+
+  resetForms(){
+    this.videoSubject.reset();
+    this.newSubject.reset();
   }
 
 }
