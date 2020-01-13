@@ -4,6 +4,8 @@ from flask_pymongo import PyMongo, MongoClient
 
 import boto3
 
+import urllib3
+
 import json
 
 import auto as auto
@@ -75,8 +77,14 @@ def upload_and_process():
         # prints received video
         print(video)
 
-        s3 = boto3.client('s3')
-        s3.upload_fileobj(video, 'qa-classifier', 'test-test-video')
+        print(request.url)
+
+        with open("video/test-video.mp4", "wb") as f: # writes uploaded video object to .mp4 file
+            f.write(video.read())
+
+
+        # s3 = boto3.client('s3')
+        # s3.upload_fileobj(video, 'qa-classifier', 'test-test-video')
 
         # text = request.json
         # tag = text["search"]
