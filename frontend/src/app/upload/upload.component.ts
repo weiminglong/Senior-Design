@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { FlaskapiService } from '../services/flaskapi.service';
 
 @Component({
   selector: 'app-upload',
@@ -18,7 +19,7 @@ export class UploadComponent implements OnInit {
   videoSubject = new FormControl('', Validators.required);
   newSubject = new FormControl('', Validators.required);
 
-  constructor() { }
+  constructor(private flaskService: FlaskapiService) { }
 
   ngOnInit() {
   }
@@ -35,7 +36,19 @@ export class UploadComponent implements OnInit {
 
   onUpload(){
     // upload video...
+    console.log("uploading: ");
     console.log(this.videoToUpload);
+
+    this.flaskService.upload(this.videoToUpload).subscribe(
+      resp => {
+        console.log(resp); // print
+      },
+      err => {
+        console.log("something went wrong:" + err);
+      }
+    )
+
+
   }
 
   resetForms(){

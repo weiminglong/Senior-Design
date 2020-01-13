@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify
 
 from flask_pymongo import PyMongo, MongoClient
 
+import boto3
+
 import json
 
 import auto as auto
@@ -67,22 +69,31 @@ def search_tags():
 @app.route("/api/upload", methods=['GET', "POST"])
 def upload_and_process():
     if request.method == "POST":
-        text = request.json
-        tag = text["search"]
+        print("here")
+        video = request.files["video"]
 
-        print(tag)
+        # prints received video
+        print(video)
 
-        # Call function to convert audio to text from offset.py file
-        auto.convert_auto()
+        s3 = boto3.client('s3')
+        s3.upload_fileobj(video, 'qa-classifier', 'test-test-video')
 
-        top5 = {}
-        top5 = nlp.TFIDF()
+        # text = request.json
+        # tag = text["search"]
 
-        tags_collection = mongo.db.tags
+        # print(tag)
 
-        for i in top5:
-            # print(top5[i])
-            tags_collection.insert_one(top5[i])
+        # Call function to convert (existing) audio to text from offset.py file
+        # auto.convert_auto()
+        #
+        # top5 = {}
+        # top5 = nlp.TFIDF()
+        #
+        # tags_collection = mongo.db.tags
+        #
+        # for i in top5:
+        #     # print(top5[i])
+        #     tags_collection.insert_one(top5[i])
 
         return json.dumps("Successfully uploaded and processed video Taxonomy.mp4")
 

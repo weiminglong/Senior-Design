@@ -23,8 +23,11 @@ export class FlaskapiService {
     return this.httpClient.post<string[]>(this.server + "tags", testObj);
   }
 
-  public upload(tag: string){
-    let testObj: Test = { search: tag }
-    return this.httpClient.post<string>(this.server + "upload", testObj);
+  public upload(video: File) {
+    console.log("sending: " + video);
+    
+    const form = new FormData();
+    form.append('video', video, video.name);
+    return this.httpClient.post<string>(this.server + "upload", form);
   }
 }
