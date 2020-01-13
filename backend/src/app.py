@@ -73,19 +73,22 @@ def upload_and_process():
     if request.method == "POST":
         print("here")
         video = request.files["video"]
+        title = request.form["title"]
 
         # prints received video
         print(video)
-
         print(request.url)
+        print(title)
 
-        with open("video/test-video.mp4", "wb") as f: # writes uploaded video object to .mp4 file
+        filename = "video/" + video.filename
+
+        with open(filename, "wb") as f: # writes uploaded video object to .mp4 file
             f.write(video.read())
-
 
         # s3 = boto3.client('s3')
         # s3.upload_fileobj(video, 'qa-classifier', 'test-test-video')
 
+        # ************************************
         # text = request.json
         # tag = text["search"]
 
@@ -102,8 +105,9 @@ def upload_and_process():
         # for i in top5:
         #     # print(top5[i])
         #     tags_collection.insert_one(top5[i])
+        # ************************************
 
-        return json.dumps("Successfully uploaded and processed video Taxonomy.mp4")
+        return json.dumps("Successfully uploaded and processed video " + video.filename)
 
 
 if __name__ == "__main__":

@@ -38,8 +38,9 @@ export class UploadComponent implements OnInit {
     // upload video...
     console.log("uploading: ");
     console.log(this.videoToUpload);
+    console.log(this.videoTitle.value);
 
-    this.flaskService.upload(this.videoToUpload).subscribe(
+    this.flaskService.upload(this.videoToUpload, this.videoTitle.value).subscribe(
       resp => {
         console.log(resp); // print
       },
