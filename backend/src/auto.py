@@ -5,29 +5,33 @@ import upload
 import offset
 
 
-def convert_auto():
-    #gcloud authetification
-    #os.system("export GOOGLE_APPLICATION_CREDENTIALS=\"/Users/mike/credentials/cloudkey.json\"")
-    #script.printHello()
+def convert_auto(title, video_name):
+    # gcloud authetification
+    # os.system("export GOOGLE_APPLICATION_CREDENTIALS=\"/Users/mike/credentials/cloudkey.json\"")
+    # script.printHello()
 
-    #path variables
+    # path variables
     videoPath = 'video/'
     audioPath = 'audio/'
     txtPath = 'txt/'
 
-    #gcloud storage variables
+    # gcloud storage variables
     bucket = 'qaclassifier'
-    fileName = 'Taxonomy Biology'#'Mitochondria'
-    audioFile = 'Taxonomy Biology.flac'#'Mitochondria.flac'
+    fileName = title  # change to title
+    audioFile = title + '.flac'  # change this to title + .flac
 
-    #ffmpeg extract audio from video
-    os.system('ffmpeg -i video/Taxonomy.mp4 -f flac -ac 2 -vn ' + audioPath + audioFile)
+    print(fileName)
+    print(audioFile)
+    print('ffmpeg -i video/' + video_name + ' -f flac -ac 2 -vn ' + audioPath + audioFile)
 
-    #call upload function in upload.py
+    # ffmpeg extract audio from video
+    os.system('ffmpeg -i video/' + video_name + ' -f flac -ac 2 -vn ' + audioPath + audioFile)  # remove hard coded .mp4 and use video name
+
+    # call upload function in upload.py
     upload.upload_blob(bucket, audioPath + audioFile, audioFile)
 
-    #call transcribe function in offset.py
+    # call transcribe function in offset.py
     offset.transcribe_gcs_with_word_time_offsets('gs://' + bucket + '/' + audioFile, fileName)
 
-    #os way
-    #os.system('python offset.py gs://' + bucket + '/' + audioFile)
+    # os way
+    # os.system('python offset.py gs://' + bucket + '/' + audioFile)

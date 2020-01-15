@@ -73,23 +73,25 @@ def upload_and_process():
     if request.method == "POST":
         print("here")
         video = request.files["video"]
-        title = request.form["title"]
+        title = request.form["title"].replace(" ", "")
+        video_name = video.filename.replace(" ", "")
 
         # prints received video
         print(video)
         print(request.url)
         print(title)
+        print(video_name)
 
 
-        retrieve_video()
+        # retrieve_video()
 
-        # filename = "video/" + video.filename
-        #
-        # with open(filename, "wb") as f: # writes uploaded video object to .mp4 file
-        #     f.write(video.read())
-        #
-        # s3 = boto3.client('s3')
-        # s3.upload_file(filename, 'qa-classifier', 'test-video.mp4')
+        filename = "video/" + video_name
+
+        with open(filename, "wb") as f: # writes uploaded video object to .mp4 file
+            f.write(video.read())
+
+        s3 = boto3.client('s3')
+        s3.upload_file(filename, 'qa-classifier', video_name)
 
 
 
@@ -100,7 +102,7 @@ def upload_and_process():
         # print(tag)
 
         # Call function to convert (existing) audio to text from offset.py file
-        # auto.convert_auto()
+        auto.convert_auto(title, video_name)
         #
         # top5 = {}
         # top5 = nlp.TFIDF()
