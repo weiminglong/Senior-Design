@@ -80,13 +80,18 @@ def upload_and_process():
         print(request.url)
         print(title)
 
-        filename = "video/" + video.filename
 
-        with open(filename, "wb") as f: # writes uploaded video object to .mp4 file
-            f.write(video.read())
+        retrieve_video()
 
+        # filename = "video/" + video.filename
+        #
+        # with open(filename, "wb") as f: # writes uploaded video object to .mp4 file
+        #     f.write(video.read())
+        #
         # s3 = boto3.client('s3')
-        # s3.upload_fileobj(video, 'qa-classifier', 'test-test-video')
+        # s3.upload_file(filename, 'qa-classifier', 'test-video.mp4')
+
+
 
         # ************************************
         # text = request.json
@@ -108,6 +113,27 @@ def upload_and_process():
         # ************************************
 
         return json.dumps("Successfully uploaded and processed video " + video.filename)
+
+
+def retrieve_video():
+
+    s3 = boto3.client('s3')
+    # with open("testing-download", "wb") as video:
+    # object = s3.get_object(Bucket="qa-classifier", Key="test-video.mp4")
+    #
+    # print("done")
+    # # print(video)
+    # print(object)
+    #
+    # with open("testingggg2.mp4", "wb") as f: # writes uploaded video object to .mp4 file
+    #     f.write(object['Body'])
+
+    with open("testing-download.mp4", "wb") as video:
+        s3.download_fileobj("qa-classifier", "test-video.mp4", video)
+
+    print(video)
+
+    return 0
 
 
 if __name__ == "__main__":
