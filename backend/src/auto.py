@@ -5,7 +5,7 @@ import upload
 import offset
 
 
-def convert_auto(title, video_name):
+def convert_auto(title, video_name, video_url):
     # gcloud authetification
     # os.system("export GOOGLE_APPLICATION_CREDENTIALS=\"/Users/mike/credentials/cloudkey.json\"")
     # script.printHello()
