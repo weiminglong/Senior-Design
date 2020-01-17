@@ -31,7 +31,7 @@ def convert_auto(title, video_name, video_url):
     upload.upload_blob(bucket, audioPath + audioFile, audioFile)
 
     # call transcribe function in offset.py
-    offset.transcribe_gcs_with_word_time_offsets('gs://' + bucket + '/' + audioFile, fileName)
+    offset.transcribe_gcs_with_word_time_offsets('gs://' + bucket + '/' + audioFile, fileName, video_url)
 
     # os way
     # os.system('python offset.py gs://' + bucket + '/' + audioFile)
