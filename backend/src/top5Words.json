@@ -5,69 +5,69 @@
                     "derivative",
                     "0:14",
                     "0:14",
-                    "0.279"
+                    "0.283"
                ],
                [
                     "power",
                     "0:27",
                     "0:28",
-                    "0.250"
+                    "0.254"
                ],
                [
                     "subtract",
                     "0:33",
                     "0:34",
-                    "0.246"
+                    "0.249"
                ],
                [
                     "negative",
                     "3:57",
                     "3:59",
-                    "0.209"
+                    "0.217"
                ],
                [
                     "equals",
                     "0:21",
                     "0:21",
-                    "0.208"
+                    "0.212"
                ]
           ],
-          "link": "link:https://www.youtube.com/watch?v=d0yGdNEWdn0"
+          "link": "link:https://www.youtube.com/watch?v=4vT4fzjkGCQ"
      },
      "1": {
           "words": [
                [
-                    "vector",
-                    "0:34",
-                    "0:34",
-                    "0.511"
+                    "linnaeus",
+                    "2:32",
+                    "2:32",
+                    "0.239"
                ],
                [
-                    "transformation",
-                    "0:23",
-                    "0:24",
-                    "0.414"
+                    "kingdom",
+                    "5:10",
+                    "5:10",
+                    "0.215"
                ],
                [
-                    "linear",
-                    "0:16",
-                    "0:16",
-                    "0.296"
+                    "species",
+                    "1:38",
+                    "1:39",
+                    "0.203"
                ],
                [
-                    "matrix",
-                    "0:33",
-                    "0:34",
-                    "0.242"
+                    "organisms",
+                    "0:19",
+                    "0:19",
+                    "0.178"
                ],
                [
-                    "coordinates",
-                    "3:43",
-                    "3:43",
-                    "0.199"
+                    "like",
+                    "0:11",
+                    "0:11",
+                    "0.177"
                ]
           ],
-          "link": "link:https://www.youtube.com/watch?v=4vT4fzjkGCQ"
+          "link": "link:https://www.youtube.com/watch?v=_QdPW8JrYzQ,"
      },
      "2": {
           "words": [
@@ -75,138 +75,138 @@
                     "vector",
                     "0:34",
                     "0:34",
-                    "0.582"
+                    "0.514"
                ],
                [
-                    "numbers",
-                    "6:11",
-                    "6:11",
-                    "0.301"
+                    "transformation",
+                    "0:23",
+                    "0:24",
+                    "0.413"
                ],
                [
                     "linear",
                     "0:16",
                     "0:16",
-                    "0.173"
+                    "0.297"
                ],
                [
-                    "algebra",
-                    "0:16",
-                    "0:16",
-                    "0.157"
+                    "matrix",
+                    "0:33",
+                    "0:34",
+                    "0.243"
                ],
                [
-                    "space",
-                    "1:54",
-                    "1:55",
-                    "0.157"
+                    "coordinates",
+                    "3:43",
+                    "3:43",
+                    "0.201"
                ]
           ],
-          "link": "link:https://www.youtube.com/watch?v=_QdPW8JrYzQ,"
+          "link": "link:https://qa-classifier.s3.amazonaws.com/Taxonomy.mp4"
      },
      "3": {
           "words": [
                [
                     "vector",
+                    "0:34",
+                    "0:34",
+                    "0.585"
+               ],
+               [
+                    "numbers",
+                    "6:11",
+                    "6:11",
+                    "0.304"
+               ],
+               [
+                    "linear",
+                    "0:16",
+                    "0:16",
+                    "0.174"
+               ],
+               [
+                    "space",
+                    "1:54",
+                    "1:55",
+                    "0.160"
+               ],
+               [
+                    "algebra",
+                    "0:16",
+                    "0:16",
+                    "0.158"
+               ]
+          ],
+          "link": "link:https://www.youtube.com/watch?v=ouEVPRMHR1U"
+     },
+     "4": {
+          "words": [
+               [
+                    "vector",
                     "0:14",
                     "0:15",
-                    "0.423"
+                    "0.432"
                ],
                [
                     "numbers",
                     "0:55",
                     "0:55",
-                    "0.423"
+                    "0.432"
                ],
                [
                     "linear",
                     "0:13",
                     "0:14",
-                    "0.219"
-               ],
-               [
-                    "algebra",
-                    "0:14",
-                    "0:14",
-                    "0.202"
+                    "0.222"
                ],
                [
                     "space",
                     "0:34",
                     "0:34",
-                    "0.190"
+                    "0.203"
+               ],
+               [
+                    "algebra",
+                    "0:14",
+                    "0:14",
+                    "0.174"
                ]
           ],
-          "link": "link:https://www.youtube.com/watch?v=MRSeNayfUOU,"
+          "link": "link:https://www.youtube.com/watch?v=1OS6Sl0vB98,"
      },
-     "4": {
+     "5": {
           "words": [
                [
                     "glucose",
                     "0:20",
                     "0:25",
-                    "0.408"
+                    "0.418"
                ],
                [
                     "oxygen",
                     "0:56",
                     "0:56",
-                    "0.394"
+                    "0.403"
                ],
                [
                     "carbon",
                     "1:55",
                     "1:56",
-                    "0.200"
+                    "0.203"
                ],
                [
                     "aerobic",
                     "8:54",
                     "8:55",
-                    "0.200"
+                    "0.186"
                ],
                [
-                    "cellular",
-                    "0:7",
-                    "0:8",
-                    "0.183"
+                    "anaerobic",
+                    "8:48",
+                    "8:49",
+                    "0.173"
                ]
           ],
-          "link": "link:https://www.youtube.com/watch?v=ouEVPRMHR1U"
-     },
-     "5": {
-          "words": [
-               [
-                    "light",
-                    "5:55",
-                    "5:55",
-                    "0.465"
-               ],
-               [
-                    "reactions",
-                    "2:6",
-                    "2:6",
-                    "0.349"
-               ],
-               [
-                    "photons",
-                    "2:10",
-                    "2:10",
-                    "0.349"
-               ],
-               [
-                    "photosynthesis",
-                    "0:14",
-                    "0:16",
-                    "0.252"
-               ],
-               [
-                    "dark",
-                    "6:13",
-                    "6:13",
-                    "0.246"
-               ]
-          ],
-          "link": "link:https://www.youtube.com/watch?v=1OS6Sl0vB98,"
+          "link": "link:https://www.youtube.com/watch?v=MRSeNayfUOU,"
      }
 }

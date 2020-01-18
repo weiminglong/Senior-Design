@@ -38,7 +38,7 @@ def convert_auto(title, video_name, video_url):
     # os.system('python offset.py gs://' + bucket + '/' + audioFile)
 
 if __name__ == '__main__':
-    title = 'Taxonomy.mp4'
+    title = 'Taxonomy'
     video_name = 'Taxonomy.mp4'
-    video_url = "abcdefg.url"
+    video_url = "https://qa-classifier.s3.amazonaws.com/Taxonomy.mp4"
     convert_auto(title, video_name, video_url)
