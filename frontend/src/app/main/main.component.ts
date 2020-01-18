@@ -10,8 +10,9 @@ import { FlaskapiService } from '../services/flaskapi.service';
 export class MainComponent implements OnInit {
 
   searchTags = new FormControl('', Validators.required);
-  videoNames: string[] = []
+  videoNames: string[] = [];
   names: string;
+  videoURL: string;
 
   constructor(private flaskService: FlaskapiService) { }
  
@@ -25,6 +26,20 @@ export class MainComponent implements OnInit {
       resp => {
         console.log(resp); // print returned video name
         this.videoNames = resp;
+      },
+      err => {
+        console.log("something went wrong:" + err);
+      }
+    )
+  }
+
+  onPlay(){
+    
+    this.flaskService.playVideo().subscribe(
+      resp => {
+        console.log("got video link");
+        console.log(resp);
+        this.videoURL = resp;
       },
       err => {
         console.log("something went wrong:" + err);

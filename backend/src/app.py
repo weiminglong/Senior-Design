@@ -140,6 +140,15 @@ def retrieve_video():
     return 0
 
 
+@app.route("/api/play", methods=['GET', "POST"])
+def get_video():
+
+    # get object url
+    video_url = "https://qa-classifier.s3.amazonaws.com/IntroductiontoWorkandEnergy.mp4"
+    print("sending link...")
+    return json.dumps(video_url)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 

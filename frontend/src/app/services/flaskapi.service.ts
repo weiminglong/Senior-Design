@@ -32,4 +32,10 @@ export class FlaskapiService {
     // append name from videoTitle form
     return this.httpClient.post<string>(this.server + "upload", form);
   }
+
+  public playVideo() {
+    console.log("requesting link...");
+
+    return this.httpClient.get<string>(this.server + "play");
+  }
 }
