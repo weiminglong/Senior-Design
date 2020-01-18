@@ -47,4 +47,23 @@ export class MainComponent implements OnInit {
     )
   }
 
+  setVideo(){
+
+
+    var sourceTag = document.createElement('source');
+    sourceTag.setAttribute('src', this.videoURL);
+    sourceTag.setAttribute('type', 'video/mp4');
+    document.getElementById('video1').appendChild(sourceTag);
+
+    // var video = document.getElementById('concept-video');
+    // console.log(video);
+    // console.log(video[0]);
+    
+  }
+
+  setTime(){
+    document.getElementById('video1').currentTime = 20;
+    
+  }
+
 }
