@@ -5,73 +5,69 @@
                     "derivative",
                     "0:14",
                     "0:14",
-                    "0.325"
-               ],
-               [
-                    "front",
-                    "0:29",
-                    "0:30",
-                    "0.295"
+                    "0.283"
                ],
                [
                     "power",
                     "0:27",
                     "0:28",
-                    "0.224"
+                    "0.254"
                ],
                [
-                    "exponent",
+                    "subtract",
+                    "0:33",
                     "0:34",
-                    "0:35",
-                    "0.221"
+                    "0.249"
                ],
                [
-                    "rule",
-                    "3:46",
-                    "3:47",
-                    "0.221"
+                    "negative",
+                    "3:57",
+                    "3:59",
+                    "0.217"
+               ],
+               [
+                    "equals",
+                    "0:21",
+                    "0:21",
+                    "0.212"
                ]
           ],
-          "filename": [
-               "/Users/rachell/Documents/SD/sd-20-basso-kim-long/backend/src/Taxonomy Biology.csv"
-          ]
+          "link": "link:https://www.youtube.com/watch?v=4vT4fzjkGCQ"
      },
      "1": {
           "words": [
                [
-                    "vector",
-                    "0:34",
-                    "0:34",
-                    "0.551"
+                    "linnaeus",
+                    "2:32",
+                    "2:32",
+                    "0.239"
                ],
                [
-                    "transformation",
-                    "0:23",
-                    "0:24",
-                    "0.522"
+                    "kingdom",
+                    "5:10",
+                    "5:10",
+                    "0.215"
                ],
                [
-                    "matrix",
-                    "0:25",
-                    "0:26",
-                    "0.254"
+                    "species",
+                    "1:38",
+                    "1:39",
+                    "0.203"
                ],
                [
-                    "land",
-                    "3:46",
-                    "3:47",
-                    "0.248"
+                    "organisms",
+                    "0:19",
+                    "0:19",
+                    "0.178"
                ],
                [
-                    "linear",
-                    "0:16",
-                    "0:16",
-                    "0.243"
+                    "like",
+                    "0:11",
+                    "0:11",
+                    "0.177"
                ]
           ],
-          "filename": [
-               "/Users/rachell/Documents/SD/sd-20-basso-kim-long/backend/src/c.csv"
-          ]
+          "link": "link:https://www.youtube.com/watch?v=_QdPW8JrYzQ,"
      },
      "2": {
           "words": [
@@ -79,220 +75,138 @@
                     "vector",
                     "0:34",
                     "0:34",
-                    "0.697"
+                    "0.514"
                ],
                [
-                    "number",
-                    "6:11",
-                    "6:11",
-                    "0.285"
-               ],
-               [
-                    "one",
-                    "0:14",
-                    "0:14",
-                    "0.158"
+                    "transformation",
+                    "0:23",
+                    "0:24",
+                    "0.413"
                ],
                [
                     "linear",
                     "0:16",
                     "0:16",
-                    "0.147"
+                    "0.297"
                ],
                [
-                    "algebra",
-                    "0:16",
-                    "0:16",
-                    "0.134"
+                    "matrix",
+                    "0:33",
+                    "0:34",
+                    "0.243"
+               ],
+               [
+                    "coordinates",
+                    "3:43",
+                    "3:43",
+                    "0.201"
                ]
           ],
-          "filename": [
-               "/Users/rachell/Documents/SD/sd-20-basso-kim-long/backend/src/d.csv"
-          ]
+          "link": "link:https://qa-classifier.s3.amazonaws.com/Taxonomy.mp4"
      },
      "3": {
           "words": [
                [
                     "vector",
+                    "0:34",
+                    "0:34",
+                    "0.585"
+               ],
+               [
+                    "numbers",
+                    "6:11",
+                    "6:11",
+                    "0.304"
+               ],
+               [
+                    "linear",
+                    "0:16",
+                    "0:16",
+                    "0.174"
+               ],
+               [
+                    "space",
+                    "1:54",
+                    "1:55",
+                    "0.160"
+               ],
+               [
+                    "algebra",
+                    "0:16",
+                    "0:16",
+                    "0.158"
+               ]
+          ],
+          "link": "link:https://www.youtube.com/watch?v=ouEVPRMHR1U"
+     },
+     "4": {
+          "words": [
+               [
+                    "vector",
                     "0:14",
                     "0:15",
-                    "0.415"
+                    "0.432"
                ],
                [
-                    "number",
+                    "numbers",
                     "0:55",
                     "0:55",
-                    "0.415"
-               ],
-               [
-                    "one",
-                    "3:8",
-                    "3:8",
-                    "0.215"
+                    "0.432"
                ],
                [
                     "linear",
                     "0:13",
                     "0:14",
-                    "0.198"
+                    "0.222"
+               ],
+               [
+                    "space",
+                    "0:34",
+                    "0:34",
+                    "0.203"
                ],
                [
                     "algebra",
                     "0:14",
                     "0:14",
-                    "0.187"
+                    "0.174"
                ]
           ],
-          "filename": [
-               "/Users/rachell/Documents/SD/sd-20-basso-kim-long/backend/src/e.csv"
-          ]
+          "link": "link:https://www.youtube.com/watch?v=1OS6Sl0vB98,"
      },
-     "4": {
+     "5": {
           "words": [
                [
                     "glucose",
                     "0:20",
                     "0:25",
-                    "0.386"
+                    "0.418"
                ],
                [
                     "oxygen",
                     "0:56",
                     "0:56",
-                    "0.382"
+                    "0.403"
                ],
                [
                     "carbon",
                     "1:55",
                     "1:56",
-                    "0.236"
+                    "0.203"
                ],
                [
                     "aerobic",
                     "8:54",
                     "8:55",
-                    "0.226"
+                    "0.186"
                ],
                [
-                    "cellular",
-                    "0:7",
-                    "0:8",
-                    "0.189"
+                    "anaerobic",
+                    "8:48",
+                    "8:49",
+                    "0.173"
                ]
           ],
-          "filename": [
-               "/Users/rachell/Documents/SD/sd-20-basso-kim-long/backend/src/f.csv"
-          ]
-     },
-     "5": {
-          "words": [
-               [
-                    "light",
-                    "5:55",
-                    "5:55",
-                    "0.416"
-               ],
-               [
-                    "reaction",
-                    "2:6",
-                    "2:6",
-                    "0.416"
-               ],
-               [
-                    "photon",
-                    "2:10",
-                    "2:10",
-                    "0.329"
-               ],
-               [
-                    "carbohydrate",
-                    "0:57",
-                    "0:59",
-                    "0.260"
-               ],
-               [
-                    "photosynthesis",
-                    "0:14",
-                    "0:16",
-                    "0.249"
-               ]
-          ],
-          "filename": [
-               "/Users/rachell/Documents/SD/sd-20-basso-kim-long/backend/src/g.csv"
-          ]
-     },
-     "6": {
-          "words": [
-               [
-                    "microscope",
-                    "0:9",
-                    "0:9",
-                    "0.583"
-               ],
-               [
-                    "resolution",
-                    "0:7",
-                    "0:8",
-                    "0.447"
-               ],
-               [
-                    "image",
-                    "1:52",
-                    "1:53",
-                    "0.190"
-               ],
-               [
-                    "specimen",
-                    "1:58",
-                    "1:58",
-                    "0.183"
-               ],
-               [
-                    "light",
-                    "0:9",
-                    "0:9",
-                    "0.132"
-               ]
-          ],
-          "filename": [
-               "/Users/rachell/Documents/SD/sd-20-basso-kim-long/backend/src/h.csv"
-          ]
-     },
-     "7": {
-          "words": [
-               [
-                    "mitochondrion",
-                    "0:2",
-                    "0:3",
-                    "0.564"
-               ],
-               [
-                    "membrane",
-                    "0:19",
-                    "0:19",
-                    "0.300"
-               ],
-               [
-                    "inner",
-                    "6:19",
-                    "6:19",
-                    "0.247"
-               ],
-               [
-                    "dna",
-                    "0:27",
-                    "0:27",
-                    "0.224"
-               ],
-               [
-                    "cell",
-                    "0:15",
-                    "0:15",
-                    "0.209"
-               ]
-          ],
-          "filename": [
-               "/Users/rachell/Documents/SD/sd-20-basso-kim-long/backend/src/i.csv"
-          ]
+          "link": "link:https://www.youtube.com/watch?v=MRSeNayfUOU,"
      }
 }

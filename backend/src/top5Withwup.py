@@ -25,6 +25,7 @@ import sys
 top5AllFiles = []
 list_wo_rel = []
 listFiles = []
+listLinks = []
 listwords = []
 listweights = []
 lemmatizer = WordNetLemmatizer()
@@ -154,7 +155,7 @@ def group_high_similarity(target_list,lowerbound):
             if  value >= lowerbound:
                 result[x] = wordx
                 if wordy != wordx :
-                    print(wordy+"---> "+ wordx)
+                    #print(wordy+"---> "+ wordx)
                     duplicateToremove.append(wordy)
     return duplicateToremove
     
@@ -179,11 +180,13 @@ def hash_list(list_to_hash):
 
 
 
-listFiles = []
+listLinks = []
 testWord = []
 
 #this function get the start and end time from csv files that are all in a given list of words
 def timeData(filename, listwords):
+    #print(filename)
+    #print()
     tempfullData = []
     foundWords = []
     # try:
@@ -229,8 +232,27 @@ def timeData(filename, listwords):
                     tempfullData.append(temptopword)
                     wordPresent = True
                     filesName.append(filename)
-                if(len(tempfullData) >=5 and filesName not in listFiles and len(filesName)!=0):
-                    listFiles.append(filesName)
+
+                if line3[0] == "link" and wordPresent == True and line[0] not in listFiles:
+                   #link.append(line[0])
+                   listFiles.append(line[0])
+                   #print(listFiles)
+                  # print()
+                   #print()
+                """
+                if(len(tempfullData) >=5 and filesName not in listFiles and len(filesName)!=0) and line3[0] == "link":
+                    print(line[0])
+                    print(link)
+                    #if line3[0] == "link" and wordPresent == True and line[0] not in link:
+                    print(line3[0])
+                    print()
+                    link.append(line[0])
+                    print('link:',link)
+                    listFiles.append(link)
+                    print(listFiles)
+                    print()
+                    print()
+                """
     testWord = foundWords
     if (len(tempfullData) <= 2):
         tempfullData = []
@@ -300,17 +322,17 @@ def words_time_weights():
     #print(listFiles)
     count =0
     my_dict = {}
-
+    #sizer = listFiles
     for i in fullData2:
         if count == len(listFiles)-1:
             break
         indv_dict = {
             "words": "",
-            "filename": ""
+            "link": ""
         }
-       # print(listFiles[count])
+        #print(listFiles[count])
         indv_dict["words"] = i
-        indv_dict["filename"] = listFiles[count]
+        indv_dict["link"] = listFiles[count]
         my_dict[str(count)] = indv_dict
         count +=1
 
