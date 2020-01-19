@@ -6,19 +6,21 @@
     <button mat-raised-button (click)="onGo()">Go</button>
 </div>
 
-<!-- Proof of conceptP: Play video with s3 link 
+<!-- Proof of concept: Play video with s3 link
     <button mat-raised-button (click)="onPlay()" style="margin: 15px;">Show Video</button>
+    <button mat-raised-button (click)="setTime()" style="margin: 15px;">Set time</button>
     <video id="video1" width="400" [src] = "videoURL" controls>
         Your browser does not support HTML5 video.
     </video>
-
-    <video id="video1" width="400" controls></video>
 -->
+   
+
 
 <!--
 <button mat-raised-button (click)="setVideo()" style="margin: 15px;">Set Video</button>
-<button mat-raised-button (click)="setTime()" style="margin: 15px;">Set time</button>
 -->
+
+
 <div class="results" *ngFor="let i of videoNames">
     <mat-list>
         <mat-list-item routerLink="viewer">{{i}}</mat-list-item>
