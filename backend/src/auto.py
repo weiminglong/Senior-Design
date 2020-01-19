@@ -8,7 +8,7 @@ import offset
 def convert_auto(title, video_name, video_url):
     # gcloud authetification
     # os.system("export GOOGLE_APPLICATION_CREDENTIALS=\"/Users/mike/credentials/cloudkey.json\"")
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/mike/credentials/cloudkey.json"
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/rachell/Documents/SD/gcloud-key/cloudkey.json"
     # script.printHello()
 
     # path variables
@@ -37,8 +37,9 @@ def convert_auto(title, video_name, video_url):
     # os way
     # os.system('python offset.py gs://' + bucket + '/' + audioFile)
 
+
 if __name__ == '__main__':
     title = 'Taxonomy'
     video_name = 'Taxonomy.mp4'
     video_url = "https://qa-classifier.s3.amazonaws.com/Taxonomy.mp4"
-    convert_auto(title, video_name, video_url)
+    # convert_auto(title, video_name, video_url)

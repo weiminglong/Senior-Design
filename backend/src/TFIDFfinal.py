@@ -1,8 +1,3 @@
-# Flask app imports
-from flask import Flask, request, jsonify
-from flask_pymongo import PyMongo, MongoClient
-from flask_cors import CORS
-
 # TFIDF imports
 import pandas as pd
 import os, glob
@@ -18,71 +13,10 @@ from scipy.sparse.csr import csr_matrix  # need this if you want to save tfidf_m
 from nltk.stem import PorterStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import WordNetLemmatizer
-# Speech-to-Text file import
-import auto as auto
 
 from nltk.corpus import wordnet as wn
 from itertools import product
 import sys
-
-
-
-#######################
-# Instantiate app
-
-app = Flask(__name__)
-
-#config
-app.config["MONGODB_NAME"] = "qa-classifier"
-app.config["MONGO_URI"] = "mongodb+srv://rachell:leaf1234@cluster0-hu9je.mongodb.net/qa-classifier?retryWrites=true&w=majority"
-mongo = PyMongo(app)
-
-CORS(app)
-
-#######################
-
-
-@app.route("/")
-def index():
-    return "<h1>Hello World</h1>"
-
-
-@app.route("/test")
-def add_tags():
-
-    # post = {"title": "harold the cat part 2", "duration": 120, "tags": "cat"}
-    # collection.insert_one(post)
-
-    tags_collection = mongo.db.tags
-    tags_collection.insert_one({"title": "Physics 2: Electromagnetism, Lecture 3", "duration": 90, "tags": ["charge", "force", "work"]})
-    return "<h1>added new video tags</h1>"
-
-
-@app.route("/api/tags", methods=['GET', "POST"])
-def search_tags():
-    if request.method == "POST":
-        text = request.json
-        tag = text["search"]
-
-        tags_collection = mongo.db.tags
-        videos = tags_collection.find({"tags": tag})
-
-        array = []
-        for i in videos:
-            print(i)
-            array.append(i["title"])
-
-        print("array:")
-        print(array)
-
-    return json.dumps(array)
-
-# ------------------------
-
-# Call function to convert audio to text from offset.py file
-auto.convert_auto()
-
-# ------------------------
 
 
 #variables definitions
@@ -99,7 +33,8 @@ fullData2 = []
 path = os.getcwd()
 top5Final = []
 
-#get top5words from a path
+
+# get top5words from a path
 def top5words():
         # path is that of the current directory
         # path = os.getcwd()
@@ -186,8 +121,9 @@ def top5words():
                newList5.append(hashed[no_duplicate[x]])
             top5Final.append(newList5)
             itr +=1
-        
-#check if a passed in parameter is a float or not
+
+
+# check if a passed in parameter is a float or not
 def float_check(value):
     try:
       isinstance(float(value), float)
@@ -195,8 +131,9 @@ def float_check(value):
     except:
       #print(False)
       return False
-#determine a similarity between two words
 
+
+# determine a similarity between two words
 def similarity(wordx,wordy):
     sem1= wn.synsets(wordx)
     sem2 = wn.synsets(wordy)
@@ -208,7 +145,8 @@ def similarity(wordx,wordy):
         maxscore = score if maxscore < score else maxscore
     return maxscore
     
-#words from a list that are most similar and who similarity level is greater than the lowerbound
+
+# words from a list that are most similar and who similarity level is greater than the lowerbound
 def group_high_similarity(target_list,lowerbound):
     duplicateToremove = []
     result = target_list[:]
@@ -224,13 +162,15 @@ def group_high_similarity(target_list,lowerbound):
                     duplicateToremove.append(wordy)
     return duplicateToremove
     
-#remove duplicate list from a list
+
+# remove duplicate list from a list
 def remove_duplicate(target_list, remove_list):
     # using list comprehension to perform task 
     res = [i for i in target_list if i not in remove_list] 
     return res
     
- #hash a list   
+
+# hash a list
 def hash_list(list_to_hash):
     list = []
     list = list_to_hash[0]
@@ -248,7 +188,8 @@ def hash_list(list_to_hash):
 listLinks = []
 testWord = []
 
-#this function get the start and end time from csv files that are all in a given list of words
+
+# this function get the start and end time from csv files that are all in a given list of words
 def timeData(filename, listwords):
     #print(filename)
     #print()
@@ -325,11 +266,13 @@ def timeData(filename, listwords):
         tempfullData = []
     fullData.append(tempfullData)
 
-#get the weight from tfidf data above
+
+# get the weight from tfidf data above
 listwords = []
 listweights = []
 
-#get the weights of words
+
+# get the weights of words
 def weights():
     for i in top5Final:
         size = len(i)
@@ -349,15 +292,15 @@ def weights():
         listwords.append(temp)
         listweights.append(tempfloat)
 
-#combine words time and weights
+
+# combine words time and weights
 def words_time_weights():
-    #parameter to be passed in time_data function
+    # parameter to be passed in time_data function
     for i in listwords:
         # parse through file and get time stamp
         for filename in sorted(glob.glob(os.path.join(path, '*.csv'))):
             # print(filename)
             timeData(filename, i)
-
 
     # stip empty list within a list
     fullData2 = [e for e in fullData if e]
@@ -371,7 +314,7 @@ def words_time_weights():
     lengthLimit = len(listweights)
     fulLeng= len(fullData2)
     for i in fullData2:
-       # print(i)
+        # print(i)
         incr = 0
         indexIn = 0
         myDict = []
@@ -408,8 +351,8 @@ def words_time_weights():
     return my_dict
 
 # store dictionary in json file
-#with open('top5Words.json', 'w') as filehandle:
-    #json.dump(dictCorpus, filehandle)
+# with open('top5Words.json', 'w') as filehandle:
+    # json.dump(dictCorpus, filehandle)
 # store json format in database
 # json.dump(dictCorpus,sort_keys= True,indent = 5)
 
@@ -420,20 +363,7 @@ def TFIDF():
     weights()
     top5 = words_time_weights()
 
-    #for i in top5:
-    print(top5)
+    # for i in top5:
+    #   print(top5)
 
     return top5
-
-
-
-
-if __name__ == "__main__":
-
-    TFIDF()
-    """
-    top5words()
-    words_time()
-    weights()
-    words_weight()
-    """
