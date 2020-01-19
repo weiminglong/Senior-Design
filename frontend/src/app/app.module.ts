@@ -11,13 +11,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialsModule } from './materials/materials.module';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { UploadComponent } from './upload/upload.component';
+import { ViewerComponent } from './viewer/viewer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     ToolbarComponent,
-    UploadComponent
+    UploadComponent,
+    ViewerComponent
   ],
   imports: [
     BrowserModule,
