@@ -60,7 +60,7 @@ def search_tags():
         array = []
         for i in videos:
             print(i)
-            array.append(i["filename"])
+            array.append(i["link"])
 
         print("array:")
         print(array)

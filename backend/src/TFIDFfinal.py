@@ -241,7 +241,7 @@ def timeData(filename, listwords):
 
                 if line3[0] == "link" and wordPresent == True and line[0] not in listFiles:
                    #link.append(line[0])
-                   listFiles.append(line[0])
+                   listFiles.append(line[0][5:])
                    #print(listFiles)
                   # print()
                    #print()
