@@ -9,7 +9,7 @@ import urllib3
 import json
 
 import auto as auto
-import TFIDFfinalwithlemmatization as nlp
+import top5Withwup as nlp
 
 from werkzeug.wrappers import Response
 
@@ -106,14 +106,14 @@ def upload_and_process():
         # Call function to convert (existing) audio to text from offset.py file
         auto.convert_auto(title, video_name, video_url)
         #
-        # top5 = {}
-        # top5 = nlp.TFIDF()
-        #
-        # tags_collection = mongo.db.tags
-        #
-        # for i in top5:
-        #     # print(top5[i])
-        #     tags_collection.insert_one(top5[i])
+        top5 = {}
+        top5 = nlp.TFIDF()
+
+        tags_collection = mongo.db.tags
+
+        for i in top5:
+            # print(top5[i])
+            tags_collection.insert_one(top5[i])
         # ************************************
 
         return json.dumps("Successfully uploaded and processed video " + video.filename)
