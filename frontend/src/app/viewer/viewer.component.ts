@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewerComponent implements OnInit {
 
+  videoURL = 'https://qa-classifier.s3.amazonaws.com/Taxonomy.mp4'
+
   constructor() { }
 
   ngOnInit() {

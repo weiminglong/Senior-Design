@@ -2,7 +2,7 @@
     <mat-form-field class="form">
       <input matInput placeholder="Search..." [formControl]="searchTags">
     </mat-form-field>
-  
+
     <button mat-raised-button (click)="onGo()">Go</button>
 </div>
 
@@ -10,10 +10,11 @@
     <button mat-raised-button (click)="onPlay()" style="margin: 15px;">Show Video</button>
     <button mat-raised-button (click)="setTime()" style="margin: 15px;">Set time</button>
     <video id="video1" width="400" [src] = "videoURL" controls>
+      <source src = "https://qa-classifier.s3.amazonaws.com/Taxonomy.mp4">
         Your browser does not support HTML5 video.
     </video>
 -->
-   
+
 
 
 <!--
