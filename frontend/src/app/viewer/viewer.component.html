@@ -1,7 +1,6 @@
-<!-- Proof of concept: Play video with s3 link-->
+
  <div align="center">
-    <video id="video1" width="960" height="540" [src] = 'videoURL' controls>
-<!--      <source src="https://qa-classifier.s3.amazonaws.com/Taxonomy.mp4" type=video/mp4>-->
+    <video id="video1" *ngIf="videoURL" width="960" height="540" [src] = 'videoURL' controls>
         Your browser does not support HTML5 video.
     </video>
 </div>
@@ -59,3 +58,5 @@
 <!--
 <button mat-raised-button (click)="setVideo()" style="margin: 15px;">Set Video</button>
 -->
+
+<p>{{message?.text}}</p>

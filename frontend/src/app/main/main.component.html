@@ -24,7 +24,7 @@
 
 <div class="results" *ngFor="let i of videoNames">
     <mat-list>
-        <mat-list-item routerLink="viewer">{{i}}</mat-list-item>
+        <mat-list-item routerLink="viewer" (click)="setVideo(i)">{{i}}</mat-list-item>
         <mat-divider></mat-divider>
     </mat-list>
 </div>

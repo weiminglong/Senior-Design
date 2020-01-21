@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { InfoService } from '../services/info.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-viewer',
@@ -7,14 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewerComponent implements OnInit {
 
-  videoURL = 'https://qa-classifier.s3.amazonaws.com/Taxonomy.mp4';
-
-  constructor() { }
+  videoURL = {};
   keywords: Array<string> = ['Domain', 'Kingdom', 'Phylum', 'Class', 'Order'];
   times: number[][] = [[12, 13, 100], [21, 22, 23], [31, 32, 33]];
 
+  constructor(private infoService: InfoService) {
+
+    const link = this.infoService.getLink();
+    console.log(link);
+
+    if (link.substring(0, 24) === "https://www.youtube.com/"){
+      this.videoURL = "https://qa-classifier.s3.amazonaws.com/Basic+Derivative+Rules.mp4";
+    } else {
+      this.videoURL = link;
+    }
+  }
+
   ngOnInit() {
   }
+
 
   jumpTo10sec() {
     const video = <HTMLMediaElement>document.getElementById('video1');

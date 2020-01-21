@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { FlaskapiService } from '../services/flaskapi.service';
+import { InfoService } from '../services/info.service';
 
 @Component({
   selector: 'app-main',
@@ -14,7 +15,9 @@ export class MainComponent implements OnInit {
   names: string;
   videoURL: string;
 
-  constructor(private flaskService: FlaskapiService) { }
+  constructor(
+    private flaskService: FlaskapiService,
+    private infoService: InfoService) { }
  
   ngOnInit() {
   }
@@ -47,23 +50,26 @@ export class MainComponent implements OnInit {
     )
   }
 
-  setVideo(){
+  setVideo(link: string){
 
-
-    var sourceTag = document.createElement('source');
-    sourceTag.setAttribute('src', this.videoURL);
-    sourceTag.setAttribute('type', 'video/mp4');
-    document.getElementById('video1').appendChild(sourceTag);
+    // example: adding child to video tag
+    // var sourceTag = document.createElement('source');
+    // sourceTag.setAttribute('src', this.videoURL);
+    // sourceTag.setAttribute('type', 'video/mp4');
+    // document.getElementById('video1').appendChild(sourceTag);
 
     // var video = document.getElementById('concept-video');
     // console.log(video);
     // console.log(video[0]);
+    console.log("passing link: " + link);
+    //this.infoService.sendMessage(link);
+
+    this.infoService.sendLink(link);
     
   }
 
   setTime(){
     (<HTMLMediaElement>document.getElementById('video1')).currentTime = 20;
-    
   }
 
 }
