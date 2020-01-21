@@ -1,9 +1,11 @@
 <div class="body-container">
-    <mat-form-field class="form">
-      <input matInput placeholder="Search..." [formControl]="searchTags">
-    </mat-form-field>
+    <div>
+        <mat-form-field class="form" style="width: 420px; margin-top: 30px;" > 
+        <input matInput placeholder="Search..." [formControl]="searchTags">
+        </mat-form-field>
 
-    <button mat-raised-button (click)="onGo()">Go</button>
+        <button mat-raised-button class="go-button" (click)="onGo()">Go</button>
+    </div>
 </div>
 
 <!-- Proof of concept: Play video with s3 link
@@ -21,11 +23,16 @@
 <button mat-raised-button (click)="setVideo()" style="margin: 15px;">Set Video</button>
 -->
 
-
-<div class="results" *ngFor="let vid of videoNames; let i = index">
-    <mat-list>
-        <mat-list-item routerLink="viewer" (click)="setVideo(i)">{{vid}}</mat-list-item>
-        <mat-divider></mat-divider>
-    </mat-list>
+<div class="results-container">
+    <div class="results-container-2">
+        <div class="results" *ngFor="let vid of videoNames; let i = index">
+            <mat-list>
+                <span class="icon-link">
+                    <mat-icon>video_library</mat-icon>
+                    <mat-list-item routerLink="viewer" (click)="setVideo(i)">{{vid}}</mat-list-item>
+                </span>
+                <mat-divider style="width: 500px;"></mat-divider>
+            </mat-list>
+        </div>
+    </div>
 </div>
-
