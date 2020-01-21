@@ -7,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewerComponent implements OnInit {
 
-
   videoURL = 'https://qa-classifier.s3.amazonaws.com/Taxonomy.mp4';
 
   constructor() { }
+  const keywords: Array<string> = ['Domain', 'Kingdom', 'Phylum', 'Class', 'Order'];
+  const times: number[][] = [[12, 13, 100], [21, 22, 23], [31, 32, 33]];
 
   ngOnInit() {
   }
@@ -25,22 +26,44 @@ export class ViewerComponent implements OnInit {
     video.currentTime = time;
   }
 
-  getKeyword1() {
-    return "Keyword1 test";
+  getKeyword(num) {
+    return this.keywords[num];
   }
 
-  getKeyword2() {
-    return "Keyword2 test";
+  
+  getKeywordTime(keywordNum, timeNum) {
+
   }
 
-  getKeyword3() {
-    return "Keyword3 test";
-  }
+  convertSecToTime(num) {
+    let hour = num / 3600;
+    hour = Math.floor(hour);
 
-  getKeyword4() {
-    return "Keyword4 test";
+    let minute = (num / 60) % 60;
+    minute = Math.floor(minute);
+    // console.log("minute is" + minute)
+
+    let second = num % 60;
+    second = Math.floor(second);
+
+    return hour + ":" + minute + ":" + second;
   }
-  getKeyword5() {
-    return "Keyword5 test";
-  }
+  // getKeyword1() {
+  //   return "Keyword1 test";
+  // }
+  //
+  // getKeyword2() {
+  //   return "Keyword2 test";
+  // }
+  //
+  // getKeyword3() {
+  //   return "Keyword3 test";
+  // }
+  //
+  // getKeyword4() {
+  //   return "Keyword4 test";
+  // }
+  // getKeyword5() {
+  //   return "Keyword5 test";
+  // }
 }
