@@ -12,6 +12,7 @@ export class MainComponent implements OnInit {
 
   searchTags = new FormControl('', Validators.required);
   videoNames: string[] = [];
+  timeFrames: string[][][] = [];
   names: string;
   videoURL: string;
 
@@ -29,6 +30,8 @@ export class MainComponent implements OnInit {
       resp => {
         console.log(resp); // print returned video name
         this.videoNames = resp[0];
+        this.timeFrames = resp[1];
+        console.log(this.timeFrames);
       },
       err => {
         console.log("something went wrong:" + err);
@@ -50,7 +53,7 @@ export class MainComponent implements OnInit {
     )
   }
 
-  setVideo(link: string){
+  setVideo(index: number){
 
     // example: adding child to video tag
     // var sourceTag = document.createElement('source');
@@ -61,8 +64,13 @@ export class MainComponent implements OnInit {
     // var video = document.getElementById('concept-video');
     // console.log(video);
     // console.log(video[0]);
-    console.log("passing link: " + link);
-    this.infoService.sendLink(link);
+    
+    console.log("passing index: " + index);
+    console.log("passing url: " + this.videoNames[index]);
+    console.log("passing time frames: " + this.timeFrames[index][0]);
+    
+    this.infoService.sendLink(this.videoNames[index]);
+    this.infoService.sendTimeFrames(this.timeFrames[index]);
     
   }
 

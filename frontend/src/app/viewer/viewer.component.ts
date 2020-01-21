@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 export class ViewerComponent implements OnInit {
 
   videoURL = {};
+  timeFrames: string[][] = [];
   keywords: Array<string> = ['Domain', 'Kingdom', 'Phylum', 'Class', 'Order'];
   times: number[][] = [[12, 13, 100], [21, 22, 23], [31, 32, 33]];
 
@@ -24,9 +25,34 @@ export class ViewerComponent implements OnInit {
     } else {
       this.videoURL = link;
     }
+
+    this.timeFrames = this.infoService.getTimeFrames();
+    // Capitalize first word
+    for (let i in this.timeFrames){
+      // console.log(this.timeFrames[i]);
+      let word = this.timeFrames[i][0].charAt(0).toUpperCase() + this.timeFrames[i][0].substring(1);
+      this.timeFrames[i][0] = word;
+      // console.log(this.timeFrames[i]);
+    }
+    //console.log(this.timeFrames);
   }
 
   ngOnInit() {
+  }
+
+  changeTime(time: string){
+
+    console.log(time);
+    let totalSec;
+    let minToSec = (+time.charAt(0)) * 60;
+    console.log("min to sec: " + minToSec);
+    let sec = +time.substring(2);
+    console.log("sec to sec: " + sec);
+    totalSec = minToSec + sec;
+    console.log(totalSec);
+
+    (<HTMLMediaElement>document.getElementById('video1')).currentTime = totalSec;
+  
   }
 
 
@@ -68,22 +94,4 @@ export class ViewerComponent implements OnInit {
 
     return hour + ':' + minute + ':' + second;
   }
-  // getKeyword1() {
-  //   return "Keyword1 test";
-  // }
-  //
-  // getKeyword2() {
-  //   return "Keyword2 test";
-  // }
-  //
-  // getKeyword3() {
-  //   return "Keyword3 test";
-  // }
-  //
-  // getKeyword4() {
-  //   return "Keyword4 test";
-  // }
-  // getKeyword5() {
-  //   return "Keyword5 test";
-  // }
 }

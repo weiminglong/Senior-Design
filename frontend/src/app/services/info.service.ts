@@ -5,7 +5,9 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class InfoService {
+  // TODO: change to subject or behavior subject to maintain value upon refresh
   private link: string;
+  private timeFrames: string[][];
 
   constructor() { }
 
@@ -13,7 +15,15 @@ export class InfoService {
     this.link = link;
   }
 
+  sendTimeFrames(timeFrames: string[][]){
+    this.timeFrames = timeFrames;
+  }
+
   getLink(){
     return this.link;
+  }
+
+  getTimeFrames(){
+    return this.timeFrames;
   }
 }

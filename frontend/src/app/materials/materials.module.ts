@@ -9,6 +9,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips'; 
 
 const MaterialComponents = [
   MatButtonModule,
@@ -19,7 +20,8 @@ const MaterialComponents = [
   MatListModule,
   MatSnackBarModule,
   MatCheckboxModule,
-  MatIconModule
+  MatIconModule,
+  MatChipsModule
 ]
 
 @NgModule({

@@ -22,9 +22,9 @@
 -->
 
 
-<div class="results" *ngFor="let i of videoNames">
+<div class="results" *ngFor="let vid of videoNames; let i = index">
     <mat-list>
-        <mat-list-item routerLink="viewer" (click)="setVideo(i)">{{i}}</mat-list-item>
+        <mat-list-item routerLink="viewer" (click)="setVideo(i)">{{vid}}</mat-list-item>
         <mat-divider></mat-divider>
     </mat-list>
 </div>
