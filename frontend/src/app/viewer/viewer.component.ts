@@ -21,6 +21,7 @@ export class ViewerComponent implements OnInit {
     video.currentTime = 10;
   }
 
+  /** the parameter time is the seconds of the timeframe*/
   jumpTo(time) {
     const video = document.getElementById('video1');
     video.currentTime = time;
@@ -30,14 +31,19 @@ export class ViewerComponent implements OnInit {
     return this.keywords[num];
   }
 
-  
+  /** keywordNum mean which keyword and timeNum means the # of its timeframes*/
   getKeywordTime(keywordNum, timeNum) {
-
+    keywordNum -= 1;
+    timeNum -=1;
+    return times[keywordNum - 1][timeNum - 1];
   }
 
+  /** After getting the seconds in times 2D array, we are showing it on
+   * the HTML page in the format of 00:00:00*/
   convertSecToTime(num) {
     let hour = num / 3600;
     hour = Math.floor(hour);
+    //using Math library to make it whole number
 
     let minute = (num / 60) % 60;
     minute = Math.floor(minute);
@@ -46,7 +52,7 @@ export class ViewerComponent implements OnInit {
     let second = num % 60;
     second = Math.floor(second);
 
-    return hour + ":" + minute + ":" + second;
+    return hour + ':' + minute + ':' + second;
   }
   // getKeyword1() {
   //   return "Keyword1 test";
