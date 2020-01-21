@@ -128,15 +128,6 @@ def upload_and_process():
 def retrieve_video():
 
     s3 = boto3.client('s3')
-    # with open("testing-download", "wb") as video:
-    # object = s3.get_object(Bucket="qa-classifier", Key="test-video.mp4")
-    #
-    # print("done")
-    # # print(video)
-    # print(object)
-    #
-    # with open("testingggg2.mp4", "wb") as f: # writes uploaded video object to .mp4 file
-    #     f.write(object['Body'])
 
     with open("testing-download.mp4", "wb") as video:
         s3.download_fileobj("qa-classifier", "test-video.mp4", video)
