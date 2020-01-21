@@ -10,20 +10,20 @@ export class ViewerComponent implements OnInit {
   videoURL = 'https://qa-classifier.s3.amazonaws.com/Taxonomy.mp4';
 
   constructor() { }
-  const keywords: Array<string> = ['Domain', 'Kingdom', 'Phylum', 'Class', 'Order'];
-  const times: number[][] = [[12, 13, 100], [21, 22, 23], [31, 32, 33]];
+  keywords: Array<string> = ['Domain', 'Kingdom', 'Phylum', 'Class', 'Order'];
+  times: number[][] = [[12, 13, 100], [21, 22, 23], [31, 32, 33]];
 
   ngOnInit() {
   }
 
   jumpTo10sec() {
-    const video = document.getElementById('video1');
+    const video = <HTMLMediaElement>document.getElementById('video1');
     video.currentTime = 10;
   }
 
   /** the parameter time is the seconds of the timeframe*/
   jumpTo(time) {
-    const video = document.getElementById('video1');
+    const video = <HTMLMediaElement>document.getElementById('video1');
     video.currentTime = time;
   }
 

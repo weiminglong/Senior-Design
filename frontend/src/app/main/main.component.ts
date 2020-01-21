@@ -62,7 +62,7 @@ export class MainComponent implements OnInit {
   }
 
   setTime(){
-    document.getElementById('video1').currentTime = 20;
+    (<HTMLMediaElement>document.getElementById('video1')).currentTime = 20;
     
   }
 
