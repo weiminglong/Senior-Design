@@ -39,43 +39,13 @@ export class MainComponent implements OnInit {
     )
   }
 
-  onPlay(){
-    
-    this.flaskService.playVideo().subscribe(
-      resp => {
-        console.log("got video link");
-        console.log(resp);
-        this.videoURL = resp;
-      },
-      err => {
-        console.log("something went wrong:" + err);
-      }
-    )
-  }
-
   setVideo(index: number){
-
-    // example: adding child to video tag
-    // var sourceTag = document.createElement('source');
-    // sourceTag.setAttribute('src', this.videoURL);
-    // sourceTag.setAttribute('type', 'video/mp4');
-    // document.getElementById('video1').appendChild(sourceTag);
-
-    // var video = document.getElementById('concept-video');
-    // console.log(video);
-    // console.log(video[0]);
-    
     console.log("passing index: " + index);
     console.log("passing url: " + this.videoNames[index]);
     console.log("passing time frames: " + this.timeFrames[index][0]);
     
     this.infoService.sendLink(this.videoNames[index]);
     this.infoService.sendTimeFrames(this.timeFrames[index]);
-    
-  }
-
-  setTime(){
-    (<HTMLMediaElement>document.getElementById('video1')).currentTime = 20;
   }
 
 }

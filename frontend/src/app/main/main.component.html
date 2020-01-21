@@ -1,27 +1,12 @@
 <div class="body-container">
     <div>
-        <mat-form-field class="form" style="width: 420px; margin-top: 30px;" > 
+        <mat-form-field class="form" style="width: 420px; margin-top: 30px;" >  <!-- check if setting css file instead of direct styling changes rendering -->
         <input matInput placeholder="Search..." [formControl]="searchTags">
         </mat-form-field>
 
-        <button mat-raised-button class="go-button" (click)="onGo()">Go</button>
+        <button mat-raised-button class="go-button" (click)="onGo()" color="accent">Go</button>
     </div>
 </div>
-
-<!-- Proof of concept: Play video with s3 link
-    <button mat-raised-button (click)="onPlay()" style="margin: 15px;">Show Video</button>
-    <button mat-raised-button (click)="setTime()" style="margin: 15px;">Set time</button>
-    <video id="video1" width="400" [src] = "videoURL" controls>
-      <source src = "https://qa-classifier.s3.amazonaws.com/Taxonomy.mp4">
-        Your browser does not support HTML5 video.
-    </video>
--->
-
-
-
-<!--
-<button mat-raised-button (click)="setVideo()" style="margin: 15px;">Set Video</button>
--->
 
 <div class="results-container">
     <div class="results-container-2">

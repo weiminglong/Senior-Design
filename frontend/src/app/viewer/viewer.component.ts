@@ -41,15 +41,10 @@ export class ViewerComponent implements OnInit {
   }
 
   changeTime(time: string){
-
-    console.log(time);
     let totalSec;
     let minToSec = (+time.charAt(0)) * 60;
-    console.log("min to sec: " + minToSec);
     let sec = +time.substring(2);
-    console.log("sec to sec: " + sec);
     totalSec = minToSec + sec;
-    console.log(totalSec);
 
     (<HTMLMediaElement>document.getElementById('video1')).currentTime = totalSec;
   
