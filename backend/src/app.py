@@ -60,41 +60,13 @@ def search_tags():
         linkArray = []
         wordArray = []
         for i in videos:
-            #print(i)
-            # print("----words----")
-            print(i["words"])
-            # print(i["words"][0][0])
-            # print(i["words"][0][1])
-            #
-            # print(i["words"][1][0])
-            # print(i["words"][1][1])
-            #
-            # print(i["words"][2][0])
-            # print(i["words"][2][1])
-            #
-            # print(i["words"][3][0])
-            # print(i["words"][3][1])
-            #
-            # print(i["words"][4][0])
-            # print(i["words"][4][1])
-            #
-            # print("-------------")
-
+            # append video link and keywords/timestamps to create 2D array
             linkArray.append(i["link"])
             wordArray.append(i["words"])
-
-        # print("array:")
-        # print(linkArray)
-        # print(wordArray)
 
         array = []
         array.append(linkArray)
         array.append(wordArray)
-
-        print("word array:")
-        print(wordArray[0])
-        print(wordArray[1])
-        print(wordArray[2])
 
         print("final array:")
         print(array)
