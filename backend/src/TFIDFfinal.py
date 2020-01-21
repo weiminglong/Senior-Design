@@ -365,5 +365,10 @@ def TFIDF():
 
     # for i in top5:
     #   print(top5)
+    # store json format in database
+    json.dumps(top5,sort_keys= True,indent = 5)
 
     return top5
+
+if __name__ == '__main__':
+    TFIDF()

@@ -23,7 +23,7 @@ app = Flask(__name__)
 
 #config
 app.config["MONGODB_NAME"] = "qa-classifier"
-app.config["MONGO_URI"] = "mongodb+srv://rachell:leaf1234@cluster0-hu9je.mongodb.net/qa-classifier?retryWrites=true&w=majority"
+app.config["MONGO_URI"] = "mongodb+srv://Larissa:divertissement1@cluster0-nkghg.mongodb.net/test?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 
 CORS(app)
@@ -112,7 +112,7 @@ def upload_and_process():
         tags_collection = mongo.db.tags
 
         for i in top5:
-            # print(top5[i])
+            print(top5[i])
             tags_collection.insert_one(top5[i])
         # ************************************
 
