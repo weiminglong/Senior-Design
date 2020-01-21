@@ -19,6 +19,7 @@ export class ViewerComponent implements OnInit {
     console.log(link);
 
     if (link.substring(0, 24) === "https://www.youtube.com/"){
+      // CORS block does not allow playing youtube videos --> this is a least-effort temporary work around
       this.videoURL = "https://qa-classifier.s3.amazonaws.com/Basic+Derivative+Rules.mp4";
     } else {
       this.videoURL = link;

@@ -57,12 +57,46 @@ def search_tags():
         tags_collection = mongo.db.tags
         videos = tags_collection.find({"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
 
-        array = []
+        linkArray = []
+        wordArray = []
         for i in videos:
-            print(i)
-            array.append(i["link"])
+            #print(i)
+            # print("----words----")
+            print(i["words"])
+            # print(i["words"][0][0])
+            # print(i["words"][0][1])
+            #
+            # print(i["words"][1][0])
+            # print(i["words"][1][1])
+            #
+            # print(i["words"][2][0])
+            # print(i["words"][2][1])
+            #
+            # print(i["words"][3][0])
+            # print(i["words"][3][1])
+            #
+            # print(i["words"][4][0])
+            # print(i["words"][4][1])
+            #
+            # print("-------------")
 
-        print("array:")
+            linkArray.append(i["link"])
+            wordArray.append(i["words"])
+
+        # print("array:")
+        # print(linkArray)
+        # print(wordArray)
+
+        array = []
+        array.append(linkArray)
+        array.append(wordArray)
+
+        print("word array:")
+        print(wordArray[0])
+        print(wordArray[1])
+        print(wordArray[2])
+
+        print("final array:")
         print(array)
 
     return json.dumps(array)

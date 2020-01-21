@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
     this.flaskService.searchTags(this.searchTags.value).subscribe(
       resp => {
         console.log(resp); // print returned video name
-        this.videoNames = resp;
+        this.videoNames = resp[0];
       },
       err => {
         console.log("something went wrong:" + err);
@@ -62,8 +62,6 @@ export class MainComponent implements OnInit {
     // console.log(video);
     // console.log(video[0]);
     console.log("passing link: " + link);
-    //this.infoService.sendMessage(link);
-
     this.infoService.sendLink(link);
     
   }

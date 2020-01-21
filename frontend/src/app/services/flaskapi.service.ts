@@ -20,7 +20,7 @@ export class FlaskapiService {
     console.log("sending: " + tag);
 
     let testObj: Test = { search: tag }
-    return this.httpClient.post<string[]>(this.server + "tags", testObj);
+    return this.httpClient.post<any[]>(this.server + "tags", testObj);
   }
 
   public upload(video: File, videoTitle: string) {
