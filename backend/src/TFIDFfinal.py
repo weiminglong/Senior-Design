@@ -265,6 +265,7 @@ def timeData(filename, listwords):
     if (len(tempfullData) < 5):
         tempfullData = []
     fullData.append(tempfullData)
+   # print(fullData)
 
 
 # get the weight from tfidf data above
@@ -295,7 +296,7 @@ def weights():
 
 # combine words time and weights
 def words_time_weights():
-    # parameter to be passed in time_data function
+    # parameter to be passedx in time_data function
     for i in listwords:
         # parse through file and get time stamp
         for filename in sorted(glob.glob(os.path.join(path, '*.csv'))):
@@ -304,6 +305,9 @@ def words_time_weights():
 
     # stip empty list within a list
     fullData2 = [e for e in fullData if e]
+    #print('full data 2')
+    #print()
+    #print(fullData2)
     dictCorpus = {}
     sizeI = len(fullData2[0])
     counter = 0
@@ -332,14 +336,28 @@ def words_time_weights():
     my_dict = {}
     #sizer = listFiles
     for i in fullData2:
+       # print()
+        #print(i)
         if count == len(listFiles)-1:
             break
         indv_dict = {
             "words": "",
-            "link": ""
+            "link": "",
+            "array": ""
         }
         #print(listFiles[count])
+        arrayData = []
+        for k in i:
+            wordTime = []
+           # print(k)
+            wordTime.append(k[0])
+            wordTime.append(k[1])
+            arrayData.append(wordTime)
+            #print(wordTime)
+        print(arrayData)
+        print()
         indv_dict["words"] = i
+        indv_dict["array"] = arrayData
         indv_dict["link"] = listFiles[count]
         my_dict[str(count)] = indv_dict
         count +=1
