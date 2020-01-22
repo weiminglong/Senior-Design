@@ -111,6 +111,7 @@ def top5words():
 
     # print(list_wo_rel)
     itr = 0
+    top10size = len(top10)
     for i in list_wo_rel:
         no_duplicate = []
         newList5 = []
@@ -121,13 +122,18 @@ def top5words():
         rem_list = group_high_similarity(i, 0.9)
         no_duplicate = remove_duplicate(i, rem_list)
         # print(no_duplicate)
-
-        hashed = hash_list(top10[itr])
-        # print(hashed)
+        if itr<top10size:
+            hashed = hash_list(top10[itr])
+            #print()
+            #print(hashed)
+            #print()
+        else:
+            continue
         # print()
         for x in range(0, 5):
             newList5.append(no_duplicate[x])
             newList5.append(hashed[no_duplicate[x]])
+           # print(newList5)
         top5Final.append(newList5)
         itr += 1
 
