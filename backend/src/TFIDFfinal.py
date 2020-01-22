@@ -107,7 +107,9 @@ def top5words():
             continue
         # print()
         for x in range(0, 5):
+            #print(hashed[no_duplicate[x]])
             newList5.append(no_duplicate[x])
+            #print(no_duplicate[x])
             newList5.append(hashed[no_duplicate[x]])
             #print(newList5)
         top5Final.append(newList5)
@@ -170,8 +172,11 @@ def hash_list(list_to_hash):
     # print(list)
     data_value = {}
     for i in range(0, len(list)):
-        if i % 2 == 0 and i != len(list) - 1:
+        if i % 2 == 0 and i != len(list):
             data_value[list[i]] = list[i + 1]
+           # if list[i] == 'learning':
+               # print(list[i])
+                #print(list[i+1])
     # print('value of hashed \n')
     # print(data_value)
     return data_value
