@@ -2,142 +2,148 @@
      "0": {
           "words": [
                [
+                    "learning",
+                    "0:0",
+                    "0:0",
+                    "0.540"
+               ],
+               [
+                    "machine",
+                    "0:0",
+                    "0:0",
+                    "0.278"
+               ],
+               [
+                    "program",
+                    "0:37",
+                    "0:38",
+                    "0.228"
+               ],
+               [
+                    "games",
+                    "0:48",
+                    "0:49",
+                    "0.174"
+               ],
+               [
+                    "email",
+                    "2:38",
+                    "2:38",
+                    "0.156"
+               ]
+          ],
+          "link": [
+               "https://qa-classifier.s3.amazonaws.com/lecture-11-introduction-what-is-machine-learning-machine-learning-andrew-ng.mp4"
+          ]
+     },
+     "1": {
+          "words": [
+               [
                     "derivative",
                     "0:14",
                     "0:14",
-                    "0.287"
+                    "0.286"
                ],
                [
                     "power",
                     "0:27",
                     "0:28",
-                    "0.259"
+                    "0.260"
                ],
                [
                     "subtract",
                     "0:33",
                     "0:34",
-                    "0.253"
+                    "0.252"
                ],
                [
                     "negative",
                     "3:57",
                     "3:59",
-                    "0.225"
+                    "0.229"
                ],
                [
                     "easier",
                     "0:6",
                     "0:7",
-                    "0.190"
+                    "0.192"
                ]
           ],
-          "link": "https://www.youtube.com/watch?v=4vT4fzjkGCQ"
+          "link": []
      },
-     "1": {
+     "2": {
           "words": [
                [
                     "linnaeus",
                     "2:32",
                     "2:32",
-                    "0.237"
+                    "0.239"
                ],
                [
                     "kingdom",
                     "5:10",
                     "5:10",
-                    "0.214"
+                    "0.215"
                ],
                [
                     "species",
                     "1:38",
                     "1:39",
-                    "0.203"
+                    "0.205"
                ],
                [
                     "domain",
                     "5:56",
                     "5:57",
-                    "0.190"
+                    "0.191"
                ],
                [
-                    "like",
-                    "0:11",
-                    "0:11",
-                    "0.178"
+                    "organisms",
+                    "0:19",
+                    "0:19",
+                    "0.181"
                ]
           ],
-          "link": "https://www.youtube.com/watch?v=4vT4fzjkGCQ"
+          "link": [
+               "https://qa-classifier.s3.amazonaws.com/taxonomy.mp4"
+          ]
      },
-     "2": {
+     "3": {
           "words": [
                [
                     "force",
                     "0:37",
                     "0:38",
-                    "0.498"
+                    "0.503"
                ],
                [
                     "work",
                     "0:3",
                     "0:4",
-                    "0.372"
+                    "0.349"
                ],
                [
                     "velocity",
                     "4:32",
                     "4:32",
-                    "0.326"
+                    "0.329"
                ],
                [
                     "distance",
                     "1:58",
                     "1:58",
-                    "0.232"
+                    "0.237"
                ],
                [
-                    "mass",
-                    "0:57",
-                    "0:57",
-                    "0.230"
+                    "equal",
+                    "1:54",
+                    "1:54",
+                    "0.233"
                ]
           ],
-          "link": "https://www.youtube.com/watch?v=_QdPW8JrYzQ"
-     },
-     "3": {
-          "words": [
-               [
-                    "vector",
-                    "0:34",
-                    "0:34",
-                    "0.516"
-               ],
-               [
-                    "transformation",
-                    "0:23",
-                    "0:24",
-                    "0.413"
-               ],
-               [
-                    "linear",
-                    "0:16",
-                    "0:16",
-                    "0.299"
-               ],
-               [
-                    "matrix",
-                    "0:33",
-                    "0:34",
-                    "0.244"
-               ],
-               [
-                    "coordinates",
-                    "3:43",
-                    "3:43",
-                    "0.203"
-               ]
-          ],
-          "link": "https://www.youtube.com/watch?v=_QdPW8JrYzQ"
+          "link": [
+               "https://qa-classifier.s3.amazonaws.com/introductiontoworkandenergy.mp4"
+          ]
      },
      "4": {
           "words": [
@@ -145,13 +151,50 @@
                     "vector",
                     "0:34",
                     "0:34",
-                    "0.590"
+                    "0.517"
+               ],
+               [
+                    "transformation",
+                    "0:23",
+                    "0:24",
+                    "0.412"
+               ],
+               [
+                    "linear",
+                    "0:16",
+                    "0:16",
+                    "0.300"
+               ],
+               [
+                    "matrix",
+                    "0:33",
+                    "0:34",
+                    "0.245"
+               ],
+               [
+                    "coordinates",
+                    "3:43",
+                    "3:43",
+                    "0.204"
+               ]
+          ],
+          "link": [
+               "https://www.youtube.com/watch?v=4vt4fzjkgcq"
+          ]
+     },
+     "5": {
+          "words": [
+               [
+                    "vector",
+                    "0:34",
+                    "0:34",
+                    "0.594"
                ],
                [
                     "numbers",
                     "6:11",
                     "6:11",
-                    "0.309"
+                    "0.312"
                ],
                [
                     "linear",
@@ -163,7 +206,7 @@
                     "space",
                     "1:54",
                     "1:55",
-                    "0.163"
+                    "0.165"
                ],
                [
                     "algebra",
@@ -172,42 +215,9 @@
                     "0.160"
                ]
           ],
-          "link": "https://www.youtube.com/watch?v=_QdPW8JrYzQ"
-     },
-     "5": {
-          "words": [
-               [
-                    "vector",
-                    "0:14",
-                    "0:15",
-                    "0.435"
-               ],
-               [
-                    "numbers",
-                    "0:55",
-                    "0:55",
-                    "0.435"
-               ],
-               [
-                    "linear",
-                    "0:13",
-                    "0:14",
-                    "0.223"
-               ],
-               [
-                    "space",
-                    "0:34",
-                    "0:34",
-                    "0.203"
-               ],
-               [
-                    "algebra",
-                    "0:14",
-                    "0:14",
-                    "0.175"
-               ]
-          ],
-          "link": "https://www.youtube.com/watch?v=_QdPW8JrYzQ"
+          "link": [
+               "https://www.youtube.com/watch?v=ouevprmhr1u"
+          ]
      },
      "6": {
           "words": [
@@ -215,34 +225,36 @@
                     "glucose",
                     "0:20",
                     "0:25",
-                    "0.420"
+                    "0.437"
                ],
                [
                     "oxygen",
                     "0:56",
                     "0:56",
-                    "0.405"
+                    "0.437"
                ],
                [
                     "carbon",
                     "1:55",
                     "1:56",
-                    "0.203"
+                    "0.222"
                ],
                [
                     "aerobic",
                     "8:54",
                     "8:55",
-                    "0.186"
+                    "0.201"
                ],
                [
                     "cellular",
                     "0:7",
                     "0:8",
-                    "0.174"
+                    "0.176"
                ]
           ],
-          "link": "https://qa-classifier.s3.amazonaws.com/Taxonomy.mp4"
+          "link": [
+               "https://www.youtube.com/watch?v=1os6sl0vb98"
+          ]
      },
      "7": {
           "words": [
@@ -250,34 +262,36 @@
                     "light",
                     "5:55",
                     "5:55",
-                    "0.472"
+                    "0.421"
                ],
                [
                     "reactions",
                     "2:6",
                     "2:6",
-                    "0.354"
+                    "0.406"
                ],
                [
                     "photons",
                     "2:10",
                     "2:10",
-                    "0.354"
+                    "0.203"
                ],
                [
                     "dark",
                     "6:13",
                     "6:13",
-                    "0.255"
+                    "0.186"
                ],
                [
                     "photosynthesis",
                     "0:14",
                     "0:16",
-                    "0.252"
+                    "0.174"
                ]
           ],
-          "link": "https://qa-classifier.s3.amazonaws.com/Taxonomy.mp4"
+          "link": [
+               "https://www.youtube.com/watch?v=mrsenayfuou"
+          ]
      },
      "8": {
           "words": [
@@ -285,133 +299,35 @@
                     "resolution",
                     "0:7",
                     "0:8,",
-                    "0.545"
+                    "0.472"
                ],
                [
                     "image",
                     "1:52",
                     "1:53,",
-                    "0.386"
+                    "0.354"
                ],
                [
                     "microscope",
                     "0:9",
                     "0:9,",
-                    "0.218"
+                    "0.354"
                ],
                [
                     "specimen",
                     "1:58",
                     "1:58,",
-                    "0.213"
+                    "0.256"
                ],
                [
                     "light",
                     "0:9",
                     "0:9,",
-                    "0.125"
+                    "0.254"
                ]
           ],
-          "link": "https://qa-classifier.s3.amazonaws.com/Taxonomy.mp4"
-     },
-     "9": {
-          "words": [
-               [
-                    "mitochondria",
-                    "0:2",
-                    "0:3,",
-                    "0.365"
-               ],
-               [
-                    "membrane",
-                    "0:19",
-                    "0:19,",
-                    "0.312"
-               ],
-               [
-                    "inner",
-                    "6:19",
-                    "6:19,",
-                    "0.262"
-               ],
-               [
-                    "dna",
-                    "0:27",
-                    "0:27,",
-                    "0.261"
-               ],
-               [
-                    "intermembrane",
-                    "7:35",
-                    "7:35,",
-                    "0.235"
-               ]
-          ],
-          "link": "https://qa-classifier.s3.amazonaws.com/Taxonomy.mp4"
-     },
-     "10": {
-          "words": [
-               [
-                    "mutations",
-                    "0:7",
-                    "0:9",
-                    "0.326"
-               ],
-               [
-                    "dna",
-                    "0:11",
-                    "0:11",
-                    "0.279"
-               ],
-               [
-                    "going",
-                    "0:7",
-                    "0:7",
-                    "0.272"
-               ],
-               [
-                    "changes",
-                    "0:10",
-                    "0:11",
-                    "0.191"
-               ],
-               [
-                    "letter",
-                    "1:56",
-                    "1:56",
-                    "0.163"
-               ]
-          ],
-          "link": "https://qa-classifier.s3.amazonaws.com/Taxonomy.mp4"
-     },
-     "11": {
-          "words": [
-               [
-                    "electrons",
-                    "0:35",
-                    "0:36,"
-               ],
-               [
-                    "equal",
-                    "3:20",
-                    "3:21,"
-               ],
-               [
-                    "theta",
-                    "2:36",
-                    "2:37,"
-               ],
-               [
-                    "tangent",
-                    "4:13",
-                    "4:14,"
-               ],
-               [
-                    "electronegative",
-                    "0:2",
-                    "0:4,"
-               ]
-          ],
-          "link": "https://qa-classifier.s3.amazonaws.com/IntroductiontoWorkandEnergy.mp4"
+          "link": [
+               "https://www.youtube.com/watch?v=dje-blrdddc"
+          ]
      }
 }
