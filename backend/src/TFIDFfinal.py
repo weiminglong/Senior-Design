@@ -124,16 +124,13 @@ def top5words():
         # print(no_duplicate)
         if itr<top10size:
             hashed = hash_list(top10[itr])
-            #print()
-            #print(hashed)
-            #print()
         else:
             continue
         # print()
         for x in range(0, 5):
             newList5.append(no_duplicate[x])
             newList5.append(hashed[no_duplicate[x]])
-           # print(newList5)
+            print(newList5)
         top5Final.append(newList5)
         itr += 1
 
@@ -399,7 +396,7 @@ def TFIDF():
     top5 = words_time_weights()
     # print(listLinks)
     # for i in top5:
-    print(top5)
+    #print(top5)
     return top5
 
 TFIDF()
