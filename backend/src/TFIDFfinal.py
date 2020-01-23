@@ -35,9 +35,6 @@ top5Final = []
 
 
 def top5words():
-    # path is that of the current directory
-    # path = os.getcwd()
-    # print(location)
     ps = PorterStemmer()
     # empty list of corpus
     corpus = []
@@ -48,8 +45,6 @@ def top5words():
         with open(filename, 'r') as f:
             text = f.read()
             corpus.append(text)
-    # print(corpus)
-    # print()
     vectorizer = TfidfVectorizer(analyzer='word', stop_words='english')
     tfidf_matrix = vectorizer.fit_transform(corpus)
 
@@ -58,17 +53,7 @@ def top5words():
     # ps = PorterStemmer()
     analyzer = CountVectorizer().build_analyzer()
 
-    # lemmatizer = WordNetLemmatizer()
-
-    # def stem_words(doc):
-    # return[port.stem(word) for word in analyzer(doc) if word not in stop_words]
-
-    # def stem_words(doc):
-    # return [lemmatizer.lemmatize(word) for word in analyzer(doc) if word not in stop_words]
-
     cv = CountVectorizer(analyzer='word', stop_words='english', lowercase=True)
-
-    # cv=CountVectorizer(analyzer='word', stop_words = 'english',lowercase=True)
 
     # this steps generates word counts for the words in your docs
     word_count_vector = cv.fit_transform(corpus)
@@ -95,9 +80,6 @@ def top5words():
         df.sort_values(by=["tfidf"], ascending=False)
         # get top 5 words
         top5 = df.nlargest(10, "tfidf")
-        # print(top5)
-        # print()
-        # print()
         array = []
         data1 = []
         data2 = []
@@ -116,10 +98,7 @@ def top5words():
         no_duplicate = []
         newList5 = []
         hashed = {}
-
-        # print(i)
-        # print()
-        rem_list = group_high_similarity(i, 0.9)
+        rem_list = group_high_similarity(i, 0.85)
         no_duplicate = remove_duplicate(i, rem_list)
         # print(no_duplicate)
         if itr<top10size:
@@ -128,9 +107,16 @@ def top5words():
             continue
         # print()
         for x in range(0, 5):
+            #print(hashed[no_duplicate[x]])
+
             newList5.append(no_duplicate[x])
-            newList5.append(hashed[no_duplicate[x]])
-            print(newList5)
+            #print(no_duplicate[x])
+            try:
+                newList5.append(hashed[no_duplicate[x]])
+            except KeyError:
+                newList5.append(0.7)
+
+            #print(newList5)
         top5Final.append(newList5)
         itr += 1
 
@@ -145,8 +131,6 @@ def float_check(value):
 
 
 def similarity(wordx, wordy):
-    # print(wordx)
-    # print(wordy)
     sem1 = wn.synsets(wordx)
     sem2 = wn.synsets(wordy)
     maxscore = 0
@@ -193,8 +177,11 @@ def hash_list(list_to_hash):
     # print(list)
     data_value = {}
     for i in range(0, len(list)):
-        if i % 2 == 0 and i != len(list) - 1:
+        if i % 2 == 0 and i != len(list):
             data_value[list[i]] = list[i + 1]
+            #if list[i] == 'learning':
+            #print(list[i])
+            #print(list[i+1])
     # print('value of hashed \n')
     # print(data_value)
     return data_value
@@ -234,6 +221,7 @@ def timeData(filename, stwords):
             for each in line:
                 filesName = []
                 linkName = []
+                line4= each
                 line2 = each.lower()
                 line2 = line2.strip("!@#$%^&*(()_+=)")
                 line3 = line2.split(":")
@@ -264,13 +252,15 @@ def timeData(filename, stwords):
                     lane = []
                     if(len(link)==0):
                         #link.append(line[0][5:])
-                        lane = line2.split("word")
-                        #print(len(lane))
+                        lane = line4.split("word")
+                        #print(lane)
 
                         if len(lane)>=2 and len(lane[0]) <= len(lane[1]):
+                            #print(line[0][5:])
                             link.append(line[0][5:])
                         else:
                             link.append(lane[0][5:])
+                            #print(lane[0][5:])
 
                         #print(link)
                     elif(len(link)>0):
@@ -381,22 +371,11 @@ def words_time_weights():
 
     return my_dict
 
-
-# store dictionary in json file
-# with open('top5Words.json', 'w') as filehandle:
-# json.dump(dictCorpus, filehandle)
-# store json format in database
-# json.dump(dictCorpus,sort_keys= True,indent = 5)
-
-
 def TFIDF():
     top5 = {}
     top5words()
     weights()
     top5 = words_time_weights()
-    # print(listLinks)
-    # for i in top5:
-    #print(top5)
     return top5
 
 TFIDF()

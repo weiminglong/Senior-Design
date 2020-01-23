@@ -2,38 +2,43 @@
      "0": {
           "words": [
                [
-                    "learning",
-                    "0:0",
-                    "0:0",
-                    "0.527"
+                    "told",
+                    "0:12",
+                    "0:12",
+                    "0.259",
+                    "0.259"
                ],
                [
-                    "machine",
-                    "0:0",
-                    "0:0",
-                    "0.239"
+                    "yes",
+                    "4:8",
+                    "4:9",
+                    "0.171",
+                    "0.171"
                ],
                [
-                    "program",
-                    "0:37",
-                    "0:38",
-                    "0.222"
+                    "america",
+                    "0:15",
+                    "0:15",
+                    "0.151",
+                    "0.151"
                ],
                [
-                    "experience",
-                    "1:26",
-                    "1:27",
-                    "0.194"
+                    "bubbles",
+                    "3:4",
+                    "3:4",
+                    "0.151",
+                    "0.151"
                ],
                [
-                    "performance",
-                    "1:55",
-                    "1:56",
-                    "0.194"
+                    "opinions",
+                    "3:34",
+                    "3:34",
+                    "0.151",
+                    "0.151"
                ]
           ],
           "link": [
-               "https://qa-classifier.s3.amazonaws.com/lecture-11-introduction-what-is-machine-learning-machine-learning-andrew-ng.mp4"
+               "https://qa-classifier.s3.amazonaws.com/Barack_Obamas_final_speech_as_president_\u2013_video_highlights[youtubetomp4.org].mp4"
           ]
      },
      "1": {
@@ -42,31 +47,36 @@
                     "derivative",
                     "0:14",
                     "0:14",
-                    "0.286"
+                    "0.284",
+                    "0.284"
                ],
                [
                     "power",
                     "0:27",
                     "0:28",
-                    "0.260"
+                    "0.258",
+                    "0.258"
                ],
                [
                     "subtract",
                     "0:33",
                     "0:34",
-                    "0.252"
+                    "0.251",
+                    "0.251"
                ],
                [
                     "negative",
                     "3:57",
                     "3:59",
-                    "0.229"
+                    "0.227",
+                    "0.227"
                ],
                [
                     "easier",
                     "0:6",
                     "0:7",
-                    "0.191"
+                    "0.190",
+                    "0.190"
                ]
           ],
           "link": []
@@ -77,35 +87,40 @@
                     "linnaeus",
                     "2:32",
                     "2:32",
-                    "0.239"
+                    "0.237",
+                    "0.237"
                ],
                [
                     "kingdom",
                     "5:10",
                     "5:10",
-                    "0.215"
+                    "0.214",
+                    "0.214"
                ],
                [
                     "species",
                     "1:38",
                     "1:39",
-                    "0.205"
+                    "0.204",
+                    "0.204"
                ],
                [
                     "domain",
                     "5:56",
                     "5:57",
-                    "0.191"
+                    "0.190",
+                    "0.190"
                ],
                [
                     "organisms",
                     "0:19",
                     "0:19",
-                    "0.181"
+                    "0.180",
+                    "0.180"
                ]
           ],
           "link": [
-               "https://qa-classifier.s3.amazonaws.com/taxonomy.mp4"
+               "https://qa-classifier.s3.amazonaws.com/Taxonomy.mp4"
           ]
      },
      "3": {
@@ -114,35 +129,40 @@
                     "force",
                     "0:37",
                     "0:38",
-                    "0.503"
+                    "0.439",
+                    "0.439"
                ],
                [
                     "work",
                     "0:3",
                     "0:4",
-                    "0.349"
+                    "0.389",
+                    "0.389"
                ],
                [
                     "velocity",
                     "4:32",
                     "4:32",
-                    "0.329"
+                    "0.334",
+                    "0.334"
                ],
                [
                     "distance",
                     "1:58",
                     "1:58",
-                    "0.237"
+                    "0.241",
+                    "0.241"
                ],
                [
                     "equal",
                     "1:54",
                     "1:54",
-                    "0.233"
+                    "0.237",
+                    "0.237"
                ]
           ],
           "link": [
-               "https://qa-classifier.s3.amazonaws.com/introductiontoworkandenergy.mp4"
+               "https://qa-classifier.s3.amazonaws.com/IntroductiontoWorkandEnergy.mp4"
           ]
      },
      "4": {
@@ -151,35 +171,40 @@
                     "vector",
                     "0:34",
                     "0:34",
-                    "0.517"
+                    "0.516",
+                    "0.516"
                ],
                [
                     "transformation",
                     "0:23",
                     "0:24",
-                    "0.412"
+                    "0.411",
+                    "0.411"
                ],
                [
                     "linear",
                     "0:16",
                     "0:16",
+                    "0.299",
                     "0.299"
                ],
                [
                     "matrix",
                     "0:33",
                     "0:34",
+                    "0.245",
                     "0.245"
                ],
                [
                     "coordinates",
                     "3:43",
                     "3:43",
+                    "0.204",
                     "0.204"
                ]
           ],
           "link": [
-               "https://www.youtube.com/watch?v=4vt4fzjkgcq"
+               "https://www.youtube.com/watch?v=4vT4fzjkGCQ"
           ]
      },
      "5": {
@@ -188,35 +213,40 @@
                     "vector",
                     "0:34",
                     "0:34",
-                    "0.592"
+                    "0.590",
+                    "0.590"
                ],
                [
                     "numbers",
                     "6:11",
                     "6:11",
-                    "0.311"
+                    "0.310",
+                    "0.310"
                ],
                [
                     "linear",
                     "0:16",
                     "0:16",
-                    "0.176"
+                    "0.175",
+                    "0.175"
                ],
                [
                     "space",
                     "1:54",
                     "1:55",
-                    "0.165"
+                    "0.164",
+                    "0.164"
                ],
                [
                     "algebra",
                     "0:16",
                     "0:16",
+                    "0.160",
                     "0.160"
                ]
           ],
           "link": [
-               "https://www.youtube.com/watch?v=ouevprmhr1u"
+               "https://www.youtube.com/watch?v=ouEVPRMHR1U"
           ]
      },
      "6": {
@@ -225,35 +255,40 @@
                     "glucose",
                     "0:20",
                     "0:25",
+                    "0.436",
                     "0.436"
                ],
                [
                     "oxygen",
                     "0:56",
                     "0:56",
+                    "0.436",
                     "0.436"
                ],
                [
                     "carbon",
                     "1:55",
                     "1:56",
+                    "0.222",
                     "0.222"
                ],
                [
                     "aerobic",
                     "8:54",
                     "8:55",
+                    "0.201",
                     "0.201"
                ],
                [
                     "cellular",
                     "0:7",
                     "0:8",
+                    "0.176",
                     "0.176"
                ]
           ],
           "link": [
-               "https://www.youtube.com/watch?v=1os6sl0vb98"
+               "https://www.youtube.com/watch?v=1OS6Sl0vB98"
           ]
      },
      "7": {
@@ -262,35 +297,40 @@
                     "light",
                     "5:55",
                     "5:55",
-                    "0.421"
+                    "0.419",
+                    "0.419"
                ],
                [
                     "reactions",
                     "2:6",
                     "2:6",
-                    "0.406"
+                    "0.404",
+                    "0.404"
                ],
                [
                     "photons",
                     "2:10",
                     "2:10",
-                    "0.203"
+                    "0.202",
+                    "0.202"
                ],
                [
                     "dark",
                     "6:13",
                     "6:13",
-                    "0.186"
+                    "0.185",
+                    "0.185"
                ],
                [
                     "photosynthesis",
                     "0:14",
                     "0:16",
-                    "0.174"
+                    "0.173",
+                    "0.173"
                ]
           ],
           "link": [
-               "https://www.youtube.com/watch?v=mrsenayfuou"
+               "https://www.youtube.com/watch?v=MRSeNayfUOU"
           ]
      },
      "8": {
@@ -299,35 +339,40 @@
                     "resolution",
                     "0:7",
                     "0:8,",
+                    "0.472",
                     "0.472"
                ],
                [
                     "image",
                     "1:52",
                     "1:53,",
+                    "0.354",
                     "0.354"
                ],
                [
                     "microscope",
                     "0:9",
                     "0:9,",
+                    "0.354",
                     "0.354"
                ],
                [
                     "specimen",
                     "1:58",
                     "1:58,",
+                    "0.256",
                     "0.256"
                ],
                [
                     "light",
                     "0:9",
                     "0:9,",
-                    "0.254"
+                    "0.253",
+                    "0.253"
                ]
           ],
           "link": [
-               "https://www.youtube.com/watch?v=dje-blrdddc"
+               "https://www.youtube.com/watch?v=djE-BLrdDDc"
           ]
      }
 }
