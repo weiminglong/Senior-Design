@@ -108,7 +108,16 @@ def top5words():
         # print()
         for x in range(0, 5):
             #print(hashed[no_duplicate[x]])
+
             newList5.append(no_duplicate[x])
+            #print(no_duplicate[x])
+            try:
+                newList5.append(hashed[no_duplicate[x]])
+            except KeyError:
+                newList5.append(0.7)
+
+
+          # newList5.append(no_duplicate[x])
             #print(no_duplicate[x])
             newList5.append(hashed[no_duplicate[x]])
             #print(newList5)
@@ -174,9 +183,15 @@ def hash_list(list_to_hash):
     for i in range(0, len(list)):
         if i % 2 == 0 and i != len(list):
             data_value[list[i]] = list[i + 1]
+<<<<<<< HEAD
+            #if list[i] == 'learning':
+            #print(list[i])
+            #print(list[i+1])
+=======
            # if list[i] == 'learning':
                # print(list[i])
                 #print(list[i+1])
+>>>>>>> 43a9f122318272dedfde6241e19e2f4665ea33f3
     # print('value of hashed \n')
     # print(data_value)
     return data_value
@@ -216,6 +231,7 @@ def timeData(filename, stwords):
             for each in line:
                 filesName = []
                 linkName = []
+                line4= each
                 line2 = each.lower()
                 line2 = line2.strip("!@#$%^&*(()_+=)")
                 line3 = line2.split(":")
@@ -246,13 +262,15 @@ def timeData(filename, stwords):
                     lane = []
                     if(len(link)==0):
                         #link.append(line[0][5:])
-                        lane = line2.split("word")
-                        #print(len(lane))
+                        lane = line4.split("word")
+                        #print(lane)
 
                         if len(lane)>=2 and len(lane[0]) <= len(lane[1]):
+                            #print(line[0][5:])
                             link.append(line[0][5:])
                         else:
                             link.append(lane[0][5:])
+                            #print(lane[0][5:])
 
                         #print(link)
                     elif(len(link)>0):
