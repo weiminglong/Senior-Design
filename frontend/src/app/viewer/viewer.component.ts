@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InfoService } from '../services/info.service';
 import { Subscription } from 'rxjs';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-viewer',
@@ -13,13 +14,18 @@ export class ViewerComponent implements OnInit {
   timeFrames: string[][] = [];
   keywords: Array<string> = ['Domain', 'Kingdom', 'Phylum', 'Class', 'Order'];
   times: number[][] = [[12, 13, 100], [21, 22, 23], [31, 32, 33]];
+  link : string ;
 
   constructor(private infoService: InfoService) {
 
+    //link ;
+
     const link = this.infoService.getLink();
+    //link = this.infoService.getLink();
+    
     console.log(link);
 
-    if (link.substring(0, 24) === "https://www.youtube.com/"){
+    if (link.toString().substring(0, 24) === "https://www.youtube.com/"){
       // CORS block does not allow playing youtube videos --> this is a least-effort temporary work around
       this.videoURL = "https://qa-classifier.s3.amazonaws.com/Basic+Derivative+Rules.mp4";
     } else {
