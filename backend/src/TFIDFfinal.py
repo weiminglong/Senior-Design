@@ -116,10 +116,6 @@ def top5words():
             except KeyError:
                 newList5.append(0.7)
 
-
-          # newList5.append(no_duplicate[x])
-            #print(no_duplicate[x])
-            newList5.append(hashed[no_duplicate[x]])
             #print(newList5)
         top5Final.append(newList5)
         itr += 1
@@ -183,15 +179,9 @@ def hash_list(list_to_hash):
     for i in range(0, len(list)):
         if i % 2 == 0 and i != len(list):
             data_value[list[i]] = list[i + 1]
-<<<<<<< HEAD
             #if list[i] == 'learning':
             #print(list[i])
             #print(list[i+1])
-=======
-           # if list[i] == 'learning':
-               # print(list[i])
-                #print(list[i+1])
->>>>>>> 43a9f122318272dedfde6241e19e2f4665ea33f3
     # print('value of hashed \n')
     # print(data_value)
     return data_value
@@ -388,5 +378,5 @@ def TFIDF():
     top5 = words_time_weights()
     return top5
 
-TFIDF()
+#TFIDF()
 
