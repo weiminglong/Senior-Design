@@ -23,7 +23,8 @@ app = Flask(__name__)
 
 #config
 app.config["MONGODB_NAME"] = "qa-classifier"
-app.config["MONGO_URI"] = "mongodb+srv://Larissa:spring2020@cluster0-nkghg.mongodb.net/test?retryWrites=true&w=majority"
+# app.config["MONGO_URI"] = "mongodb+srv://Larissa:spring2020@cluster0-nkghg.mongodb.net/test?retryWrites=true&w=majority"
+app.config["MONGO_URI"] = "mongodb+srv://rachell:leaf1234@cluster0-hu9je.mongodb.net/qa-classifier?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 
 CORS(app)
@@ -81,12 +82,14 @@ def upload_and_process():
         video = request.files["video"]
         title = request.form["title"].replace(" ", "")
         video_name = video.filename.replace(" ", "")
+        category = request.form["category"]
 
         # prints received video
         print(video)
         print(request.url)
         print(title)
         print(video_name)
+        print(category)
 
 
         # retrieve_video()
@@ -110,7 +113,7 @@ def upload_and_process():
         # print(tag)
 
         # Call function to convert (existing) audio to text from offset.py file
-        auto.convert_auto(title, video_name, video_url)
+        auto.convert_auto(title, video_name, video_url, category)
         #
         top5 = {}
         top5 = nlp.TFIDF()

@@ -8,8 +8,8 @@ import offset
 def convert_auto(title, video_name, video_url):
     # gcloud authetification
     # os.system("export GOOGLE_APPLICATION_CREDENTIALS=\"/Users/mike/credentials/cloudkey.json\"")
-    #os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/rachell/Documents/SD/gcloud-key/cloudkey.json"
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/larissaba/credentials/cloudkey.json"
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/rachell/Documents/SD/gcloud-key/cloudkey.json"
+    # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/larissaba/credentials/cloudkey.json"
     # script.printHello()
 
     # path variables
