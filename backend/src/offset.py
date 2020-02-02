@@ -50,7 +50,7 @@ def transcribe_file_with_word_time_offsets(speech_file):
                 end_time.seconds%60))
 
 #cloud storage
-def transcribe_gcs_with_word_time_offsets(gcs_uri, fileName, video_url):
+def transcribe_gcs_with_word_time_offsets(gcs_uri, fileName, video_url, category):
     """Transcribe the given audio file asynchronously and output the word time
     offsets."""
     from google.cloud import speech
@@ -101,6 +101,7 @@ def transcribe_gcs_with_word_time_offsets(gcs_uri, fileName, video_url):
     #add link to the end of the csv file
     with open(fileName + ".csv", 'a') as csv_file:
         csv_file.write('link:' + video_url)
+        csv_file.write('category:' + video_url)
     print("Audio transcription completed")
 
 #
