@@ -101,6 +101,7 @@ def transcribe_gcs_with_word_time_offsets(gcs_uri, fileName, video_url, category
     #add link to the end of the csv file
     with open(fileName + ".csv", 'a') as csv_file:
         csv_file.write('link:' + video_url)
+        csv_file.write('title:' + fileName)
         csv_file.write('category:' + video_url)
     print("Audio transcription completed")
 
