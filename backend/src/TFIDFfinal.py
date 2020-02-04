@@ -19,6 +19,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet as wn
 from itertools import product
 import sys
+import time
 
 # variables definitions
 
@@ -198,6 +199,10 @@ listLinks = []
 
 
 # this function get the start and end time from csv files that are all in a given list of words
+fullTime_dict = dict()
+
+
+# this function get the start and end time from csv files that are all in a given list of words
 
 def timeData(filename, stwords):
     tempfullData = []
@@ -235,6 +240,12 @@ def timeData(filename, stwords):
                     startTime = line[1]
                     start = startTime.split("start_time:")
                     startFin = start[1]
+                    if lower in fullTime_dict:
+                        # append the new number to the existing array at this slot
+                        fullTime_dict[lower] += startFin+" "
+                    else:
+                        # create a new array in this slot
+                        fullTime_dict[lower] = startFin+" "
                     # print(k[1])
                     endTime = line[2]
                     end = endTime.split("end_time:")
@@ -284,7 +295,9 @@ def timeData(filename, stwords):
         tempfullData = []
     if link not in listLinks and len(tempfullData) >= 5:
         listLinks.append(link)
-    # print(listLinks)
+   # print(listLinks)
+
+
     fullData.append(tempfullData)
 
 
@@ -292,7 +305,43 @@ def timeData(filename, stwords):
 # listwords = []
 listweights = []
 
+def dictionary_cleanup(wordArray):
+    k = fullTime_dict["vector"]
+    #print(k)
+    #print(type(k))
+    for lword in wordArray:
+        for w in lword:
+           #print(type(w))
+           time_array = []
+           times = " "
+           times = fullTime_dict[w]
+           temp = []
+           if(type(times) == list):
+               temp = times
+           else:
+               temp = times.split(" ")
+           time_array = temp
+           time_array = list(dict.fromkeys(time_array))
+           time_array = [i for i in time_array if i]
+           #sorted((time.strptime(d, "%M:%S") for d in time_array), reverse=True)
+           time_array = sorted(time_array)
+           fullTime_dict[w] = time_array
+           #print(w,fullTime_dict[w])
+           #print()
 
+"""
+entire_data = []
+
+def time_link_data(wordArray):
+    cntr = 0
+    dictionary_cleanup(wordArray)
+    for lword in wordArray:
+        for w in lword:
+            entire_data.append(fullTime_dict[w])
+        entire_data.append(listLinks[cntr])
+    print(entire_data)
+    print()
+"""
 def weights():
     for i in top5Final:
         size = len(i)
@@ -309,8 +358,33 @@ def weights():
                 tempWeight.append(i[j + 1])
                 temp = temp + tempVar
                 tempfloat = tempfloat + tempWeight
-        listwords.append(temp)
+        if temp not in listwords:
+            listwords.append(temp)
+        else:
+            continue
         listweights.append(tempfloat)
+    #print(listwords)
+    #print()
+    #print()
+
+new_list = []
+def new_map():
+    print()
+    #cnt = 0
+    for i in listwords:
+        tmpmap = []
+        for w in i:
+            tmpmap.append(w)
+            tmpmap.append(fullTime_dict[w])
+            new_list.append(tmpmap)
+            #cnt +=1
+    print()
+    print()
+    print(new_list)
+    print()
+    print()
+    print()
+
 
 
 def words_time_weights():
@@ -321,8 +395,12 @@ def words_time_weights():
             # print(filename)
             timeData(filename, i)
 
+    #print(listLinks)
     # stip empty list within a list
+
+
     fullData2 = [e for e in fullData if e]
+    print(fullData2)
     dictCorpus = {}
     sizeI = len(fullData2[0])
     counter = 0
@@ -376,7 +454,11 @@ def TFIDF():
     top5words()
     weights()
     top5 = words_time_weights()
-    return top5
-
-#TFIDF()
+    #return top5
+    #print()
+    #print(listwords)
+    #time_link_data(listwords)
+   # print(entire_data)
+    new_map()
+TFIDF()
 
