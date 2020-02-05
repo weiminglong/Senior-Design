@@ -40,7 +40,17 @@ export class UploadComponent implements OnInit {
     console.log(this.videoToUpload);
     console.log(this.videoTitle.value);
 
-    this.flaskService.upload(this.videoToUpload, this.videoTitle.value).subscribe(
+    let category;
+
+    if (this.newSubject.value === ""){
+      console.log(this.videoSubject.value);
+      category = this.videoSubject.value;
+    } else {
+      console.log(this.newSubject.value);
+      category = this.newSubject.value;
+    }
+
+    this.flaskService.upload(this.videoToUpload, this.videoTitle.value, category).subscribe(
       resp => {
         console.log(resp); // print
       },
