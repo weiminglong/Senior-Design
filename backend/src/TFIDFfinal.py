@@ -187,15 +187,11 @@ def hash_list(list_to_hash):
     return data_value
 
 
-# print()
-# top5words()
-# print(top5Final)
-
-
 listFiles = []
 testWord = []
 listLinks = []
-
+listCategory = []
+listTitles = []
 
 # this function get the start and end time from csv files that are all in a given list of words
 
@@ -210,6 +206,8 @@ def timeData(filename, stwords):
     linkval = ""
     linktemp = []
     link = []
+    category = []
+    title = []
 
     for word in stwords:
         #print(link)
@@ -227,6 +225,9 @@ def timeData(filename, stwords):
                 line3 = line2.split(":")
                 # store dictionary in json file
                 topword = []
+
+                if len(line3)<=1:
+                    continue
                 comparedword = line3[1].lower()
                 if line3[0] == "word" and lower == comparedword and lower not in foundWords:
                    # print(line3)
@@ -248,27 +249,41 @@ def timeData(filename, stwords):
                     tempfullData.append(temptopword)
                     wordPresent = True
                     filesName.append(filename)
+
                 if line3[0] == "link" and wordPresent == True and line[0] not in link:
                     lane = []
+                    #print()
                     if(len(link)==0):
                         #link.append(line[0][5:])
                         lane = line4.split("word")
-                        #print(lane)
-
-                        if len(lane)>=2 and len(lane[0]) <= len(lane[1]):
+                        laneLink = line4.split("title:")
+                        if len(laneLink) >= 2:
+                            #print(laneLink[0])
+                            link.append(laneLink[0])
+                        elif len(lane)>=2 and len(lane[0]) <= len(lane[1]):
                             #print(line[0][5:])
                             link.append(line[0][5:])
                         else:
+                           # print(lane[0][5:])
                             link.append(lane[0][5:])
-                            #print(lane[0][5:])
 
-                        #print(link)
                     elif(len(link)>0):
                         continue
-                    #print(link)
-                #if (len(tempfullData) >= 5 and filesName not in listFiles and len(filesName) != 0):
-                   # listFiles.append(filesName)
 
+                if line3[0] == "category" and wordPresent == True:
+                    if(len(category)==0):
+                            category.append(line3[1])
+                            #print(category)
+                    elif(len(category)>0):
+                        continue
+
+                if line3[0] == "title" and wordPresent == True:
+                    #print(line)
+                    #print()
+                    if (len(title) == 0):
+                        title.append(line[0][6:])
+                    elif (len(title) > 0):
+                        continue
 
     if len(foundWords) < 5:
         tempfullData = []
@@ -284,14 +299,18 @@ def timeData(filename, stwords):
         tempfullData = []
     if link not in listLinks and len(tempfullData) >= 5:
         listLinks.append(link)
-    # print(listLinks)
+        #print(listLinks)
+    if len(tempfullData) >= 5:
+        listCategory.append(category)
+        #print(listCategory)
+    if  len(tempfullData) >= 5:
+        listTitles.append(title)
+    #print(listTitles)
     fullData.append(tempfullData)
-
 
 # get the weight from tfidf data above
 # listwords = []
 listweights = []
-
 
 def weights():
     for i in top5Final:
@@ -335,11 +354,6 @@ def words_time_weights():
     for i in fullData2:
         # print(i)
         incr = 0
-        indexIn = 0
-        myDict = []
-        test1 = []
-        line = []
-        # print("printing j")
         for j in i:
             if (incr < sizeI and count < lengthLimit):
                 weight = '%.3f' % (listweights[count][incr])
@@ -356,12 +370,16 @@ def words_time_weights():
             break
         indv_dict = {
             "words": "",
-            "link": ""
+            "link": "",
+            "category":"",
+            "title":""
         }
         # print(listFiles[count])
         indv_dict["words"] = i
         # indv_dict["filename"] = listFiles[count]
         indv_dict["link"] = listLinks[count]
+        indv_dict["category"] = listCategory[count]
+        indv_dict["title"] = listTitles[count]
         my_dict[str(count)] = indv_dict
         count += 1
 
@@ -376,6 +394,7 @@ def TFIDF():
     top5words()
     weights()
     top5 = words_time_weights()
+    #print(top5)
     return top5
 
 #TFIDF()
