@@ -262,9 +262,6 @@ def timeData(filename, stwords):
                     val2 = line3[0:2]
                     foundWords.append(lower)
                     temptopword.append(lower)
-                    #temptopword.append(startFin)
-                    #temptopword.append(endFin)
-                    # tempfullData = tempfullData + temptopword
                     tempfullData.append(temptopword)
                     wordPresent = True
                     filesName.append(filename)
@@ -277,14 +274,11 @@ def timeData(filename, stwords):
                         #link.append(line[0][5:])
                         lane = line4.split("word")
                         if len(lane)>=2 and len(lane[0]) <= len(lane[1]):
-
-                            laneLink = line4.split("title:")
+                            laneLink = line4.split("link:")
                         if len(laneLink) >= 2:
-                            #print(laneLink[0])
-                            link.append(laneLink[0])
+                            link.append(line4[7:])
                         elif len(lane)>=2 and len(lane[0]) <= len(lane[1]):
-                            #print(line[0][5:])
-                            link.append(line[0][5:])
+                            link.append(line4[6:])
                         else:
                            # print(lane[0][5:])
                             link.append(lane[0][5:])
@@ -300,10 +294,8 @@ def timeData(filename, stwords):
                         continue
 
                 if line3[0] == "title" and wordPresent == True:
-                    #print(line)
-                    #print()
                     if (len(title) == 0):
-                        title.append(line[0][6:])
+                        title.append(sentence[6:])
                     elif (len(title) > 0):
                         continue
 
@@ -494,10 +486,8 @@ def TFIDF():
     top5words()
     weights()
     top5 = words_time_weights()
-
     new_map()
-
-    print(top5)
+    #print(top5)
     return top5
 
 TFIDF()
