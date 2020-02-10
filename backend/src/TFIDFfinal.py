@@ -187,6 +187,11 @@ def hash_list(list_to_hash):
     # print(data_value)
     return data_value
 
+#remove empty elements from a list
+def remove_emptyEl_list(test_list):
+    while ("" in test_list):
+        test_list.remove("")
+        return test_list
 
 # print()
 # top5words()
@@ -215,6 +220,7 @@ def timeData(filename, stwords):
     linkval = ""
     linktemp = []
     link = []
+    word_time_array = {}
 
     for word in stwords:
         #print(link)
@@ -238,23 +244,24 @@ def timeData(filename, stwords):
                     temptopword = []
                     name = lower
                     startTime = line[1]
-                    start = startTime.split("start_time:")
-                    startFin = start[1]
+                    start = startTime[11:]
+                   # print(start)
+                    startFin = start
+                    #print(startFin)
                     if lower in fullTime_dict:
                         # append the new number to the existing array at this slot
                         fullTime_dict[lower] += startFin+" "
                     else:
                         # create a new array in this slot
                         fullTime_dict[lower] = startFin+" "
-                    # print(k[1])
                     endTime = line[2]
                     end = endTime.split("end_time:")
                     endFin = end[1]
                     val2 = line3[0:2]
                     foundWords.append(lower)
                     temptopword.append(lower)
-                    temptopword.append(startFin)
-                    temptopword.append(endFin)
+                    #temptopword.append(startFin)
+                    #temptopword.append(endFin)
                     # tempfullData = tempfullData + temptopword
                     tempfullData.append(temptopword)
                     wordPresent = True
@@ -264,21 +271,13 @@ def timeData(filename, stwords):
                     if(len(link)==0):
                         #link.append(line[0][5:])
                         lane = line4.split("word")
-                        #print(lane)
-
                         if len(lane)>=2 and len(lane[0]) <= len(lane[1]):
                             #print(line[0][5:])
                             link.append(line[0][5:])
                         else:
                             link.append(lane[0][5:])
-                            #print(lane[0][5:])
-
-                        #print(link)
                     elif(len(link)>0):
                         continue
-                    #print(link)
-                #if (len(tempfullData) >= 5 and filesName not in listFiles and len(filesName) != 0):
-                   # listFiles.append(filesName)
 
 
     if len(foundWords) < 5:
@@ -296,8 +295,15 @@ def timeData(filename, stwords):
     if link not in listLinks and len(tempfullData) >= 5:
         listLinks.append(link)
    # print(listLinks)
-
-
+    """
+    for i in fullTime_dict:
+        k = []
+        string = " "
+        string = fullTime_dict[i]
+        k = string
+        #print(k)
+        fullTime_dict[i] = k
+    """
     fullData.append(tempfullData)
 
 
@@ -363,9 +369,10 @@ def weights():
         else:
             continue
         listweights.append(tempfloat)
-    #print(listwords)
-    #print()
-    #print()
+
+def string_List_dictionary_key():
+    for i in fullTime_dict:
+        print(i)
 
 new_list = []
 def new_map():
@@ -378,16 +385,34 @@ def new_map():
             tmpmap.append(fullTime_dict[w])
             new_list.append(tmpmap)
             #cnt +=1
-    print()
-    print()
-    print(new_list)
-    print()
-    print()
-    print()
+
+def listToString(s):
+    # initialize an empty string
+    str1 = ""
+
+    # traverse in the string
+    for ele in s:
+        str1 += ele
+
+        # return string
+    return str1
 
 
+def string_list_value_dictionary():
+    k = " "
+    value = []
+    for i in fullTime_dict:
+        k = listToString(fullTime_dict[i])
+        value = k.split(" ")
+        value = remove_emptyEl_list(value)
+        fullTime_dict[i] = value
+        print(fullTime_dict[i])
+        print()
 
+    # print(type(k[0][1]))
 def words_time_weights():
+
+    #print(fullTime_dict)
     # parameter to be passed in time_data function
     for i in listwords:
         # parse through file and get time stamp
@@ -397,10 +422,23 @@ def words_time_weights():
 
     #print(listLinks)
     # stip empty list within a list
-
-
+    fullData3 =[]
+    tempdata2 = []
     fullData2 = [e for e in fullData if e]
-    print(fullData2)
+    string_list_value_dictionary()
+    #print(fullData2)
+    tempfullData = []
+    for list in fullData2:
+        temptopword = []
+        for words in list:
+            temptopword.append(words[0])
+            temptopword.append(fullTime_dict[words[0]])
+
+        tempdata2.append(temptopword)
+        tempfullData.append(tempdata2)
+
+    fullData3.append(tempfullData)
+    print(fullData3)
     dictCorpus = {}
     sizeI = len(fullData2[0])
     counter = 0
@@ -454,11 +492,9 @@ def TFIDF():
     top5words()
     weights()
     top5 = words_time_weights()
-    #return top5
-    #print()
-    #print(listwords)
-    #time_link_data(listwords)
-   # print(entire_data)
     new_map()
+    #string_list_value_dictionary()
+
+
 TFIDF()
 
