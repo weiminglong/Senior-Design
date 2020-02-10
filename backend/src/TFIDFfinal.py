@@ -294,16 +294,6 @@ def timeData(filename, stwords):
         tempfullData = []
     if link not in listLinks and len(tempfullData) >= 5:
         listLinks.append(link)
-   # print(listLinks)
-    """
-    for i in fullTime_dict:
-        k = []
-        string = " "
-        string = fullTime_dict[i]
-        k = string
-        #print(k)
-        fullTime_dict[i] = k
-    """
     fullData.append(tempfullData)
 
 
@@ -406,8 +396,8 @@ def string_list_value_dictionary():
         value = k.split(" ")
         value = remove_emptyEl_list(value)
         fullTime_dict[i] = value
-        print(fullTime_dict[i])
-        print()
+        #print(fullTime_dict[i])
+        #print()
 
     # print(type(k[0][1]))
 def words_time_weights():
@@ -423,38 +413,30 @@ def words_time_weights():
     #print(listLinks)
     # stip empty list within a list
     fullData3 =[]
-    tempdata2 = []
     fullData2 = [e for e in fullData if e]
     string_list_value_dictionary()
     #print(fullData2)
-    tempfullData = []
+
+    tempfullData2 = []
     for list in fullData2:
-        temptopword = []
+        tempfullData = []
         for words in list:
+            temptopword = []
             temptopword.append(words[0])
             temptopword.append(fullTime_dict[words[0]])
-
-        tempdata2.append(temptopword)
-        tempfullData.append(tempdata2)
-
-    fullData3.append(tempfullData)
-    print(fullData3)
+            #tempdata2.append(temptopword)
+            tempfullData.append(temptopword)
+        tempfullData2.append(tempfullData)
+    fullData3.append(tempfullData2)
     dictCorpus = {}
     sizeI = len(fullData2[0])
-    counter = 0
-    incr = 0
     count = 0
-    index = 0
 
     lengthLimit = len(listweights)
     fulLeng = len(fullData2)
     for i in fullData2:
         # print(i)
         incr = 0
-        indexIn = 0
-        myDict = []
-        test1 = []
-        line = []
         # print("printing j")
         for j in i:
             if (incr < sizeI and count < lengthLimit):
@@ -466,8 +448,7 @@ def words_time_weights():
     count = 0
     my_dict = {}
 
-    for i in fullData2:
-        # if count == len(listFiles)-1:
+    for i in fullData3[0]:
         if count == len(listLinks) - 1:
             break
         indv_dict = {
@@ -493,8 +474,7 @@ def TFIDF():
     weights()
     top5 = words_time_weights()
     new_map()
-    #string_list_value_dictionary()
-
+    #print(top5)
 
 TFIDF()
 
