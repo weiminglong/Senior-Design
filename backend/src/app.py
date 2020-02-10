@@ -112,7 +112,7 @@ def upload_and_process():
 
         # print(tag)
 
-        # Call function to convert (existing) audio to text from offset.py file
+        # Call function to convert (existing) audio to text  from offset.py file
         auto.convert_auto(title, video_name, video_url, category)
         #
         top5 = {}
