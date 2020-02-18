@@ -108,8 +108,9 @@ def transcribe_gcs_with_word_time_offsets(gcs_uri, fileName, video_url, category
         #csv_file.write()
         csv_file.write('\ntitle:' + fileName)
         csv_file.write('\ncategory:' + category+'\n')
-    aws_upload_file(fileName + ".txt", 'qa-classifier')
-    aws_upload_file(fileName + ".csv", 'qa-classifier-csv')
+    #upload both txt and csv files to s3 bucket
+    aws_upload_file(fileName + ".txt", 'qac-txt-csv')
+    aws_upload_file(fileName + ".csv", 'qac-txt-csv')
     print("Audio transcription completed")
 
 #upload both txt and csv files to S3 bucket
