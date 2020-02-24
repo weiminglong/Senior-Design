@@ -13,7 +13,7 @@ from scipy.sparse.csr import csr_matrix  # need this if you want to save tfidf_m
 from nltk.stem import PorterStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import WordNetLemmatizer
-
+import codecs
 # similarity imports
 
 from nltk.corpus import wordnet as wn
@@ -290,9 +290,9 @@ def timeData(filename,stwords):
         # check for files that end with certain extension precisely .csv extension
         if key.endswith(filename) == False:
             continue
-            #print(key,filename)
             #print()
             #read = open(filename, encoding='utf-8')
+       # print(key, filename)
     linkval = ""
     linktemp = []
     link = []
@@ -302,11 +302,18 @@ def timeData(filename,stwords):
     title = []
     #print(read)
     #print()
+
     for word in stwords:
         #print(link)
         lower = word.lower()
         count = 0
-        for sentence in open(filename, encoding='utf-8'):
+        #print(open(filename, encoding='utf-8'))
+        #print(filename)
+        f = codecs.open(filename, 'r', 'UTF-8')
+        for sentence in f:
+            #print(line)
+        #print(f)
+        #for sentence in open(filename, encoding='utf-8'):
             #print(sentence)
             line = sentence.split()
             #print(line)
@@ -513,7 +520,7 @@ def words_time_weights():
     fullData3 =[]
     fullData2 = [e for e in fullData if e]
     string_list_value_dictionary()
-    print(fullData2)
+    #print(fullData2)
 
     tempfullData2 = []
     for list in fullData2:
@@ -521,11 +528,16 @@ def words_time_weights():
         for words in list:
             temptopword = []
             temptopword.append(words[0])
-            temptopword.append(fullTime_dict[words[0]])
+            time_data = fullTime_dict[words[0]][0]
+            #print(time_data)
+            #print()
+            temptopword.append(time_data)
             #tempdata2.append(temptopword)
             tempfullData.append(temptopword)
         tempfullData2.append(tempfullData)
+        #print(tempfullData2)
     fullData3.append(tempfullData2)
+    #print(fullData3)
     dictCorpus = {}
     sizeI = len(fullData2[0])
     count = 0
@@ -556,6 +568,7 @@ def words_time_weights():
             "title":""
         }
         # print(listFiles[count])
+        #print(i)
         indv_dict["words"] = i
         # indv_dict["filename"] = listFiles[count]
         indv_dict["link"] = listLinks[count]
@@ -567,7 +580,7 @@ def words_time_weights():
     # store dictionary in json file
     with open('top5Words.json', 'w') as filehandle:
         json.dump(my_dict, filehandle, indent=5)
-
+    #print(my_dict)
     return my_dict
 
 def TFIDF():
@@ -576,7 +589,7 @@ def TFIDF():
     weights()
     top5 = words_time_weights()
     new_map()
-    #print(top5)
+   # print(top5)
     return top5
 
 TFIDF()
