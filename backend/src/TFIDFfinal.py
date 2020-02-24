@@ -341,10 +341,12 @@ def timeData(filename,stwords):
                     #print(startFin)
                     if lower in fullTime_dict:
                         # append the new number to the existing array at this slot
-                        fullTime_dict[lower] += startFin+" "
+                        #fullTime_dict[lower] += startFin+" "
+                        continue
                     else:
                         # create a new array in this slot
                         fullTime_dict[lower] = startFin+" "
+                        #print('from the root',fullTime_dict[lower])
                     endTime = line[2]
                     end = endTime.split("end_time:")
                     endFin = end[1]
@@ -465,12 +467,13 @@ def string_List_dictionary_key():
 
 new_list = []
 def new_map():
-    print()
+    #print()
     #cnt = 0
     for i in listwords:
         tmpmap = []
         for w in i:
             tmpmap.append(w)
+            print('final list:',fullTime_dict[w])
             tmpmap.append(fullTime_dict[w])
             new_list.append(tmpmap)
             #cnt +=1
@@ -527,8 +530,9 @@ def words_time_weights():
         tempfullData = []
         for words in list:
             temptopword = []
+           # print(words[0])
             temptopword.append(words[0])
-            time_data = fullTime_dict[words[0]][0]
+            time_data = fullTime_dict[words[0]]
             #print(time_data)
             #print()
             temptopword.append(time_data)
@@ -570,6 +574,8 @@ def words_time_weights():
         # print(listFiles[count])
         #print(i)
         indv_dict["words"] = i
+        print(i)
+        print()
         # indv_dict["filename"] = listFiles[count]
         indv_dict["link"] = listLinks[count]
         indv_dict["category"] = listCategory[count]
@@ -589,7 +595,7 @@ def TFIDF():
     weights()
     top5 = words_time_weights()
     new_map()
-   # print(top5)
+    print(top5)
     return top5
 
 TFIDF()
