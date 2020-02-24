@@ -341,12 +341,17 @@ def timeData(filename,stwords):
                     #print(startFin)
                     if lower in fullTime_dict:
                         # append the new number to the existing array at this slot
-                        #fullTime_dict[lower] += startFin+" "
-                        continue
+                        #fullTime_dict[lower].append(startFin+" ")
+                        #fullTime_dict[lower] +=""
+                        #original = ""+fullTime_dict[lower]
+                        fullTime_dict[lower] = startFin+" "
+                        #fullTime_dict[lower] = original
+                        #continue
                     else:
                         # create a new array in this slot
                         fullTime_dict[lower] = startFin+" "
                         #print('from the root',fullTime_dict[lower])
+
                     endTime = line[2]
                     end = endTime.split("end_time:")
                     endFin = end[1]
@@ -417,7 +422,7 @@ def timeData(filename,stwords):
 # get the weight from tfidf data above
 # listwords = []
 listweights = []
-
+"""
 def dictionary_cleanup(wordArray):
     k = fullTime_dict["vector"]
     #print(k)
@@ -439,6 +444,8 @@ def dictionary_cleanup(wordArray):
            #sorted((time.strptime(d, "%M:%S") for d in time_array), reverse=True)
            time_array = sorted(time_array)
            fullTime_dict[w] = time_array
+           
+"""
 def weights():
     for i in top5Final:
         size = len(i)
@@ -460,11 +467,11 @@ def weights():
         else:
             continue
         listweights.append(tempfloat)
-
+"""
 def string_List_dictionary_key():
     for i in fullTime_dict:
         print(i)
-
+"""
 new_list = []
 def new_map():
     #print()
@@ -494,6 +501,7 @@ def string_list_value_dictionary():
     k = " "
     value = []
     for i in fullTime_dict:
+        print(fullTime_dict[i])
         k = listToString(fullTime_dict[i])
         value = k.split(" ")
         value = remove_emptyEl_list(value)
@@ -533,7 +541,7 @@ def words_time_weights():
            # print(words[0])
             temptopword.append(words[0])
             time_data = fullTime_dict[words[0]]
-            #print(time_data)
+            print(time_data)
             #print()
             temptopword.append(time_data)
             #tempdata2.append(temptopword)
