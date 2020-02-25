@@ -6,6 +6,7 @@ from nltk.tokenize import word_tokenize
 import logging
 import boto3
 from botocore.exceptions import ClientError
+import os
 
 #local
 def transcribe_file_with_word_time_offsets(speech_file):
@@ -111,6 +112,13 @@ def transcribe_gcs_with_word_time_offsets(gcs_uri, fileName, video_url, category
     #upload both txt and csv files to s3 bucket
     aws_upload_file(fileName + ".txt", 'qac-txt-csv')
     aws_upload_file(fileName + ".csv", 'qac-txt-csv')
+    #remove both local txt and csv file
+    if os.path.exists(os.getcwd() + '/' + fileName + '.txt'):
+        #print("txt exists\n")
+        os.remove(os.getcwd() + '/' + fileName + '.txt')
+    if os.path.exists(os.getcwd() + '/' + fileName + '.csv'):
+        # print("csv exists\n")
+        os.remove(os.getcwd() + '/' + fileName + '.csv')
     print("Audio transcription completed")
 
 #upload both txt and csv files to S3 bucket
