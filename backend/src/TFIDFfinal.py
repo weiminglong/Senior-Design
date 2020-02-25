@@ -355,7 +355,8 @@ def timeData(filename, stwords):
                     if lower in fullTime_dict.keys():
                         # append the new number to the existing array at this slot
                         # fullTime_dict[lower].append(startFin+" ")
-                        fullTime_dict[lower] += startFin + " "
+                        fullTime_dict[lower] += startFin + " " \
+                                                           ""
 
                     else:
                         # create a new array in this slot
@@ -403,6 +404,7 @@ def timeData(filename, stwords):
 
                 if line3[0] == "title" and wordPresent == True:
                     if (len(title) == 0):
+                        #print(sentence[6:])
                         title.append(sentence[6:])
                     elif (len(title) > 0):
                         continue
@@ -530,16 +532,9 @@ def string_list_value_dictionary():
         k = listToString(fullTime_dict[i])
         value = k.split(" ")
         value = remove_emptyEl_list(value)
-        value = remove_redundant_elements(value)
-        newValue = value.sort()
-        #print(type(value))
-        #print(value)
-        #print(newValue)
         fullTime_dict[i] = value
         # print(fullTime_dict[i])
         # print()
-
-    # print(type(k[0][1]))
 
 
 def words_time_weights():
@@ -638,8 +633,8 @@ def TFIDF():
     weights()
     top5 = words_time_weights()
     new_map()
-    # print("top5 words before the return")
-    # print(top5)
+    print("top5 words before the return")
+    print(top5)
     # print()
     # print()
     # print()
@@ -647,12 +642,12 @@ def TFIDF():
     return top5
 
 
-TFIDF()
-"""
-tops = {}
-tops = TFIDF()
-print("top5 after the return")
+#TFIDF()
+
+#tops = {}
+#tops = TFIDF()
+#print("top5 after the return")
 # print()
 # print()
-print(tops)
-"""
+#print(tops)
+
