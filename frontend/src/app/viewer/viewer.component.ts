@@ -24,7 +24,7 @@ export class ViewerComponent implements OnInit {
     //link = this.infoService.getLink();
     
     console.log(link);
-    //link = ""+link
+
     if (link.toString().substring(0, 24) === "https://www.youtube.com/"){
       // CORS block does not allow playing youtube videos --> this is a least-effort temporary work around
       this.videoURL = "https://qa-classifier.s3.amazonaws.com/Basic+Derivative+Rules.mp4";
@@ -47,15 +47,9 @@ export class ViewerComponent implements OnInit {
   }
 
   changeTime(time: string){
-    console.log("value of time is:")
-    console.log(time)
-
-    time = ""+time
-    console.log(time)
     let totalSec;
     let minToSec = (+time.charAt(0)) * 60;
     let sec = +time.substring(2);
-    console.log("seconds:",sec)
     totalSec = minToSec + sec;
 
     (<HTMLMediaElement>document.getElementById('video1')).currentTime = totalSec;

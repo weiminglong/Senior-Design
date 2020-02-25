@@ -42,7 +42,7 @@ export class MainComponent implements OnInit {
   setVideo(index: number){
     console.log("passing index: " + index);
     console.log("passing url: " + this.videoNames[index]);
-    console.log("passing time frames: " + this.timeFrames[index][0][1]);
+    console.log("passing time frames: " + this.timeFrames[index][0]);
     
     this.infoService.sendLink(this.videoNames[index]);
     this.infoService.sendTimeFrames(this.timeFrames[index]);
