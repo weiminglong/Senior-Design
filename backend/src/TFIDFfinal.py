@@ -283,6 +283,7 @@ def timeData(filename,stwords):
     #file = open(filename, "r")
     #read = file.readlines()
     #file.close()
+    contents = ""
     for obj in bucket.objects.all():
         # the key here represent the files names
         key = obj.key
@@ -293,6 +294,13 @@ def timeData(filename,stwords):
             #print()
             #read = open(filename, encoding='utf-8')
        # print(key, filename)
+        contents = obj.get()['Body'].read().decode(encoding="utf-8", errors="ignore")
+    #print("value of content is:",contents)
+    #print()
+    print()
+    #for line in contents.splitlines():
+        #print(line)
+
     linkval = ""
     linktemp = []
     link = []
@@ -309,8 +317,11 @@ def timeData(filename,stwords):
         count = 0
         #print(open(filename, encoding='utf-8'))
         #print(filename)
-        f = codecs.open(filename, 'r', 'UTF-8')
-        for sentence in f:
+        #print(filename)
+        #f = codecs.open(filename, 'r3', encoding='utf-8')
+        #print("value of f is:", f)
+        #for sentence in f:
+        for sentence in contents.splitlines():
             #print(line)
         #print(f)
         #for sentence in open(filename, encoding='utf-8'):
@@ -339,18 +350,26 @@ def timeData(filename,stwords):
                    # print(start)
                     startFin = start
                     #print(startFin)
-                    if lower in fullTime_dict:
+                   # fullTime_dict[lower] = startFin + " "
+
+                    if lower in fullTime_dict.keys():
                         # append the new number to the existing array at this slot
                         #fullTime_dict[lower].append(startFin+" ")
                         #fullTime_dict[lower] +=""
-                        #original = ""+fullTime_dict[lower]
-                        fullTime_dict[lower] = startFin+" "
-                        #fullTime_dict[lower] = original
+                        original = []
+                        original = fullTime_dict[lower]
+                        #print("the original data is:",original)
+                        #fullTime_dict[lower] = startFin+" "
+                        fullTime_dict[lower] = original
+                        #print("new one is:",fullTime_dict[lower])
+                       # print(fullTime_dict[lower])
                         #continue
                     else:
                         # create a new array in this slot
                         fullTime_dict[lower] = startFin+" "
+                       # print("first time adding time is:",fullTime_dict[lower])
                         #print('from the root',fullTime_dict[lower])
+
 
                     endTime = line[2]
                     end = endTime.split("end_time:")
@@ -480,7 +499,7 @@ def new_map():
         tmpmap = []
         for w in i:
             tmpmap.append(w)
-            print('final list:',fullTime_dict[w])
+            #print('final list:',fullTime_dict[w])
             tmpmap.append(fullTime_dict[w])
             new_list.append(tmpmap)
             #cnt +=1
@@ -501,7 +520,7 @@ def string_list_value_dictionary():
     k = " "
     value = []
     for i in fullTime_dict:
-        print(fullTime_dict[i])
+        #print(fullTime_dict[i])
         k = listToString(fullTime_dict[i])
         value = k.split(" ")
         value = remove_emptyEl_list(value)
@@ -541,7 +560,7 @@ def words_time_weights():
            # print(words[0])
             temptopword.append(words[0])
             time_data = fullTime_dict[words[0]]
-            print(time_data)
+            #print(time_data)
             #print()
             temptopword.append(time_data)
             #tempdata2.append(temptopword)
@@ -551,6 +570,8 @@ def words_time_weights():
     fullData3.append(tempfullData2)
     #print(fullData3)
     dictCorpus = {}
+   # print("value of full data 2 is:")
+    #print(fullData2)
     sizeI = len(fullData2[0])
     count = 0
 
@@ -582,8 +603,8 @@ def words_time_weights():
         # print(listFiles[count])
         #print(i)
         indv_dict["words"] = i
-        print(i)
-        print()
+        #print(i)
+        #print()
         # indv_dict["filename"] = listFiles[count]
         indv_dict["link"] = listLinks[count]
         indv_dict["category"] = listCategory[count]
@@ -603,8 +624,20 @@ def TFIDF():
     weights()
     top5 = words_time_weights()
     new_map()
-    print(top5)
+    #print("top5 words before the return")
+    #print(top5)
+    #print()
+    #print()
+    #print()
+    print(fullTime_dict)
     return top5
 
-TFIDF()
-
+#TFIDF()
+"""
+tops = {}
+tops = TFIDF()
+print("top5 after the return")
+print()
+print()
+print(tops)
+"""
