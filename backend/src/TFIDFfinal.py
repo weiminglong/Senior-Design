@@ -33,8 +33,7 @@ fullData = []
 fullData2 = []
 path = os.getcwd()
 top5Final = []
-s3 = boto3.resource('s3')
-bucket = s3.Bucket('qac-txt-csv')
+
 
 
 #function that takes in parameter a list and sort its elements in alphabetical order
@@ -52,35 +51,29 @@ def sortCaseIns(lst):
 #read the files names in a bucket both csv and txt file and return two lists
 #of all the csv and txt files in the bucket in alphabetical order
 def read_all_csv_txt_files():
-
+    s3 = boto3.resource('s3')
+    bucket = s3.Bucket('qac-txt-csv')
     csvFiles = []
     txtFiles = []
-    csvCorpus = []
     # the key here represent the files names
     for obj in bucket.objects.all():
         key = obj.key
-        #print(type(key))
         # check for files that end with certain extension precisely .csv extension
         if key.endswith('.csv'):
             csvFiles.append(key)
-            csvRead = obj.get()['Body'].read().decode('utf-8')
-          #  print(csvRead)
-            csvCorpus.append(csvRead)
-            #print()
-            #print()
             #print(type(csvFiles))
         elif key.endswith('.txt'):
             txtFiles.append(key)
     sortCaseIns(csvFiles)
     sortCaseIns(txtFiles)
-    return csvFiles,txtFiles,csvCorpus
+    return csvFiles,txtFiles
 
 
 #read all txt files and return a corpus of all the files read
 def read_all_txt_files():
     corpus = []
-   # s3 = boto3.resource('s3')
-    #bucket = s3.Bucket('qac-txt-csv')
+    s3 = boto3.resource('s3')
+    bucket = s3.Bucket('qac-txt-csv')
 
     # the key here represent the files names
     for obj in bucket.objects.all():
@@ -272,42 +265,27 @@ fullTime_dict = dict()
 
 # this function get the start and end time from csv files that are all in a given list of words
 
-def timeData(filename,stwords):
-    #timeData(csvCorpora, i, word)
-    #print('filename is:',filename)
+def timeData(filename, stwords):
     tempfullData = []
     foundWords = []
     # try:
     wordPresent = False
-    read = ""
-    #file = open(filename, "r")
-    #read = file.readlines()
-    #file.close()
-    for obj in bucket.objects.all():
-        # the key here represent the files names
-        key = obj.key
-        #print('key or filename is:',key)
-        # check for files that end with certain extension precisely .csv extension
-        if key.endswith(filename) == False:
-            continue
-            #print(key,filename)
-            #print()
-            #read = open(filename, encoding='utf-8')
+    file = open(filename, "r")
+    read = file.readlines()
+    file.close()
     linkval = ""
     linktemp = []
     link = []
-    print(read)
+
     word_time_array = {}
     category = []
     title = []
-    #print(read)
-    #print()
+
     for word in stwords:
         #print(link)
         lower = word.lower()
         count = 0
-        for sentence in open(filename, encoding='utf-8'):
-            #print(sentence)
+        for sentence in read:
             line = sentence.split()
             #print(line)
             for each in line:
@@ -403,7 +381,6 @@ def timeData(filename,stwords):
         listTitles.append(title)
     #print(listTitles)
     fullData.append(tempfullData)
-    print(fullData)
 
 # get the weight from tfidf data above
 # listwords = []
@@ -493,27 +470,21 @@ def string_list_value_dictionary():
 
     # print(type(k[0][1]))
 def words_time_weights():
-    csvCorpora = []
-    csvCollection, txtCollection, csvCorpora = read_all_csv_txt_files()
+
     #print(fullTime_dict)
     # parameter to be passed in time_data function
-
     for i in listwords:
         # parse through file and get time stamp
-        for filename in csvCollection:
+        for filename in sorted(glob.glob(os.path.join(path, '*.csv'))):
             # print(filename)
             timeData(filename, i)
-    """
-    for word in listwords:
-        for i in range(len(csvCorpora)):
-            timeData(csvCorpora,i,word,csvCollection[i])
-    """
+
     #print(listLinks)
     # stip empty list within a list
     fullData3 =[]
     fullData2 = [e for e in fullData if e]
     string_list_value_dictionary()
-    print(fullData2)
+    #print(fullData2)
 
     tempfullData2 = []
     for list in fullData2:
@@ -576,7 +547,7 @@ def TFIDF():
     weights()
     top5 = words_time_weights()
     new_map()
-    #print(top5)
+    print(top5)
     return top5
 
 TFIDF()
