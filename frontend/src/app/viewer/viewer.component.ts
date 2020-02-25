@@ -34,12 +34,52 @@ export class ViewerComponent implements OnInit {
 
     this.timeFrames = this.infoService.getTimeFrames();
     // Capitalize first word
+    //console.log("timeFrames[i]");
     for (let i in this.timeFrames){
-      // console.log(this.timeFrames[i]);
+      console.log(this.timeFrames[i]);
       let word = this.timeFrames[i][0].charAt(0).toUpperCase() + this.timeFrames[i][0].substring(1);
       this.timeFrames[i][0] = word;
-      // console.log(this.timeFrames[i]);
+
+      
+      let num = Math.floor(Math.random() * 10);
+      this.timeFrames[i][2] = "0:" + num.toString();
+      num =  Math.floor(Math.random() * (20-10) + 10);
+      this.timeFrames[i][3] = "0:" + num.toString();
+      num =  Math.floor(Math.random() * (40-20) + 20);
+      this.timeFrames[i][4] = "0:" + num.toString();
+      
     }
+
+    // this.timeFrames[0][2] = "0:6"
+    // this.timeFrames[0][3] = "0:15"
+    // this.timeFrames[0][4] = "2:56"
+    // this.timeFrames[0].push();
+    // this.timeFrames[0][5] = "3:10"
+  
+
+    // this.timeFrames[1][2] = "1:12"
+    // this.timeFrames[1][3] = "1:40"
+    // this.timeFrames[1][4] = "8:29"
+    // this.timeFrames[1].push();
+    // this.timeFrames[1][5] = "9:12"
+
+    // this.timeFrames[2][2] = "2:08"
+    // this.timeFrames[2][3] = "5:20"
+    // this.timeFrames[2][4] = "5:28"
+    // this.timeFrames[2].push();
+    // this.timeFrames[2][5] = "6:37"
+
+    // this.timeFrames[3][2] = "1:56"
+    // this.timeFrames[3][3] = "7:45"
+    // this.timeFrames[3][4] = "8:01"
+    // this.timeFrames[3].push();
+    // this.timeFrames[3][5] = "8:23"
+
+    // this.timeFrames[4][2] = "6:50"
+    // this.timeFrames[4][3] = "9:22"
+    // this.timeFrames[4][4] = "9:35"
+    // this.timeFrames[4].push();
+    // this.timeFrames[4][5] = "9:45"
     //console.log(this.timeFrames);
   }
 

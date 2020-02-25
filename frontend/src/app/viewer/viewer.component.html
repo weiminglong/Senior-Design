@@ -5,12 +5,21 @@
     </video>
 </div>
 
+<!-- <div class="title-container">
+  <h3 class="title">Lecture 8: Spring and Hook's Law</h3>
+</div> -->
+
 <div class="time-frame-container">
   <div class="frame-container-2">
     <div class="times" *ngFor="let word of timeFrames; let i = index">
       <mat-chip-list>
           <h4>{{ word[0] }} </h4>
           <mat-chip (click)="changeTime(word[1])">{{ word[1] }}</mat-chip>
+          <!-- <mat-chip (click)="changeTime(word[1])">{{ word[2] }}</mat-chip>
+          <mat-chip (click)="changeTime(word[1])">{{ word[3] }}</mat-chip>
+          <mat-chip (click)="changeTime(word[1])">{{ word[4] }}</mat-chip>  
+          <mat-chip (click)="changeTime(word[1])">{{ word[5] }}</mat-chip>   -->
+          
       </mat-chip-list>
     </div>
   </div>
