@@ -4,19 +4,13 @@
                [
                     "told",
                     [
-                         "3:25"
+                         "0:12"
                     ]
                ],
                [
                     "yes",
                     [
-                         "6:47"
-                    ]
-               ],
-               [
-                    "america",
-                    [
-                         "0:15"
+                         "4:8"
                     ]
                ],
                [
@@ -30,6 +24,12 @@
                     [
                          "3:34"
                     ]
+               ],
+               [
+                    "secure",
+                    [
+                         "0:50"
+                    ]
                ]
           ],
           "link": [
@@ -39,10 +39,53 @@
                "history"
           ],
           "title": [
-               "BarackObamaSpeech\n"
+               "BarackObamaSpeech"
           ]
      },
      "1": {
+          "words": [
+               [
+                    "hydrogen",
+                    [
+                         "0:2"
+                    ]
+               ],
+               [
+                    "pressure",
+                    [
+                         "1:26"
+                    ]
+               ],
+               [
+                    "mass",
+                    [
+                         "0:34"
+                    ]
+               ],
+               [
+                    "atoms",
+                    [
+                         "0:3"
+                    ]
+               ],
+               [
+                    "fusion",
+                    [
+                         "3:4"
+                    ]
+               ]
+          ],
+          "link": [
+               "https://qa-classifier.s3.amazonaws.com/Birthofstars_Stars,blackholesandgalaxies_Cosmology.mp4"
+          ],
+          "category": [
+               "physics"
+          ],
+          "title": [
+               "BirthofStars"
+          ]
+     },
+     "2": {
           "words": [
                [
                     "freedom",
@@ -82,10 +125,53 @@
                "history"
           ],
           "title": [
-               "MLK\n"
+               "MLK"
           ]
      },
-     "2": {
+     "3": {
+          "words": [
+               [
+                    "spring",
+                    [
+                         "0:2"
+                    ]
+               ],
+               [
+                    "force",
+                    [
+                         "2:14"
+                    ]
+               ],
+               [
+                    "newtons",
+                    [
+                         "0:55"
+                    ]
+               ],
+               [
+                    "direction",
+                    [
+                         "0:37"
+                    ]
+               ],
+               [
+                    "rest",
+                    [
+                         "2:41"
+                    ]
+               ]
+          ],
+          "link": [
+               "https://qa-classifier.s3.amazonaws.com/IntrotoSpringandHooksLaw.mp4"
+          ],
+          "category": [
+               "physics"
+          ],
+          "title": [
+               "SpringandHook"
+          ]
+     },
+     "4": {
           "words": [
                [
                     "linnaeus",
@@ -100,21 +186,21 @@
                     ]
                ],
                [
-                    "like",
-                    [
-                         "0:11"
-                    ]
-               ],
-               [
                     "species",
                     [
-                         "1:38"
+                         "1:10"
                     ]
                ],
                [
-                    "domain",
+                    "like",
                     [
-                         "5:56"
+                         "1:45"
+                    ]
+               ],
+               [
+                    "organisms",
+                    [
+                         "1:59"
                     ]
                ]
           ],
@@ -125,10 +211,96 @@
                "biology"
           ],
           "title": [
-               "Taxonomy\n"
+               "Taxonomy"
           ]
      },
-     "3": {
+     "5": {
+          "words": [
+               [
+                    "work",
+                    [
+                         "0:51"
+                    ]
+               ],
+               [
+                    "force",
+                    [
+                         "2:14"
+                    ]
+               ],
+               [
+                    "velocity",
+                    [
+                         "4:32"
+                    ]
+               ],
+               [
+                    "energy",
+                    [
+                         "4:5"
+                    ]
+               ],
+               [
+                    "block",
+                    [
+                         "0:13"
+                    ]
+               ]
+          ],
+          "link": [
+               "https://qa-classifier.s3.amazonaws.com/IntroductiontoWorkandEnergy.mp4"
+          ],
+          "category": [
+               "physics"
+          ],
+          "title": [
+               "ThisisWorkandEnergyExampleTitle"
+          ]
+     },
+     "6": {
+          "words": [
+               [
+                    "10",
+                    [
+                         "1:36"
+                    ]
+               ],
+               [
+                    "season",
+                    [
+                         "2:22"
+                    ]
+               ],
+               [
+                    "second",
+                    [
+                         "1:7"
+                    ]
+               ],
+               [
+                    "good",
+                    [
+                         "0:7"
+                    ]
+               ],
+               [
+                    "bailey",
+                    [
+                         "13:44"
+                    ]
+               ]
+          ],
+          "link": [
+               "https://qa-classifier.s3.amazonaws.com/UsainBolt.mp4"
+          ],
+          "category": [
+               "history"
+          ],
+          "title": [
+               "UB"
+          ]
+     },
+     "7": {
           "words": [
                [
                     "vector",
@@ -139,7 +311,7 @@
                [
                     "numbers",
                     [
-                         "6:4"
+                         "0:55"
                     ]
                ],
                [
@@ -151,13 +323,13 @@
                [
                     "space",
                     [
-                         "0:30"
+                         "0:4"
                     ]
                ],
                [
-                    "linear",
+                    "axis",
                     [
-                         "2:19"
+                         "2:57"
                     ]
                ]
           ],
@@ -168,27 +340,64 @@
                "cs"
           ],
           "title": [
-               "Machines\n"
+               "Machines"
           ]
      },
-     "4": {
+     "8": {
+          "words": [
+               [
+                    "derivative",
+                    [
+                         "0:14"
+                    ]
+               ],
+               [
+                    "exponent",
+                    [
+                         "0:34"
+                    ]
+               ],
+               [
+                    "subtract",
+                    [
+                         "0:33"
+                    ]
+               ],
+               [
+                    "easier",
+                    [
+                         "0:6"
+                    ]
+               ],
+               [
+                    "negative",
+                    [
+                         "3:35"
+                    ]
+               ]
+          ],
+          "link": [
+               "https://qa-classifier.s3.amazonaws.com/BasicDerivativeRules.mp4"
+          ],
+          "category": [
+               "math"
+          ],
+          "title": [
+               "derivativeTest"
+          ]
+     },
+     "9": {
           "words": [
                [
                     "glucose",
                     [
-                         "3:19"
+                         "0:20"
                     ]
                ],
                [
                     "oxygen",
                     [
-                         "2:9"
-                    ]
-               ],
-               [
-                    "carbon",
-                    [
-                         "0:41"
+                         "3:22"
                     ]
                ],
                [
@@ -198,9 +407,15 @@
                     ]
                ],
                [
-                    "energy",
+                    "carbon",
                     [
-                         "7:24"
+                         "3:19"
+                    ]
+               ],
+               [
+                    "cellular",
+                    [
+                         "0:7"
                     ]
                ]
           ],
@@ -211,21 +426,21 @@
                "biology"
           ],
           "title": [
-               "Something biology\r\n"
+               "Something biology"
           ]
      },
-     "5": {
+     "10": {
           "words": [
                [
                     "reactions",
                     [
-                         "5:2"
+                         "7:47"
                     ]
                ],
                [
                     "light",
                     [
-                         "1:0"
+                         "5:55"
                     ]
                ],
                [
@@ -243,7 +458,7 @@
                [
                     "photosynthesis",
                     [
-                         "8:4"
+                         "0:14"
                     ]
                ]
           ],
@@ -254,10 +469,10 @@
                "computer"
           ],
           "title": [
-               "Something Engineering\n"
+               "Something Engineering"
           ]
      },
-     "6": {
+     "11": {
           "words": [
                [
                     "resolution",
@@ -297,10 +512,10 @@
                "history"
           ],
           "title": [
-               "Biology title\r\n"
+               "Biology title"
           ]
      },
-     "7": {
+     "12": {
           "words": [
                [
                     "mitochondria",
@@ -311,7 +526,13 @@
                [
                     "membrane",
                     [
-                         "10:29"
+                         "0:19"
+                    ]
+               ],
+               [
+                    "dna",
+                    [
+                         "0:27"
                     ]
                ],
                [
@@ -321,15 +542,9 @@
                     ]
                ],
                [
-                    "dna",
+                    "atp",
                     [
-                         "0:11"
-                    ]
-               ],
-               [
-                    "actually",
-                    [
-                         "2:1"
+                         "3:23"
                     ]
                ]
           ],
@@ -340,10 +555,10 @@
                "bio"
           ],
           "title": [
-               "Bio topics\r\n"
+               "Bio topics"
           ]
      },
-     "8": {
+     "13": {
           "words": [
                [
                     "mutations",
@@ -354,19 +569,19 @@
                [
                     "dna",
                     [
-                         "0:11"
-                    ]
-               ],
-               [
-                    "going",
-                    [
-                         "3:12"
+                         "0:27"
                     ]
                ],
                [
                     "changes",
                     [
                          "0:10"
+                    ]
+               ],
+               [
+                    "going",
+                    [
+                         "0:42"
                     ]
                ],
                [
@@ -383,27 +598,21 @@
                "cs"
           ],
           "title": [
-               "BIOinfo\r\n"
+               "BIOinfo"
           ]
      },
-     "9": {
+     "14": {
           "words": [
                [
                     "electrons",
                     [
-                         "0:35"
+                         "3:40"
                     ]
                ],
                [
                     "theta",
                     [
                          "2:36"
-                    ]
-               ],
-               [
-                    "equal",
-                    [
-                         "0:11"
                     ]
                ],
                [
@@ -417,6 +626,12 @@
                     [
                          "0:2"
                     ]
+               ],
+               [
+                    "hydrogen",
+                    [
+                         "0:2"
+                    ]
                ]
           ],
           "link": [
@@ -426,7 +641,7 @@
                "physics"
           ],
           "title": [
-               "Theorem\r\n"
+               "Theorem"
           ]
      }
 }
