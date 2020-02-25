@@ -516,6 +516,11 @@ def listToString(s):
         # return string
     return str1
 
+def remove_redundant_elements(test_list):
+    res = []
+    [res.append(x) for x in test_list if x not in res]
+    return  res
+
 
 def string_list_value_dictionary():
     k = " "
@@ -525,8 +530,11 @@ def string_list_value_dictionary():
         k = listToString(fullTime_dict[i])
         value = k.split(" ")
         value = remove_emptyEl_list(value)
-        print(type(value))
-        print(value)
+        value = remove_redundant_elements(value)
+        newValue = value.sort()
+        #print(type(value))
+        #print(value)
+        #print(newValue)
         fullTime_dict[i] = value
         # print(fullTime_dict[i])
         # print()
@@ -639,12 +647,12 @@ def TFIDF():
     return top5
 
 
-# TFIDF()
-
+TFIDF()
+"""
 tops = {}
 tops = TFIDF()
 print("top5 after the return")
 # print()
 # print()
 print(tops)
-
+"""
