@@ -296,7 +296,7 @@ def timeData(filename,stwords):
     linkval = ""
     linktemp = []
     link = []
-    #print(read)
+    print(read)
     word_time_array = {}
     category = []
     title = []
@@ -403,7 +403,7 @@ def timeData(filename,stwords):
         listTitles.append(title)
     #print(listTitles)
     fullData.append(tempfullData)
-   # print(fullData)
+    print(fullData)
 
 # get the weight from tfidf data above
 # listwords = []
