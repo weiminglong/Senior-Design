@@ -10,6 +10,7 @@ import json
 
 import auto as auto
 import TFIDFfinal as nlp
+import jsonCheck
 
 from werkzeug.wrappers import Response
 
@@ -76,6 +77,31 @@ def search_tags():
 
     return json.dumps(array)
 
+@app.route("/api/categories", methods=['GET', "POST"])
+def get_categories():
+    if request.method == "POST":
+        text = request.json
+        tag = text["search"]
+        print()
+
+        tags_collection = mongo.db.tags
+        videos = tags_collection.find({"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
+
+        linkArray = []
+        wordArray = []
+        for i in videos:
+            # append video link and keywords/timestamps to create 2D array
+            linkArray.append(i["link"])
+            wordArray.append(i["words"])
+
+        array = []
+        array.append(linkArray)
+        array.append(wordArray)
+
+        print("final array:")
+        print(array)
+
+    return json.dumps(array)
 
 @app.route("/api/upload", methods=['GET', "POST"])
 def upload_and_process():
@@ -113,6 +139,9 @@ def upload_and_process():
         # tag = text["search"]
 
         # print(tag)
+
+        # Call function to check if the category exist or not in the json file
+        jsonCheck.categoriesJsonCheck(category)
 
         # Call function to convert (existing) audio to text  from offset.py file
         auto.convert_auto(title, video_name, video_url, category)
