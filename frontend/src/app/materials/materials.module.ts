@@ -10,6 +10,8 @@ import { MatSnackBarModule } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips'; 
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -21,7 +23,9 @@ const MaterialComponents = [
   MatSnackBarModule,
   MatCheckboxModule,
   MatIconModule,
-  MatChipsModule
+  MatChipsModule,
+  MatCardModule,
+  MatDialogModule
 ]
 
 @NgModule({
