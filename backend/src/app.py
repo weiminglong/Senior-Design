@@ -33,6 +33,7 @@ CORS(app)
 # collection = db["tags"]
 
 
+
 @app.route("/")
 def index():
     return "<h1>Hello World</h1>"
@@ -54,6 +55,7 @@ def search_tags():
     if request.method == "POST":
         text = request.json
         tag = text["search"]
+        print()
 
         tags_collection = mongo.db.tags
         videos = tags_collection.find({"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
@@ -119,9 +121,16 @@ def upload_and_process():
         top5 = nlp.TFIDF()
 
         tags_collection = mongo.db.tags
-
+        print("printing the top5 in app.py")
+        print()
+        print(top5)
+        print()
+        print()
+        print("inside of the app.py, testing the values of top5 being inserted")
+        print()
+        print()
         for i in top5:
-            # print(top5[i])
+            print(top5[i])
             tags_collection.insert_one(top5[i])
         # ************************************
 
