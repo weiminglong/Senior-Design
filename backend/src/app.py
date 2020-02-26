@@ -37,7 +37,13 @@ CORS(app)
 
 @app.route("/")
 def index():
-    return "<h1>Hello World</h1>"
+    #return "<h1>Hello World</h1>"
+    categories = mongo.db.categories
+    result = categories.find({"categories": {}})
+    print("final categories array:")
+    print(result)
+
+    return json.dumps(result)
 
 
 @app.route("/test")
@@ -77,7 +83,7 @@ def search_tags():
 
     return json.dumps(array)
 
-@app.route("/api/categories", methods=['GET', "POST"])
+@app.route("/api/toolbar", methods=['GET', "POST"])
 def get_categories():
     if 1:#request.method == "POST":
         # text = request.json
@@ -85,7 +91,7 @@ def get_categories():
         # print()
 
         categories = mongo.db.categories
-        result = categories.find({})#{"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
+        result = categories.find({"categories": {}}) #{"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
 
         # linkArray = []
         # wordArray = []
@@ -146,15 +152,15 @@ def upload_and_process():
 
         '''JSON CATEGORY'''
         #Call function to check if the category exist or not in the json file
-        jsonCheck.categoriesJsonCheck(category)
-        categoryJsonArray = "categories.json"
+        cats_data = jsonCheck.categoriesJsonCheck(category)
+        # cats_data = "categories.json"
         cats_collection = mongo.db.categories
 
-        cats_collection.insert_one(categoryJsonArray)
+        cats_collection.insert_one(cats_data)
 
-        for i in categoryJsonArray:
+        for i in cats_data['categories']:
             #cats_collection.insert_one(categoryJsonArray[i])
-            print(categoryJsonArray[i])
+            print(i)#cats_data['categories'][i])
 
         # Call function to convert (existing) audio to text  from offset.py file
         auto.convert_auto(title, video_name, video_url, category)

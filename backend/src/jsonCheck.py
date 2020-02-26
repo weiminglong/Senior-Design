@@ -4,7 +4,8 @@ def categoriesJsonCheck(newCategory):
     #read the local json file
     json_file = open("categories.json")
     #with open('categories.json') as json_file:
-    #load the json array
+
+    #load the json data
     data = json.load(json_file)
     if newCategory in data['categories']:
         print("\nYes, found in List : ", data)
