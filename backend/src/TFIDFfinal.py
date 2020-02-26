@@ -517,12 +517,18 @@ def listToString(s):
         str1 += ele
         # return string
     return str1
-
+"""
 def remove_redundant_elements(test_list):
     res = []
     [res.append(x) for x in test_list if x not in res]
     return  res
-
+"""
+def remove_redundant_elements(duplicate):
+    final_list = []
+    for num in duplicate:
+        if num not in final_list:
+            final_list.append(num)
+    return final_list
 
 def string_list_value_dictionary():
     k = " "
@@ -567,8 +573,9 @@ def words_time_weights():
             temptopword = []
             # print(words[0])
             temptopword.append(words[0])
-            time_data = fullTime_dict[words[0]]
-            # print(time_data)
+            time_data1 = fullTime_dict[words[0]]
+            time_data = remove_redundant_elements(time_data1)
+            #print(time_data)
             # print()
             temptopword.append(time_data)
             # tempdata2.append(temptopword)
@@ -642,7 +649,7 @@ def TFIDF():
     return top5
 
 
-#TFIDF()
+TFIDF()
 
 #tops = {}
 #tops = TFIDF()
