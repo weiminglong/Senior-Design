@@ -24,8 +24,8 @@ app = Flask(__name__)
 
 #config
 app.config["MONGODB_NAME"] = "qa-classifier"
-app.config["MONGO_URI"] = "mongodb+srv://Larissa:spring2020@cluster0-nkghg.mongodb.net/test?retryWrites=true&w=majority"
-#app.config["MONGO_URI"] = "mongodb+srv://longweiming:leaf1234@cluster0-i1gqv.mongodb.net/test?retryWrites=true&w=majority"
+#app.config["MONGO_URI"] = "mongodb+srv://Larissa:spring2020@cluster0-nkghg.mongodb.net/test?retryWrites=true&w=majority"
+app.config["MONGO_URI"] = "mongodb+srv://longweiming:leaf1234@cluster0-i1gqv.mongodb.net/test?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 
 CORS(app)
@@ -79,29 +79,33 @@ def search_tags():
 
 @app.route("/api/categories", methods=['GET', "POST"])
 def get_categories():
-    if request.method == "POST":
-        text = request.json
-        tag = text["search"]
-        print()
+    if 1:#request.method == "POST":
+        # text = request.json
+        # tag = text["search"]
+        # print()
 
-        tags_collection = mongo.db.tags
-        videos = tags_collection.find({"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
+        categories = mongo.db.categories
+        result = categories.find({})#{"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
 
-        linkArray = []
-        wordArray = []
-        for i in videos:
-            # append video link and keywords/timestamps to create 2D array
-            linkArray.append(i["link"])
-            wordArray.append(i["words"])
+        # linkArray = []
+        # wordArray = []
+        # for i in videos:
+        #     # append video link and keywords/timestamps to create 2D array
+        #     linkArray.append(i["link"])
+        #     wordArray.append(i["words"])
+        #
+        # array = []
+        # array.append(linkArray)
+        # array.append(wordArray)
 
-        array = []
-        array.append(linkArray)
-        array.append(wordArray)
+        # categoriesList = []
+        # for i in result:
 
-        print("final array:")
-        print(array)
 
-    return json.dumps(array)
+        print("final categories array:")
+        print(result)
+
+    return json.dumps(result)
 
 @app.route("/api/upload", methods=['GET', "POST"])
 def upload_and_process():
@@ -140,8 +144,17 @@ def upload_and_process():
 
         # print(tag)
 
-        # Call function to check if the category exist or not in the json file
+        '''JSON CATEGORY'''
+        #Call function to check if the category exist or not in the json file
         jsonCheck.categoriesJsonCheck(category)
+        categoryJsonArray = "categories.json"
+        cats_collection = mongo.db.categories
+
+        cats_collection.insert_one(categoryJsonArray)
+
+        for i in categoryJsonArray:
+            #cats_collection.insert_one(categoryJsonArray[i])
+            print(categoryJsonArray[i])
 
         # Call function to convert (existing) audio to text  from offset.py file
         auto.convert_auto(title, video_name, video_url, category)

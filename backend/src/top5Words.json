@@ -125,10 +125,53 @@
                "history"
           ],
           "title": [
-               "MLK"
+               "Ihaveadream"
           ]
      },
      "3": {
+          "words": [
+               [
+                    "learning",
+                    [
+                         "1:6"
+                    ]
+               ],
+               [
+                    "machine",
+                    [
+                         "7:51"
+                    ]
+               ],
+               [
+                    "program",
+                    [
+                         "0:37"
+                    ]
+               ],
+               [
+                    "email",
+                    [
+                         "2:38"
+                    ]
+               ],
+               [
+                    "checkers",
+                    [
+                         "0:44"
+                    ]
+               ]
+          ],
+          "link": [
+               "https://qa-classifier.s3.amazonaws.com/lecture-11-introduction-what-is-machine-learning-machine-learning-andrew-ng.mp4"
+          ],
+          "category": [
+               "computer"
+          ],
+          "title": [
+               "MachinelearningAN"
+          ]
+     },
+     "4": {
           "words": [
                [
                     "spring",
@@ -171,7 +214,7 @@
                "SpringandHook"
           ]
      },
-     "4": {
+     "5": {
           "words": [
                [
                     "linnaeus",
@@ -214,7 +257,7 @@
                "Taxonomy"
           ]
      },
-     "5": {
+     "6": {
           "words": [
                [
                     "work",
@@ -257,7 +300,7 @@
                "ThisisWorkandEnergyExampleTitle"
           ]
      },
-     "6": {
+     "7": {
           "words": [
                [
                     "10",
@@ -300,7 +343,7 @@
                "UB"
           ]
      },
-     "7": {
+     "8": {
           "words": [
                [
                     "vector",
@@ -343,7 +386,7 @@
                "Machines"
           ]
      },
-     "8": {
+     "9": {
           "words": [
                [
                     "derivative",
@@ -364,15 +407,15 @@
                     ]
                ],
                [
-                    "easier",
-                    [
-                         "0:6"
-                    ]
-               ],
-               [
                     "negative",
                     [
                          "3:35"
+                    ]
+               ],
+               [
+                    "easier",
+                    [
+                         "0:6"
                     ]
                ]
           ],
@@ -386,7 +429,7 @@
                "derivativeTest"
           ]
      },
-     "9": {
+     "10": {
           "words": [
                [
                     "glucose",
@@ -429,7 +472,7 @@
                "Something biology"
           ]
      },
-     "10": {
+     "11": {
           "words": [
                [
                     "reactions",
@@ -472,7 +515,7 @@
                "Something Engineering"
           ]
      },
-     "11": {
+     "12": {
           "words": [
                [
                     "resolution",
@@ -515,7 +558,7 @@
                "Biology title"
           ]
      },
-     "12": {
+     "13": {
           "words": [
                [
                     "mitochondria",
@@ -558,7 +601,7 @@
                "Bio topics"
           ]
      },
-     "13": {
+     "14": {
           "words": [
                [
                     "mutations",
@@ -601,7 +644,7 @@
                "BIOinfo"
           ]
      },
-     "14": {
+     "15": {
           "words": [
                [
                     "electrons",

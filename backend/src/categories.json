@@ -1,10 +1,10 @@
-[
-    "Math",
-    "Computer Science",
-    "Physics",
-    "Statistics",
-    "History",
-    "GRE",
-    "Political Science",
-    "CategoryTest"
-]
+{
+    "categories": [
+        "Math",
+        "Computer Science",
+        "Physics",
+        "Statistics",
+        "History",
+        "Political Science"
+    ]
+}
