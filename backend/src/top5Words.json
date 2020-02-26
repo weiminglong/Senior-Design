@@ -3,23 +3,33 @@
           "words": [
                [
                     "told",
-                    null
+                    [
+                         "0:12"
+                    ]
                ],
                [
                     "yes",
-                    null
+                    [
+                         "4:8"
+                    ]
                ],
                [
                     "bubbles",
-                    null
+                    [
+                         "3:4"
+                    ]
                ],
                [
                     "opinions",
-                    null
+                    [
+                         "3:34"
+                    ]
                ],
                [
                     "secure",
-                    null
+                    [
+                         "0:50"
+                    ]
                ]
           ],
           "link": [
@@ -36,23 +46,33 @@
           "words": [
                [
                     "hydrogen",
-                    null
+                    [
+                         "0:2"
+                    ]
                ],
                [
                     "pressure",
-                    null
+                    [
+                         "1:26"
+                    ]
                ],
                [
                     "mass",
-                    null
+                    [
+                         "0:34"
+                    ]
                ],
                [
                     "atoms",
-                    null
+                    [
+                         "0:3"
+                    ]
                ],
                [
                     "fusion",
-                    null
+                    [
+                         "3:4"
+                    ]
                ]
           ],
           "link": [
@@ -69,23 +89,33 @@
           "words": [
                [
                     "freedom",
-                    null
+                    [
+                         "0:25"
+                    ]
                ],
                [
                     "dream",
-                    null
+                    [
+                         "1:55"
+                    ]
                ],
                [
                     "negro",
-                    null
+                    [
+                         "1:2"
+                    ]
                ],
                [
                     "ring",
-                    null
+                    [
+                         "2:47"
+                    ]
                ],
                [
                     "nation",
-                    null
+                    [
+                         "0:28"
+                    ]
                ]
           ],
           "link": [
@@ -102,23 +132,33 @@
           "words": [
                [
                     "learning",
-                    null
+                    [
+                         "1:6"
+                    ]
                ],
                [
                     "machine",
-                    null
+                    [
+                         "7:51"
+                    ]
                ],
                [
                     "program",
-                    null
+                    [
+                         "0:37"
+                    ]
                ],
                [
                     "email",
-                    null
+                    [
+                         "2:38"
+                    ]
                ],
                [
                     "checkers",
-                    null
+                    [
+                         "0:44"
+                    ]
                ]
           ],
           "link": [
@@ -135,23 +175,33 @@
           "words": [
                [
                     "spring",
-                    null
+                    [
+                         "0:2"
+                    ]
                ],
                [
                     "force",
-                    null
+                    [
+                         "2:14"
+                    ]
                ],
                [
                     "newtons",
-                    null
+                    [
+                         "0:55"
+                    ]
                ],
                [
                     "direction",
-                    null
+                    [
+                         "0:37"
+                    ]
                ],
                [
                     "rest",
-                    null
+                    [
+                         "2:41"
+                    ]
                ]
           ],
           "link": [
@@ -168,23 +218,33 @@
           "words": [
                [
                     "linnaeus",
-                    null
+                    [
+                         "2:32"
+                    ]
                ],
                [
                     "kingdom",
-                    null
+                    [
+                         "5:10"
+                    ]
                ],
                [
                     "species",
-                    null
+                    [
+                         "1:10"
+                    ]
                ],
                [
                     "like",
-                    null
+                    [
+                         "1:45"
+                    ]
                ],
                [
                     "organisms",
-                    null
+                    [
+                         "1:59"
+                    ]
                ]
           ],
           "link": [
@@ -201,23 +261,33 @@
           "words": [
                [
                     "work",
-                    null
+                    [
+                         "0:51"
+                    ]
                ],
                [
                     "force",
-                    null
+                    [
+                         "2:14"
+                    ]
                ],
                [
                     "velocity",
-                    null
+                    [
+                         "4:32"
+                    ]
                ],
                [
                     "energy",
-                    null
+                    [
+                         "4:5"
+                    ]
                ],
                [
                     "block",
-                    null
+                    [
+                         "0:13"
+                    ]
                ]
           ],
           "link": [
@@ -234,23 +304,33 @@
           "words": [
                [
                     "10",
-                    null
+                    [
+                         "1:36"
+                    ]
                ],
                [
                     "season",
-                    null
+                    [
+                         "2:22"
+                    ]
                ],
                [
                     "second",
-                    null
+                    [
+                         "1:7"
+                    ]
                ],
                [
                     "good",
-                    null
+                    [
+                         "0:7"
+                    ]
                ],
                [
                     "bailey",
-                    null
+                    [
+                         "13:44"
+                    ]
                ]
           ],
           "link": [
@@ -267,23 +347,33 @@
           "words": [
                [
                     "vector",
-                    null
+                    [
+                         "0:14"
+                    ]
                ],
                [
                     "numbers",
-                    null
+                    [
+                         "0:55"
+                    ]
                ],
                [
                     "algebra",
-                    null
+                    [
+                         "0:14"
+                    ]
                ],
                [
                     "space",
-                    null
+                    [
+                         "0:4"
+                    ]
                ],
                [
                     "axis",
-                    null
+                    [
+                         "2:57"
+                    ]
                ]
           ],
           "link": [
@@ -300,23 +390,33 @@
           "words": [
                [
                     "derivative",
-                    null
+                    [
+                         "0:14"
+                    ]
                ],
                [
                     "exponent",
-                    null
+                    [
+                         "0:34"
+                    ]
                ],
                [
                     "subtract",
-                    null
+                    [
+                         "0:33"
+                    ]
                ],
                [
                     "negative",
-                    null
+                    [
+                         "3:35"
+                    ]
                ],
                [
                     "easier",
-                    null
+                    [
+                         "0:6"
+                    ]
                ]
           ],
           "link": [
@@ -333,23 +433,33 @@
           "words": [
                [
                     "glucose",
-                    null
+                    [
+                         "0:20"
+                    ]
                ],
                [
                     "oxygen",
-                    null
+                    [
+                         "3:22"
+                    ]
                ],
                [
                     "aerobic",
-                    null
+                    [
+                         "8:54"
+                    ]
                ],
                [
                     "carbon",
-                    null
+                    [
+                         "3:19"
+                    ]
                ],
                [
                     "cellular",
-                    null
+                    [
+                         "0:7"
+                    ]
                ]
           ],
           "link": [
@@ -366,23 +476,33 @@
           "words": [
                [
                     "reactions",
-                    null
+                    [
+                         "7:47"
+                    ]
                ],
                [
                     "light",
-                    null
+                    [
+                         "5:55"
+                    ]
                ],
                [
                     "photons",
-                    null
+                    [
+                         "2:10"
+                    ]
                ],
                [
                     "dark",
-                    null
+                    [
+                         "6:13"
+                    ]
                ],
                [
                     "photosynthesis",
-                    null
+                    [
+                         "0:14"
+                    ]
                ]
           ],
           "link": [
@@ -399,23 +519,33 @@
           "words": [
                [
                     "resolution",
-                    null
+                    [
+                         "0:7"
+                    ]
                ],
                [
                     "image",
-                    null
+                    [
+                         "1:52"
+                    ]
                ],
                [
                     "microscope",
-                    null
+                    [
+                         "0:9"
+                    ]
                ],
                [
                     "specimen",
-                    null
+                    [
+                         "1:58"
+                    ]
                ],
                [
                     "magnification",
-                    null
+                    [
+                         "0:6"
+                    ]
                ]
           ],
           "link": [
@@ -432,23 +562,33 @@
           "words": [
                [
                     "mitochondria",
-                    null
+                    [
+                         "0:2"
+                    ]
                ],
                [
                     "membrane",
-                    null
+                    [
+                         "0:19"
+                    ]
                ],
                [
                     "dna",
-                    null
+                    [
+                         "0:27"
+                    ]
                ],
                [
                     "inner",
-                    null
+                    [
+                         "6:19"
+                    ]
                ],
                [
                     "atp",
-                    null
+                    [
+                         "3:23"
+                    ]
                ]
           ],
           "link": [
@@ -465,23 +605,33 @@
           "words": [
                [
                     "mutations",
-                    null
+                    [
+                         "0:7"
+                    ]
                ],
                [
                     "dna",
-                    null
+                    [
+                         "0:27"
+                    ]
                ],
                [
                     "changes",
-                    null
+                    [
+                         "0:10"
+                    ]
                ],
                [
                     "going",
-                    null
+                    [
+                         "0:42"
+                    ]
                ],
                [
                     "letter",
-                    null
+                    [
+                         "1:56"
+                    ]
                ]
           ],
           "link": [
@@ -498,23 +648,33 @@
           "words": [
                [
                     "electrons",
-                    null
+                    [
+                         "3:40"
+                    ]
                ],
                [
                     "theta",
-                    null
+                    [
+                         "2:36"
+                    ]
                ],
                [
                     "tangent",
-                    null
+                    [
+                         "4:13"
+                    ]
                ],
                [
                     "electronegative",
-                    null
+                    [
+                         "0:2"
+                    ]
                ],
                [
                     "hydrogen",
-                    null
+                    [
+                         "0:2"
+                    ]
                ]
           ],
           "link": [
