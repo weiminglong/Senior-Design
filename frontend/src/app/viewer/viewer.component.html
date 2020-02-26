@@ -14,70 +14,11 @@
     <div class="times" *ngFor="let word of timeFrames; let i = index">
       <mat-chip-list>
           <h4>{{ word[0] }} </h4>
-          <mat-chip (click)="changeTime(word[1])">{{ word[1] }}</mat-chip>
+          <span *ngFor="let time of timeFrames[i][1]; let j = index">
+            <mat-chip (click)="changeTime(word[1])">{{ word[1][j] }}</mat-chip>
+          </span>
       </mat-chip-list>
     </div>
   </div>
 
 </div>
-
-
-
-
-
-<!--
-<div align='center'>
-  <button mat-raised-button (click)="onPlay()" style="margin: 15px;">Show Video</button>
-</div>
-
-<div align='center' style="margin:1px;">
-  <button mat-raised-button (click)="setTime()" style="margin: 15px;">Set time</button>
-  <button mat-raised-button (click)="jumpTo10sec()" style="margin: 15px;">10sec</button>
-</div>
-
-<div [innerHTML]="getKeyword()"></div>
---> 
-
-<!--
-<div align="center" style="margin:1px;">
-  Keyword 1: <a [innerHTML]="getKeyword(0)"></a>
-  <a [innerHTML]="convertSecToTime(72)"></a>
-  <a [innerHTML]="getKeywordTime(1,1)"></a>
-  <a href="javascript:void(0);" (click)="jumpTo(getKeywordTime(1,1))" style="margin: 15px;" [innerHTML]="convertSecToTime(getKeywordTime(1,1))"></a>
-  <a href="javascript:void(0);" (click)="jumpTo(getKeywordTime(1,2))" style="margin: 15px;" [innerHTML]="convertSecToTime(getKeywordTime(1,2))"></a>
-  <a href="javascript:void(0);" (click)="jumpTo(getKeywordTime(1,3))" style="margin: 15px;" [innerHTML]="convertSecToTime(getKeywordTime(1,3))"></a>
-</div>
-
-<div align="center" style="margin:10px;">
-  Keyword 2: <a [innerHTML]="getKeyword(1)"></a>
-  <a href="javascript:void(0);" (click)="jumpTo(getKeywordTime(2,1))" style="margin: 15px;" [innerHTML]="convertSecToTime(getKeywordTime(2,1))"></a>
-  <a href="javascript:void(0);" (click)="jumpTo(getKeywordTime(2,2))" style="margin: 15px;" [innerHTML]="convertSecToTime(getKeywordTime(2,2))"></a>
-  <a href="javascript:void(0);" (click)="jumpTo(getKeywordTime(2,3))" style="margin: 15px;" [innerHTML]="convertSecToTime(getKeywordTime(2,3))"></a>
-
-
-</div>
-
-<div align="center" style="margin:10px;">
-  Keyword 3: <a [innerHTML]="getKeyword(2)"></a>
-  <a href="javascript:void(0);" (click)="jumpTo(getKeywordTime(3,1))" style="margin: 15px;" [innerHTML]="convertSecToTime(getKeywordTime(3,1))"></a>
-  <a href="javascript:void(0);" (click)="jumpTo(getKeywordTime(3,2))" style="margin: 15px;" [innerHTML]="convertSecToTime(getKeywordTime(3,2))"></a>
-  <a href="javascript:void(0);" (click)="jumpTo(getKeywordTime(3,3))" style="margin: 15px;" [innerHTML]="convertSecToTime(getKeywordTime(3,3))"></a>
-
-</div>
-
-<div align="center" style="margin:10px;">
-  Keyword 4: <a [innerHTML]="getKeyword(3)"></a>
-  <a href="javascript:void(0);" (click)="jumpTo(60)" style="margin: 15px;">00:01:00</a>
-  <a href="javascript:void(0);" (click)="jumpTo(148)" style="margin: 15px;">00:02:28</a>
-
-</div>
-
-<div align="center" style="margin:10px;">
-  Keyword 5: <a [innerHTML]="getKeyword(4)"></a>
-  <a href="javascript:void(0);" (click)="jumpTo(60)" style="margin: 15px;">00:01:00</a>
-  <a href="javascript:void(0);" (click)="jumpTo(148)" style="margin: 15px;">00:02:28</a>
-
-</div>
-
-<button mat-raised-button (click)="setVideo()" style="margin: 15px;">Set Video</button>
--->

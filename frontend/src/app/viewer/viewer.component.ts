@@ -12,8 +12,7 @@ export class ViewerComponent implements OnInit {
 
   videoURL = {};
   timeFrames: string[][] = [];
-  keywords: Array<string> = ['Domain', 'Kingdom', 'Phylum', 'Class', 'Order'];
-  times: number[][] = [[12, 13, 100], [21, 22, 23], [31, 32, 33]];
+  timeArray: string[] = [];
   link: string;
   title: string;
 
@@ -31,13 +30,17 @@ export class ViewerComponent implements OnInit {
     }
 
     this.timeFrames = this.infoService.getTimeFrames();
+    console.log("timeFrames:");
+    console.log(this.timeFrames);
     // Capitalize first word
     for (let i in this.timeFrames){
       // console.log(this.timeFrames[i]);
       let word = this.timeFrames[i][0].charAt(0).toUpperCase() + this.timeFrames[i][0].substring(1);
       this.timeFrames[i][0] = word;
-      // console.log(this.timeFrames[i]);
+      //console.log(this.timeFrames[i]);
     }
+
+    //console.log("times: ");
     //console.log(this.timeFrames);
   }
 
