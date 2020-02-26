@@ -631,8 +631,8 @@ def TFIDF():
     #print()
     print(fullTime_dict)
     return top5
-
-TFIDF()
+#
+# TFIDF()
 """
 tops = {}
 tops = TFIDF()
