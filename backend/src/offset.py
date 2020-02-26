@@ -3,6 +3,11 @@ import io
 from nltk.stem import PorterStemmer
 from nltk.tokenize import word_tokenize
 
+import logging
+import boto3
+from botocore.exceptions import ClientError
+import os
+
 #local
 def transcribe_file_with_word_time_offsets(speech_file):
     """Transcribe the given audio file synchronously and output the word time
@@ -104,10 +109,38 @@ def transcribe_gcs_with_word_time_offsets(gcs_uri, fileName, video_url, category
         #csv_file.write()
         csv_file.write('\ntitle:' + fileName)
         csv_file.write('\ncategory:' + category+'\n')
+    #upload both txt and csv files to s3 bucket
+    aws_upload_file(fileName + ".txt", 'qac-txt-csv')
+    aws_upload_file(fileName + ".csv", 'qac-txt-csv')
+
+    #remove both local txt and csv file
+    if os.path.exists(os.getcwd() + '/' + fileName + '.txt'):
+        #print("txt exists\n")
+        os.remove(os.getcwd() + '/' + fileName + '.txt')
+    if os.path.exists(os.getcwd() + '/' + fileName + '.csv'):
+        # print("csv exists\n")
+        os.remove(os.getcwd() + '/' + fileName + '.csv')
+
+    #remove audio file
+    if os.path.exists(os.getcwd() + '/audio/' + fileName + '.flac'):
+        print("flac exists\n")
+        os.remove(os.getcwd() + '/audio/' + fileName + '.flac')
     print("Audio transcription completed")
 
-#
+#upload both txt and csv files to S3 bucket
+def aws_upload_file(file_name, bucket, object_name=None):
+    # If S3 object_name was not specified, use file_name
+    if object_name is None:
+        object_name = file_name
 
+    # Upload the file
+    s3_client = boto3.client('s3')
+    try:
+        response = s3_client.upload_file(file_name, bucket, object_name)
+    except ClientError as e:
+        logging.error(e)
+        return False
+    return True
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(

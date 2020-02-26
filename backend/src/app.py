@@ -10,6 +10,7 @@ import json
 
 import auto as auto
 import TFIDFfinal as nlp
+import jsonCheck
 
 from werkzeug.wrappers import Response
 
@@ -23,8 +24,8 @@ app = Flask(__name__)
 
 #config
 app.config["MONGODB_NAME"] = "qa-classifier"
-# app.config["MONGO_URI"] = "mongodb+srv://Larissa:spring2020@cluster0-nkghg.mongodb.net/test?retryWrites=true&w=majority"
-app.config["MONGO_URI"] = "mongodb+srv://rachell:leaf1234@cluster0-hu9je.mongodb.net/qa-classifier?retryWrites=true&w=majority"
+#app.config["MONGO_URI"] = "mongodb+srv://Larissa:spring2020@cluster0-nkghg.mongodb.net/test?retryWrites=true&w=majority"
+app.config["MONGO_URI"] = "mongodb+srv://longweiming:leaf1234@cluster0-i1gqv.mongodb.net/test?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 
 CORS(app)
@@ -33,9 +34,16 @@ CORS(app)
 # collection = db["tags"]
 
 
+
 @app.route("/")
 def index():
-    return "<h1>Hello World</h1>"
+    #return "<h1>Hello World</h1>"
+    categories = mongo.db.categories
+    result = categories.find({"categories": {}})
+    print("final categories array:")
+    print(result)
+
+    return json.dumps(result)
 
 
 @app.route("/test")
@@ -54,6 +62,7 @@ def search_tags():
     if request.method == "POST":
         text = request.json
         tag = text["search"]
+        print()
 
         tags_collection = mongo.db.tags
         videos = tags_collection.find({"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
@@ -77,6 +86,35 @@ def search_tags():
 
     return json.dumps(array)
 
+@app.route("/api/toolbar", methods=['GET', "POST"])
+def get_categories():
+    if 1:#request.method == "POST":
+        # text = request.json
+        # tag = text["search"]
+        # print()
+
+        categories = mongo.db.categories
+        result = categories.find({"categories": {}}) #{"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
+
+        # linkArray = []
+        # wordArray = []
+        # for i in videos:
+        #     # append video link and keywords/timestamps to create 2D array
+        #     linkArray.append(i["link"])
+        #     wordArray.append(i["words"])
+        #
+        # array = []
+        # array.append(linkArray)
+        # array.append(wordArray)
+
+        # categoriesList = []
+        # for i in result:
+
+
+        print("final categories array:")
+        print(result)
+
+    return json.dumps(result)
 
 @app.route("/api/upload", methods=['GET', "POST"])
 def upload_and_process():
@@ -115,6 +153,18 @@ def upload_and_process():
 
         # print(tag)
 
+        '''JSON CATEGORY'''
+        #Call function to check if the category exist or not in the json file
+        cats_data = jsonCheck.categoriesJsonCheck(category)
+        # cats_data = "categories.json"
+        cats_collection = mongo.db.categories
+
+        cats_collection.insert_one(cats_data)
+
+        for i in cats_data['categories']:
+            #cats_collection.insert_one(categoryJsonArray[i])
+            print(i)#cats_data['categories'][i])
+
         # Call function to convert (existing) audio to text  from offset.py file
         auto.convert_auto(title, video_name, video_url, category)
         #
@@ -122,9 +172,16 @@ def upload_and_process():
         top5 = nlp.TFIDF()
 
         tags_collection = mongo.db.tags
-
+        print("printing the top5 in app.py")
+        print()
+        print(top5)
+        print()
+        print()
+        print("inside of the app.py, testing the values of top5 being inserted")
+        print()
+        print()
         for i in top5:
-            # print(top5[i])
+            print(top5[i])
             tags_collection.insert_one(top5[i])
         # ************************************
 

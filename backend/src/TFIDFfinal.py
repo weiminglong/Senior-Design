@@ -13,13 +13,14 @@ from scipy.sparse.csr import csr_matrix  # need this if you want to save tfidf_m
 from nltk.stem import PorterStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import WordNetLemmatizer
-
+import codecs
 # similarity imports
 
 from nltk.corpus import wordnet as wn
 from itertools import product
 import sys
-
+import time
+import boto3
 # variables definitions
 
 top5AllFiles = []
@@ -32,6 +33,70 @@ fullData = []
 fullData2 = []
 path = os.getcwd()
 top5Final = []
+s3 = boto3.resource('s3')
+bucket = s3.Bucket('qac-txt-csv')
+
+
+#function that takes in parameter a list and sort its elements in alphabetical order
+#ignores the case sensitive
+def sortCaseIns(lst):
+    lst2 = [[x for x in range(0, 2)] for y in range(0, len(lst))]
+    for i in range(0, len(lst)):
+        lst2[i][0] = lst[i].lower()
+        lst2[i][1] = lst[i]
+    lst2.sort()
+    for i in range(0, len(lst)):
+        lst[i] = lst2[i][1]
+
+
+#read the files names in a bucket both csv and txt file and return two lists
+#of all the csv and txt files in the bucket in alphabetical order
+def read_all_csv_txt_files():
+
+    csvFiles = []
+    txtFiles = []
+    csvCorpus = []
+    # the key here represent the files names
+    for obj in bucket.objects.all():
+        key = obj.key
+        #print(type(key))
+        # check for files that end with certain extension precisely .csv extension
+        if key.endswith('.csv'):
+            csvFiles.append(key)
+            csvRead = obj.get()['Body'].read().decode('utf-8')
+          #  print(csvRead)
+            csvCorpus.append(csvRead)
+            #print()
+            #print()
+            #print(type(csvFiles))
+        elif key.endswith('.txt'):
+            txtFiles.append(key)
+    sortCaseIns(csvFiles)
+    sortCaseIns(txtFiles)
+    return csvFiles,txtFiles,csvCorpus
+
+
+#read all txt files and return a corpus of all the files read
+def read_all_txt_files():
+    corpus = []
+   # s3 = boto3.resource('s3')
+    #bucket = s3.Bucket('qac-txt-csv')
+
+    # the key here represent the files names
+    for obj in bucket.objects.all():
+        key = obj.key
+        # check for files that end with certain extension precisely .csv extension
+        if key.endswith('.txt'):
+            texRead = obj.get()['Body'].read().decode('utf-8')
+            #print(texRead)
+            #print()
+            #print()
+            #print()
+            corpus.append(texRead)
+    return corpus
+
+
+
 
 
 def top5words():
@@ -40,11 +105,14 @@ def top5words():
     corpus = []
 
     # append each file with .txt extension to the corpus
-
+    """
     for filename in sorted(glob.glob(os.path.join(path, '*.txt'))):
         with open(filename, 'r') as f:
             text = f.read()
             corpus.append(text)
+            
+    """
+    corpus = read_all_txt_files()
     vectorizer = TfidfVectorizer(analyzer='word', stop_words='english')
     tfidf_matrix = vectorizer.fit_transform(corpus)
 
@@ -186,6 +254,11 @@ def hash_list(list_to_hash):
     # print(data_value)
     return data_value
 
+#remove empty elements from a list
+def remove_emptyEl_list(test_list):
+    while ("" in test_list):
+        test_list.remove("")
+        return test_list
 
 listFiles = []
 testWord = []
@@ -194,26 +267,65 @@ listCategory = []
 listTitles = []
 
 # this function get the start and end time from csv files that are all in a given list of words
+fullTime_dict = dict()
 
-def timeData(filename, stwords):
+
+# this function get the start and end time from csv files that are all in a given list of words
+
+def timeData(filename,stwords):
+    #timeData(csvCorpora, i, word)
+    #print('filename is:',filename)
     tempfullData = []
     foundWords = []
     # try:
     wordPresent = False
-    file = open(filename, "r")
-    read = file.readlines()
-    file.close()
+    read = ""
+    #file = open(filename, "r")
+    #read = file.readlines()
+    #file.close()
+    contents = ""
+    for obj in bucket.objects.all():
+        # the key here represent the files names
+        key = obj.key
+        #print('key or filename is:',key)
+        # check for files that end with certain extension precisely .csv extension
+        if key.endswith(filename) == False:
+            continue
+            #print()
+            #read = open(filename, encoding='utf-8')
+       # print(key, filename)
+        contents = obj.get()['Body'].read().decode(encoding="utf-8", errors="ignore")
+    #print("value of content is:",contents)
+    #print()
+   # print()
+    #for line in contents.splitlines():
+        #print(line)
+
     linkval = ""
     linktemp = []
     link = []
+    #print(read)
+    word_time_array = {}
     category = []
     title = []
+    #print(read)
+    #print()
 
     for word in stwords:
         #print(link)
         lower = word.lower()
         count = 0
-        for sentence in read:
+        #print(open(filename, encoding='utf-8'))
+        #print(filename)
+        #print(filename)
+        #f = codecs.open(filename, 'r3', encoding='utf-8')
+        #print("value of f is:", f)
+        #for sentence in f:
+        for sentence in contents.splitlines():
+            #print(line)
+        #print(f)
+        #for sentence in open(filename, encoding='utf-8'):
+            #print(sentence)
             line = sentence.split()
             #print(line)
             for each in line:
@@ -234,35 +346,54 @@ def timeData(filename, stwords):
                     temptopword = []
                     name = lower
                     startTime = line[1]
-                    start = startTime.split("start_time:")
-                    startFin = start[1]
-                    # print(k[1])
+                    start = startTime[11:]
+                   # print(start)
+                    startFin = start
+                    #print(startFin)
+                   # fullTime_dict[lower] = startFin + " "
+
+                    if lower in fullTime_dict.keys():
+                        # append the new number to the existing array at this slot
+                        #fullTime_dict[lower].append(startFin+" ")
+                        #fullTime_dict[lower] +=""
+                        original = []
+                        original = fullTime_dict[lower]
+                        #print("the original data is:",original)
+                        #fullTime_dict[lower] = startFin+" "
+                        fullTime_dict[lower] = original
+                        #print("new one is:",fullTime_dict[lower])
+                       # print(fullTime_dict[lower])
+                        #continue
+                    else:
+                        # create a new array in this slot
+                        fullTime_dict[lower] = startFin+" "
+                       # print("first time adding time is:",fullTime_dict[lower])
+                        #print('from the root',fullTime_dict[lower])
+
+
                     endTime = line[2]
                     end = endTime.split("end_time:")
                     endFin = end[1]
                     val2 = line3[0:2]
                     foundWords.append(lower)
                     temptopword.append(lower)
-                    temptopword.append(startFin)
-                    temptopword.append(endFin)
-                    # tempfullData = tempfullData + temptopword
                     tempfullData.append(temptopword)
                     wordPresent = True
                     filesName.append(filename)
 
                 if line3[0] == "link" and wordPresent == True and line[0] not in link:
                     lane = []
+                    laneLink = []
                     #print()
                     if(len(link)==0):
                         #link.append(line[0][5:])
                         lane = line4.split("word")
-                        laneLink = line4.split("title:")
+                        if len(lane)>=2 and len(lane[0]) <= len(lane[1]):
+                            laneLink = line4.split("link:")
                         if len(laneLink) >= 2:
-                            #print(laneLink[0])
-                            link.append(laneLink[0])
+                            link.append(line4[7:])
                         elif len(lane)>=2 and len(lane[0]) <= len(lane[1]):
-                            #print(line[0][5:])
-                            link.append(line[0][5:])
+                            link.append(line4[6:])
                         else:
                            # print(lane[0][5:])
                             link.append(lane[0][5:])
@@ -278,10 +409,8 @@ def timeData(filename, stwords):
                         continue
 
                 if line3[0] == "title" and wordPresent == True:
-                    #print(line)
-                    #print()
                     if (len(title) == 0):
-                        title.append(line[0][6:])
+                        title.append(sentence[6:])
                     elif (len(title) > 0):
                         continue
 
@@ -299,7 +428,7 @@ def timeData(filename, stwords):
         tempfullData = []
     if link not in listLinks and len(tempfullData) >= 5:
         listLinks.append(link)
-        #print(listLinks)
+
     if len(tempfullData) >= 5:
         listCategory.append(category)
         #print(listCategory)
@@ -307,11 +436,35 @@ def timeData(filename, stwords):
         listTitles.append(title)
     #print(listTitles)
     fullData.append(tempfullData)
+   # print(fullData)
 
 # get the weight from tfidf data above
 # listwords = []
 listweights = []
-
+"""
+def dictionary_cleanup(wordArray):
+    k = fullTime_dict["vector"]
+    #print(k)
+    #print(type(k))
+    for lword in wordArray:
+        for w in lword:
+           #print(type(w))
+           time_array = []
+           times = " "
+           times = fullTime_dict[w]
+           temp = []
+           if(type(times) == list):
+               temp = times
+           else:
+               temp = times.split(" ")
+           time_array = temp
+           time_array = list(dict.fromkeys(time_array))
+           time_array = [i for i in time_array if i]
+           #sorted((time.strptime(d, "%M:%S") for d in time_array), reverse=True)
+           time_array = sorted(time_array)
+           fullTime_dict[w] = time_array
+           
+"""
 def weights():
     for i in top5Final:
         size = len(i)
@@ -328,32 +481,106 @@ def weights():
                 tempWeight.append(i[j + 1])
                 temp = temp + tempVar
                 tempfloat = tempfloat + tempWeight
-        listwords.append(temp)
+        if temp not in listwords:
+            listwords.append(temp)
+        else:
+            continue
         listweights.append(tempfloat)
+"""
+def string_List_dictionary_key():
+    for i in fullTime_dict:
+        print(i)
+"""
+new_list = []
+def new_map():
+    #print()
+    #cnt = 0
+    for i in listwords:
+        tmpmap = []
+        for w in i:
+            tmpmap.append(w)
+            #print('final list:',fullTime_dict[w])
+            tmpmap.append(fullTime_dict[w])
+            new_list.append(tmpmap)
+            #cnt +=1
+
+def listToString(s):
+    # initialize an empty string
+    str1 = ""
+
+    # traverse in the string
+    for ele in s:
+        str1 += ele
+
+        # return string
+    return str1
 
 
+def string_list_value_dictionary():
+    k = " "
+    value = []
+    for i in fullTime_dict:
+        #print(fullTime_dict[i])
+        k = listToString(fullTime_dict[i])
+        value = k.split(" ")
+        value = remove_emptyEl_list(value)
+        fullTime_dict[i] = value
+        #print(fullTime_dict[i])
+        #print()
+
+    # print(type(k[0][1]))
 def words_time_weights():
+    csvCorpora = []
+    csvCollection, txtCollection, csvCorpora = read_all_csv_txt_files()
+    #print(fullTime_dict)
     # parameter to be passed in time_data function
+
     for i in listwords:
         # parse through file and get time stamp
-        for filename in sorted(glob.glob(os.path.join(path, '*.csv'))):
+        for filename in csvCollection:
             # print(filename)
             timeData(filename, i)
-
+    """
+    for word in listwords:
+        for i in range(len(csvCorpora)):
+            timeData(csvCorpora,i,word,csvCollection[i])
+    """
+    #print(listLinks)
     # stip empty list within a list
+    fullData3 =[]
     fullData2 = [e for e in fullData if e]
+    string_list_value_dictionary()
+    #print(fullData2)
+
+    tempfullData2 = []
+    for list in fullData2:
+        tempfullData = []
+        for words in list:
+            temptopword = []
+           # print(words[0])
+            temptopword.append(words[0])
+            time_data = fullTime_dict[words[0]]
+            #print(time_data)
+            #print()
+            temptopword.append(time_data)
+            #tempdata2.append(temptopword)
+            tempfullData.append(temptopword)
+        tempfullData2.append(tempfullData)
+        #print(tempfullData2)
+    fullData3.append(tempfullData2)
+    #print(fullData3)
     dictCorpus = {}
+   # print("value of full data 2 is:")
+    #print(fullData2)
     sizeI = len(fullData2[0])
-    counter = 0
-    incr = 0
     count = 0
-    index = 0
 
     lengthLimit = len(listweights)
     fulLeng = len(fullData2)
     for i in fullData2:
         # print(i)
         incr = 0
+
         for j in i:
             if (incr < sizeI and count < lengthLimit):
                 weight = '%.3f' % (listweights[count][incr])
@@ -364,8 +591,7 @@ def words_time_weights():
     count = 0
     my_dict = {}
 
-    for i in fullData2:
-        # if count == len(listFiles)-1:
+    for i in fullData3[0]:
         if count == len(listLinks) - 1:
             break
         indv_dict = {
@@ -375,7 +601,10 @@ def words_time_weights():
             "title":""
         }
         # print(listFiles[count])
+        #print(i)
         indv_dict["words"] = i
+        #print(i)
+        #print()
         # indv_dict["filename"] = listFiles[count]
         indv_dict["link"] = listLinks[count]
         indv_dict["category"] = listCategory[count]
@@ -386,7 +615,7 @@ def words_time_weights():
     # store dictionary in json file
     with open('top5Words.json', 'w') as filehandle:
         json.dump(my_dict, filehandle, indent=5)
-
+    #print(my_dict)
     return my_dict
 
 def TFIDF():
@@ -394,8 +623,21 @@ def TFIDF():
     top5words()
     weights()
     top5 = words_time_weights()
+    new_map()
+    #print("top5 words before the return")
     #print(top5)
+    #print()
+    #print()
+    #print()
+    print(fullTime_dict)
     return top5
 
-#TFIDF()
-
+TFIDF()
+"""
+tops = {}
+tops = TFIDF()
+print("top5 after the return")
+print()
+print()
+print(tops)
+"""

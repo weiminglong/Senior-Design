@@ -3,33 +3,23 @@
           "words": [
                [
                     "told",
-                    "0:12",
-                    "0:12",
-                    "0.262"
+                    null
                ],
                [
                     "yes",
-                    "4:8",
-                    "4:9",
-                    "0.174"
-               ],
-               [
-                    "america",
-                    "0:15",
-                    "0:15",
-                    "0.152"
+                    null
                ],
                [
                     "bubbles",
-                    "3:4",
-                    "3:4",
-                    "0.152"
+                    null
                ],
                [
                     "opinions",
-                    "3:34",
-                    "3:34",
-                    "0.152"
+                    null
+               ],
+               [
+                    "secure",
+                    null
                ]
           ],
           "link": [
@@ -45,120 +35,156 @@
      "1": {
           "words": [
                [
-                    "work",
-                    "0:3",
-                    "0:4",
-                    "0.436"
+                    "hydrogen",
+                    null
                ],
                [
-                    "force",
-                    "0:37",
-                    "0:38",
-                    "0.398"
+                    "pressure",
+                    null
                ],
                [
-                    "velocity",
-                    "4:32",
-                    "4:32",
-                    "0.337"
+                    "mass",
+                    null
                ],
                [
-                    "distance",
-                    "1:58",
-                    "1:58",
-                    "0.245"
+                    "atoms",
+                    null
                ],
                [
-                    "energy",
-                    "0:4",
-                    "0:4",
-                    "0.230"
+                    "fusion",
+                    null
                ]
           ],
           "link": [
-               "https://qa-classifier.s3.amazonaws.com/IntroductiontoWorkandEnergy.mp4"
+               "https://qa-classifier.s3.amazonaws.com/Birthofstars_Stars,blackholesandgalaxies_Cosmology.mp4"
           ],
           "category": [
                "physics"
           ],
           "title": [
-               "Energy"
+               "BirthofStars"
           ]
      },
      "2": {
           "words": [
                [
-                    "dream",
-                    "1:55",
-                    "1:55",
-                    "0.329"
+                    "freedom",
+                    null
                ],
                [
-                    "freedom",
-                    "0:25",
-                    "0:26",
-                    "0.329"
+                    "dream",
+                    null
                ],
                [
                     "negro",
-                    "1:2",
-                    "1:2",
-                    "0.263"
+                    null
                ],
                [
                     "ring",
-                    "2:47",
-                    "2:48",
-                    "0.211"
+                    null
                ],
                [
                     "nation",
-                    "0:28",
-                    "0:28",
-                    "0.198"
+                    null
                ]
           ],
           "link": [
-               "link:https://qa-classifier.s3.amazonaws.com/I_Have_a_Dream_speech_by_Martin_Luther_King_Jr_HD_subtitled[youtubetomp4.org].mp4"
+               "https://qa-classifier.s3.amazonaws.com/I_Have_a_Dream_speech_by_Martin_Luther_King_Jr_HD_subtitled[youtubetomp4.org].mp4"
           ],
           "category": [
-               "historyword"
+               "history"
           ],
           "title": [
-               "MLK"
+               "Ihaveadream"
           ]
      },
      "3": {
           "words": [
                [
+                    "learning",
+                    null
+               ],
+               [
+                    "machine",
+                    null
+               ],
+               [
+                    "program",
+                    null
+               ],
+               [
+                    "email",
+                    null
+               ],
+               [
+                    "checkers",
+                    null
+               ]
+          ],
+          "link": [
+               "https://qa-classifier.s3.amazonaws.com/lecture-11-introduction-what-is-machine-learning-machine-learning-andrew-ng.mp4"
+          ],
+          "category": [
+               "computer"
+          ],
+          "title": [
+               "MachinelearningAN"
+          ]
+     },
+     "4": {
+          "words": [
+               [
+                    "spring",
+                    null
+               ],
+               [
+                    "force",
+                    null
+               ],
+               [
+                    "newtons",
+                    null
+               ],
+               [
+                    "direction",
+                    null
+               ],
+               [
+                    "rest",
+                    null
+               ]
+          ],
+          "link": [
+               "https://qa-classifier.s3.amazonaws.com/IntrotoSpringandHooksLaw.mp4"
+          ],
+          "category": [
+               "physics"
+          ],
+          "title": [
+               "SpringandHook"
+          ]
+     },
+     "5": {
+          "words": [
+               [
                     "linnaeus",
-                    "2:32",
-                    "2:32",
-                    "0.237"
+                    null
                ],
                [
                     "kingdom",
-                    "5:10",
-                    "5:10",
-                    "0.213"
+                    null
                ],
                [
                     "species",
-                    "1:38",
-                    "1:39",
-                    "0.205"
-               ],
-               [
-                    "domain",
-                    "5:56",
-                    "5:57",
-                    "0.190"
+                    null
                ],
                [
                     "like",
-                    "0:11",
-                    "0:11",
-                    "0.182"
+                    null
+               ],
+               [
+                    "organisms",
+                    null
                ]
           ],
           "link": [
@@ -171,262 +197,334 @@
                "Taxonomy"
           ]
      },
-     "4": {
+     "6": {
           "words": [
                [
-                    "vector",
-                    "0:34",
-                    "0:34",
-                    "0.431"
+                    "work",
+                    null
                ],
                [
-                    "transformation",
-                    "0:23",
-                    "0:24",
-                    "0.427"
+                    "force",
+                    null
                ],
                [
-                    "linear",
-                    "0:16",
-                    "0:16",
-                    "0.315"
+                    "velocity",
+                    null
                ],
                [
-                    "matrix",
-                    "0:33",
-                    "0:34",
-                    "0.242"
+                    "energy",
+                    null
                ],
                [
-                    "coordinates",
-                    "3:43",
-                    "3:43",
-                    "0.227"
+                    "block",
+                    null
                ]
           ],
           "link": [
-               "https://www.youtube.com/watch?v=4vT4fzjkGCQ"
+               "https://qa-classifier.s3.amazonaws.com/IntroductiontoWorkandEnergy.mp4"
+          ],
+          "category": [
+               "physics"
+          ],
+          "title": [
+               "ThisisWorkandEnergyExampleTitle"
+          ]
+     },
+     "7": {
+          "words": [
+               [
+                    "10",
+                    null
+               ],
+               [
+                    "season",
+                    null
+               ],
+               [
+                    "second",
+                    null
+               ],
+               [
+                    "good",
+                    null
+               ],
+               [
+                    "bailey",
+                    null
+               ]
+          ],
+          "link": [
+               "https://qa-classifier.s3.amazonaws.com/UsainBolt.mp4"
+          ],
+          "category": [
+               "history"
+          ],
+          "title": [
+               "UB"
+          ]
+     },
+     "8": {
+          "words": [
+               [
+                    "vector",
+                    null
+               ],
+               [
+                    "numbers",
+                    null
+               ],
+               [
+                    "algebra",
+                    null
+               ],
+               [
+                    "space",
+                    null
+               ],
+               [
+                    "axis",
+                    null
+               ]
+          ],
+          "link": [
+               "https://www.youtube.com/watch?v=NexP3uRDaDI"
           ],
           "category": [
                "cs"
           ],
           "title": [
-               "Machine"
+               "Machines"
           ]
      },
-     "5": {
+     "9": {
           "words": [
                [
-                    "vector",
-                    "0:34",
-                    "0:34",
-                    "0.519"
+                    "derivative",
+                    null
                ],
                [
-                    "numbers",
-                    "6:11",
-                    "6:11",
-                    "0.412"
+                    "exponent",
+                    null
                ],
                [
-                    "linear",
-                    "0:16",
-                    "0:16",
-                    "0.300"
+                    "subtract",
+                    null
                ],
                [
-                    "space",
-                    "1:54",
-                    "1:55",
-                    "0.246"
+                    "negative",
+                    null
                ],
                [
-                    "algebra",
-                    "0:16",
-                    "0:16",
-                    "0.206"
+                    "easier",
+                    null
+               ]
+          ],
+          "link": [
+               "https://qa-classifier.s3.amazonaws.com/BasicDerivativeRules.mp4"
+          ],
+          "category": [
+               "math"
+          ],
+          "title": [
+               "derivativeTest"
+          ]
+     },
+     "10": {
+          "words": [
+               [
+                    "glucose",
+                    null
+               ],
+               [
+                    "oxygen",
+                    null
+               ],
+               [
+                    "aerobic",
+                    null
+               ],
+               [
+                    "carbon",
+                    null
+               ],
+               [
+                    "cellular",
+                    null
                ]
           ],
           "link": [
                "https://www.youtube.com/watch?v=ouEVPRMHR1U"
           ],
           "category": [
-               "cs"
+               "biology"
           ],
           "title": [
-               "Machine"
+               "Something biology"
           ]
      },
-     "6": {
+     "11": {
           "words": [
                [
-                    "glucose",
-                    "0:20",
-                    "0:25",
-                    "0.591"
+                    "reactions",
+                    null
                ],
                [
-                    "oxygen",
-                    "0:56",
-                    "0:56",
-                    "0.312"
+                    "light",
+                    null
                ],
                [
-                    "carbon",
-                    "1:55",
-                    "1:56",
-                    "0.176"
+                    "photons",
+                    null
                ],
                [
-                    "aerobic",
-                    "8:54",
-                    "8:55",
-                    "0.166"
+                    "dark",
+                    null
                ],
                [
-                    "cellular",
-                    "0:7",
-                    "0:8",
-                    "0.160"
+                    "photosynthesis",
+                    null
                ]
           ],
           "link": [
                "https://www.youtube.com/watch?v=ex0NwMcf8iE"
           ],
           "category": [
-               "biology"
+               "computer"
           ],
           "title": [
-               "Something"
+               "Something Engineering"
           ]
      },
-     "7": {
+     "12": {
           "words": [
                [
-                    "reactions",
-                    "2:6",
-                    "2:6",
-                    "0.437"
+                    "resolution",
+                    null
                ],
                [
-                    "light",
-                    "5:55",
-                    "5:55",
-                    "0.437"
+                    "image",
+                    null
                ],
                [
-                    "photons",
-                    "2:10",
-                    "2:10",
-                    "0.222"
+                    "microscope",
+                    null
                ],
                [
-                    "dark",
-                    "6:13",
-                    "6:13",
-                    "0.200"
+                    "specimen",
+                    null
                ],
                [
-                    "photosynthesis",
-                    "0:14",
-                    "0:16",
-                    "0.177"
+                    "magnification",
+                    null
                ]
           ],
           "link": [
                "https://www.youtube.com/watch?v=1OS6Sl0vB98"
           ],
           "category": [
-               "computer"
+               "history"
           ],
           "title": [
-               "Something"
+               "Biology title"
           ]
      },
-     "8": {
+     "13": {
           "words": [
                [
-                    "resolution",
-                    "0:7",
-                    "0:8,",
-                    "0.413"
+                    "mitochondria",
+                    null
                ],
                [
-                    "image",
-                    "1:52",
-                    "1:53,",
-                    "0.379"
+                    "membrane",
+                    null
                ],
                [
-                    "microscope",
-                    "0:9",
-                    "0:9,",
-                    "0.205"
+                    "dna",
+                    null
                ],
                [
-                    "specimen",
-                    "1:58",
-                    "1:58,",
-                    "0.188"
+                    "inner",
+                    null
                ],
                [
-                    "magnification",
-                    "0:6",
-                    "0:7,",
-                    "0.177"
+                    "atp",
+                    null
                ]
           ],
           "link": [
                "https://www.youtube.com/watch?v=MRSeNayfUOU"
           ],
           "category": [
-               "history"
+               "bio"
           ],
           "title": [
-               "Biology"
+               "Bio topics"
           ]
      },
-     "9": {
+     "14": {
           "words": [
                [
-                    "mitochondria",
-                    "0:2",
-                    "0:3,",
-                    "0.475"
-               ],
-               [
-                    "membrane",
-                    "0:19",
-                    "0:19,",
-                    "0.356"
-               ],
-               [
-                    "inner",
-                    "6:19",
-                    "6:19,",
-                    "0.356"
+                    "mutations",
+                    null
                ],
                [
                     "dna",
-                    "0:27",
-                    "0:27,",
-                    "0.257"
+                    null
                ],
                [
-                    "intermembrane",
-                    "7:35",
-                    "7:35,",
-                    "0.238"
+                    "changes",
+                    null
+               ],
+               [
+                    "going",
+                    null
+               ],
+               [
+                    "letter",
+                    null
                ]
           ],
           "link": [
                "https://www.youtube.com/watch?v=djE-BLrdDDc"
           ],
           "category": [
-               "bio"
+               "cs"
           ],
           "title": [
-               "Bio"
+               "BIOinfo"
+          ]
+     },
+     "15": {
+          "words": [
+               [
+                    "electrons",
+                    null
+               ],
+               [
+                    "theta",
+                    null
+               ],
+               [
+                    "tangent",
+                    null
+               ],
+               [
+                    "electronegative",
+                    null
+               ],
+               [
+                    "hydrogen",
+                    null
+               ]
+          ],
+          "link": [
+               "https://www.youtube.com/watch?v=_QdPW8JrYzQ"
+          ],
+          "category": [
+               "physics"
+          ],
+          "title": [
+               "Theorem"
           ]
      }
 }
