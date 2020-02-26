@@ -75,17 +75,6 @@ export class ViewerComponent implements OnInit {
     video.currentTime = time;
   }
 
-  getKeyword(num) {
-    return this.keywords[num];
-  }
-
-  /** keywordNum mean which keyword and timeNum means the # of its timeframes*/
-  getKeywordTime(keywordNum, timeNum) {
-    // keywordNum -= 1;
-    // timeNum -=1;
-    return this.times[keywordNum - 1][timeNum - 1];
-  }
-
   /** After getting the seconds in times 2D array, we are showing it on
    * the HTML page in the format of 00:00:00*/
   convertSecToTime(num) {
