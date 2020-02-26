@@ -14,16 +14,14 @@ export class ViewerComponent implements OnInit {
   timeFrames: string[][] = [];
   keywords: Array<string> = ['Domain', 'Kingdom', 'Phylum', 'Class', 'Order'];
   times: number[][] = [[12, 13, 100], [21, 22, 23], [31, 32, 33]];
-  link : string ;
+  link: string;
+  title: string;
 
   constructor(private infoService: InfoService) {
-
-    //link ;
-
     const link = this.infoService.getLink();
-    //link = this.infoService.getLink();
-    
+    this.title = this.infoService.getTitle();
     console.log(link);
+    console.log(this.title);
 
     if (link.toString().substring(0, 24) === "https://www.youtube.com/"){
       // CORS block does not allow playing youtube videos --> this is a least-effort temporary work around

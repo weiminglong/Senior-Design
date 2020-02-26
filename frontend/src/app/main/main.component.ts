@@ -13,6 +13,7 @@ export class MainComponent implements OnInit {
   searchTags = new FormControl('', Validators.required);
   videoNames: string[] = [];
   timeFrames: string[][][] = [];
+  titles: string[] = [];
   names: string;
   videoURL: string;
 
@@ -31,7 +32,7 @@ export class MainComponent implements OnInit {
         console.log(resp); // print returned video name
         this.videoNames = resp[0];
         this.timeFrames = resp[1];
-        console.log(this.timeFrames);
+        this.titles = resp[2];
       },
       err => {
         console.log("something went wrong:" + err);
@@ -43,9 +44,11 @@ export class MainComponent implements OnInit {
     console.log("passing index: " + index);
     console.log("passing url: " + this.videoNames[index]);
     console.log("passing time frames: " + this.timeFrames[index][0]);
+    console.log("passing title: " + this.titles[index]);
     
     this.infoService.sendLink(this.videoNames[index]);
     this.infoService.sendTimeFrames(this.timeFrames[index]);
+    this.infoService.sendTitle(this.titles[index]);
   }
 
 }

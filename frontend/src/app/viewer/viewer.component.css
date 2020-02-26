@@ -18,3 +18,8 @@
 .times{
     margin: 5px;
 }
+
+.title-container{
+    display: flex;
+    justify-content: center;
+}

@@ -60,14 +60,17 @@ def search_tags():
 
         linkArray = []
         wordArray = []
+        titleArray = []
         for i in videos:
             # append video link and keywords/timestamps to create 2D array
             linkArray.append(i["link"])
             wordArray.append(i["words"])
+            titleArray.append(i["title"])
 
         array = []
         array.append(linkArray)
         array.append(wordArray)
+        array.append(titleArray)
 
         print("final array:")
         print(array)
