@@ -297,7 +297,7 @@ def timeData(filename,stwords):
         contents = obj.get()['Body'].read().decode(encoding="utf-8", errors="ignore")
     #print("value of content is:",contents)
     #print()
-    print()
+   # print()
     #for line in contents.splitlines():
         #print(line)
 
@@ -632,7 +632,7 @@ def TFIDF():
     print(fullTime_dict)
     return top5
 
-#TFIDF()
+TFIDF()
 """
 tops = {}
 tops = TFIDF()
