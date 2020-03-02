@@ -1,28 +1,19 @@
 from flask import Flask, request, jsonify
-
 from flask_pymongo import PyMongo, MongoClient
 
 import boto3
-
-import urllib3
-
 import json
 
 import auto as auto
 import TFIDFfinal as nlp
 import jsonCheck
 
-from werkzeug.wrappers import Response
-
 # handle requests and allow front end to access backend
 from flask_cors import CORS
-import os
-# uuid - to generate id for videos to be stored
-import uuid
 
 app = Flask(__name__)
 
-#config
+# configure database
 app.config["MONGODB_NAME"] = "qa-classifier"
 #app.config["MONGO_URI"] = "mongodb+srv://Larissa:spring2020@cluster0-nkghg.mongodb.net/test?retryWrites=true&w=majority"
 #app.config["MONGO_URI"] = "mongodb+srv://longweiming:leaf1234@cluster0-i1gqv.mongodb.net/test?retryWrites=true&w=majority"
@@ -30,15 +21,11 @@ app.config["MONGO_URI"] = "mongodb+srv://rachell:leaf1234@cluster0-hu9je.mongodb
 mongo = PyMongo(app)
 
 CORS(app)
-# cluster = MongoClient("mongodb+srv://rachell:<password>@cluster0-hu9je.mongodb.net/test?retryWrites=true&w=majority", ssl=True)
-# db = cluster["qa-classifier"]
-# collection = db["tags"]
-
 
 
 @app.route("/")
 def index():
-    #return "<h1>Hello World</h1>"
+    # return "<h1>Hello World</h1>"
     categories = mongo.db.categories
     result = categories.find({"categories": {}})
     print("final categories array:")
@@ -111,7 +98,6 @@ def get_categories():
         # categoriesList = []
         # for i in result:
 
-
         print("final categories array:")
         print(result)
 
@@ -133,9 +119,6 @@ def upload_and_process():
         print(video_name)
         print(category)
 
-
-        # retrieve_video()
-
         filename = "video/" + video_name
 
         with open(filename, "wb") as f: # writes uploaded video object to .mp4 file
@@ -148,14 +131,8 @@ def upload_and_process():
         video_url = "https://qa-classifier.s3.amazonaws.com/%s" % (video_name)
         print(video_url)
 
-        # ************************************
-        # text = request.json
-        # tag = text["search"]
-
-        # print(tag)
-
         '''JSON CATEGORY'''
-        #Call function to check if the category exist or not in the json file
+        # Call function to check if the category exist or not in the json file
         cats_data = jsonCheck.categoriesJsonCheck(category)
         # cats_data = "categories.json"
         cats_collection = mongo.db.categories
@@ -163,13 +140,12 @@ def upload_and_process():
         cats_collection.insert_one(cats_data)
 
         for i in cats_data['categories']:
-            #cats_collection.insert_one(categoryJsonArray[i])
-            print(i)#cats_data['categories'][i])
+            # cats_collection.insert_one(categoryJsonArray[i])
+            print(i)  # cats_data['categories'][i])
 
         # Call function to convert (existing) audio to text  from offset.py file
         auto.convert_auto(title, video_name, video_url, category)
-        #
-        top5 = {}
+
         top5 = nlp.TFIDF()
 
         tags_collection = mongo.db.tags
@@ -184,7 +160,6 @@ def upload_and_process():
         for i in top5:
             print(top5[i])
             tags_collection.insert_one(top5[i])
-        # ************************************
 
         return json.dumps("Successfully uploaded and processed video " + video.filename)
 

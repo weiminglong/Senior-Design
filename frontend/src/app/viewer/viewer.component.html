@@ -15,7 +15,7 @@
       <mat-chip-list>
           <h4>{{ word[0] }} </h4>
           <span *ngFor="let time of timeFrames[i][1]; let j = index">
-            <mat-chip (click)="changeTime(word[1])">{{ word[1][j] }}</mat-chip>
+            <mat-chip (click)="changeTime(word[1][j])">{{ word[1][j] }}</mat-chip>
           </span>
       </mat-chip-list>
     </div>
