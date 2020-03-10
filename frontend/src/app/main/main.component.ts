@@ -19,7 +19,6 @@ export class MainComponent implements OnInit {
   videoURL: string;
 
   constructor(
-    private flaskService: FlaskapiService,
     private infoService: InfoService,
     private router: Router) { }
  
@@ -28,19 +27,6 @@ export class MainComponent implements OnInit {
 
   onGo(){
     this.infoService.setQuery(this.searchTags.value);
-    // console.log("set value: " + this.searchTags.value);
     this.router.navigate(['/list']);
   }
-
-  setVideo(index: number){
-    console.log("passing index: " + index);
-    console.log("passing url: " + this.videoNames[index]);
-    console.log("passing time frames: " + this.timeFrames[index][0]);
-    console.log("passing title: " + this.titles[index]);
-    
-    this.infoService.sendLink(this.videoNames[index]);
-    this.infoService.sendTimeFrames(this.timeFrames[index]);
-    this.infoService.sendTitle(this.titles[index]);
-  }
-
 }
