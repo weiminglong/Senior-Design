@@ -34,7 +34,7 @@ fullData2 = []
 path = os.getcwd()
 top5Final = []
 s3 = boto3.resource('s3')
-bucket = s3.Bucket('qac-txt-csv')
+bucket = s3.Bucket('qac-txt-csv2')
 
 
 #function that takes in parameter a list and sort its elements in alphabetical order
@@ -79,8 +79,13 @@ def read_all_csv_txt_files():
 #read all txt files and return a corpus of all the files read
 def read_all_txt_files():
     corpus = []
+<<<<<<< Updated upstream
    # s3 = boto3.resource('s3')
     #bucket = s3.Bucket('qac-txt-csv')
+=======
+    # s3 = boto3.resource('s3')
+    # bucket = s3.Bucket('qac-txt-csv2')
+>>>>>>> Stashed changes
 
     # the key here represent the files names
     for obj in bucket.objects.all():

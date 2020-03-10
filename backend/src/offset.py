@@ -110,8 +110,8 @@ def transcribe_gcs_with_word_time_offsets(gcs_uri, fileName, video_url, category
         csv_file.write('\ntitle:' + fileName)
         csv_file.write('\ncategory:' + category+'\n')
     #upload both txt and csv files to s3 bucket
-    aws_upload_file(fileName + ".txt", 'qac-txt-csv')
-    aws_upload_file(fileName + ".csv", 'qac-txt-csv')
+    aws_upload_file(fileName + ".txt", 'qac-txt-csv2')
+    aws_upload_file(fileName + ".csv", 'qac-txt-csv2')
 
     #remove both local txt and csv file
     if os.path.exists(os.getcwd() + '/' + fileName + '.txt'):

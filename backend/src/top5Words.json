@@ -2,6 +2,7 @@
      "0": {
           "words": [
                [
+<<<<<<< Updated upstream
                     "told",
                     null
                ],
@@ -515,16 +516,48 @@
                [
                     "hydrogen",
                     null
+=======
+                    "squared",
+                    [
+                         "0:9"
+                    ]
+               ],
+               [
+                    "equal",
+                    [
+                         "0:11"
+                    ]
+               ],
+               [
+                    "function",
+                    [
+                         "0:24"
+                    ]
+               ],
+               [
+                    "difference",
+                    [
+                         "2:3",
+                         "8:9"
+                    ]
+               ],
+               [
+                    "going",
+                    [
+                         "0:20",
+                         "3:12"
+                    ]
+>>>>>>> Stashed changes
                ]
           ],
           "link": [
-               "https://www.youtube.com/watch?v=_QdPW8JrYzQ"
+               "https://qa-classifier2.s3.amazonaws.com/Findingthesumofnsquarespart1.mp4"
           ],
           "category": [
-               "physics"
+               "stats"
           ],
           "title": [
-               "Theorem"
+               "sum1"
           ]
      }
 }
