@@ -1,23 +1,25 @@
 <div class="body-container">
-    <div>
-        <mat-form-field class="form" style="width: 420px; margin-top: 30px;" >  <!-- check if setting css file instead of direct styling changes rendering -->
-        <input matInput placeholder="Search..." [formControl]="searchTags">
-        </mat-form-field>
+    <div class="body-container-2">
+        <div class="welcome-title"><h1>Welcome!</h1></div>
+        <div class="welcome-message"><h2>Search for a keyword you wish to find within a video</h2></div>
+        <div class="body-container-3">
+            <mat-form-field class="form" style="width: 550px; margin-top: 30px;" >  <!-- check if setting css file instead of direct styling changes rendering -->
+            <input matInput placeholder="Search..." [formControl]="searchTags">
+            </mat-form-field>
 
-        <button mat-raised-button class="go-button" (click)="onGo()" color="accent">Go</button>
+            <button mat-raised-button class="go-button" (click)="onGo()" color="accent">Go</button>
+        </div>
     </div>
 </div>
 
-<div class="results-container">
-    <div class="results-container-2">
-        <div class="results" *ngFor="let vid of titles; let i = index">
-            <mat-list>
-                <span class="icon-link">
-                    <mat-icon>video_library</mat-icon>
-                    <mat-list-item routerLink="viewer" (click)="setVideo(i)">{{vid}}</mat-list-item>
-                </span>
-                <mat-divider style="width: 500px;"></mat-divider>
-            </mat-list>
-        </div>
+
+<div class="how-to-title">
+    <div class="how-to-body">
+        <h4> 
+            <div class="title">How To:</div>
+            <div class="how-1">Step 1) Search for a keyword about a topic you wish to learn about.</div>
+            <div class="how-2">Step 2) Once the query returns a list of videos, click one to begin watching.</div>
+            <div class="how-3">Step 3) Select a time frame to jump to the portion of the video which contains the keyword.</div>
+        </h4>
     </div>
 </div>

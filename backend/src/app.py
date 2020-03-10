@@ -125,10 +125,10 @@ def upload_and_process():
             f.write(video.read())
 
         s3 = boto3.client('s3')
-        s3.upload_file(filename, 'qa-classifier', video_name, ExtraArgs={'ACL':'public-read'})
+        s3.upload_file(filename, 'qa-classifier2', video_name, ExtraArgs={'ACL':'public-read'})
 
         # get object url
-        video_url = "https://qa-classifier.s3.amazonaws.com/%s" % (video_name)
+        video_url = "https://qa-classifier2.s3.amazonaws.com/%s" % (video_name)
         print(video_url)
 
         '''JSON CATEGORY'''

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { FlaskapiService } from '../services/flaskapi.service';
 import { InfoService } from '../services/info.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -9,7 +10,7 @@ import { InfoService } from '../services/info.service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-
+  @Output() sendQuery: EventEmitter<any> = new EventEmitter()
   searchTags = new FormControl('', Validators.required);
   videoNames: string[] = [];
   timeFrames: string[][][] = [];
@@ -19,25 +20,16 @@ export class MainComponent implements OnInit {
 
   constructor(
     private flaskService: FlaskapiService,
-    private infoService: InfoService) { }
+    private infoService: InfoService,
+    private router: Router) { }
  
   ngOnInit() {
   }
 
   onGo(){
-    //console.log(this.searchTags.value);
-
-    this.flaskService.searchTags(this.searchTags.value).subscribe(
-      resp => {
-        console.log(resp); // print returned video name
-        this.videoNames = resp[0];
-        this.timeFrames = resp[1];
-        this.titles = resp[2];
-      },
-      err => {
-        console.log("something went wrong:" + err);
-      }
-    )
+    this.infoService.setQuery(this.searchTags.value);
+    console.log("set value: " + this.searchTags.value);
+    this.router.navigate(['/list']);
   }
 
   setVideo(index: number){

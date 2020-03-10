@@ -1,0 +1,24 @@
+<div class="body-container">
+    <div class="body-container-2"> 
+        <mat-form-field class="form" style="width: 550px; margin-top: 30px;">  
+            <input matInput placeholder="Search..." [formControl]="searchTags">
+        </mat-form-field>
+        <button mat-raised-button class="go-button" (click)="onGo()" color="accent">Go</button>
+    </div>
+</div>
+
+
+
+<div class="results-container">
+    <div class="results-container-2">
+        <div class="results" *ngFor="let vid of titles; let i = index">
+            <mat-list>
+                <span class="icon-link">
+                    <mat-icon>video_library</mat-icon>
+                    <mat-list-item routerLink="viewer" (click)="setVideo(i)">{{vid}}</mat-list-item>
+                </span>
+                <mat-divider style="width: 500px;"></mat-divider>
+            </mat-list>
+        </div>
+    </div>
+</div>
