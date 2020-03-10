@@ -9,7 +9,6 @@ import { stringify } from 'querystring';
   styleUrls: ['./viewer.component.css']
 })
 export class ViewerComponent implements OnInit {
-
   videoURL = {};
   timeFrames: string[][] = [];
   timeArray: string[] = [];
@@ -19,6 +18,7 @@ export class ViewerComponent implements OnInit {
   constructor(private infoService: InfoService) {
     const link = this.infoService.getLink();
     this.title = this.infoService.getTitle();
+    console.log("in viewer component:");
     console.log(link);
     console.log(this.title);
 

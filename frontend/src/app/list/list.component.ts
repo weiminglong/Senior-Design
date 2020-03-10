@@ -20,31 +20,12 @@ export class ListComponent implements OnInit {
     private router: Router) {}
 
   ngOnInit() {
-    // this.infoService.getQueryString().subscribe(
-    //   query => {
-    //     console.log("this is the returned query: " + query);
-    //     this.searchTags.setValue(query);
-    //     console.log("this is the searchtags value: " + this.searchTags.value);
-
-    //     if (query != undefined) {
-    //       console.log("defined value: " + query);
-    //       this.onGo();
-    //     } else {
-    //       console.log("undefined query value");
-    //     }
-    //   }
-    // )
-
     if (this.infoService.getQuery() != undefined){
       this.searchTags.setValue(this.infoService.getQuery());
       this.onGo();
     } else {
       this.router.navigate(['']);
     }
-
-    // this.searchTags.setValue("testing value");
-
-    // console.log("searchtags value outside of subscription: " + this.searchTags.value);
   }
   
   onGo(){
@@ -68,6 +49,17 @@ export class ListComponent implements OnInit {
         console.log("something went wrong:" + err);
       }
     )
+  }
+
+  setVideo(index: number){
+    console.log("passing index: " + index);
+    console.log("passing url: " + this.videoNames[index]);
+    console.log("passing time frames: " + this.timeFrames[index][0]);
+    console.log("passing title: " + this.titles[index]);
+    
+    this.infoService.sendLink(this.videoNames[index]);
+    this.infoService.sendTimeFrames(this.timeFrames[index]);
+    this.infoService.sendTitle(this.titles[index]);
   }
 
 

@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
 
   onGo(){
     this.infoService.setQuery(this.searchTags.value);
-    console.log("set value: " + this.searchTags.value);
+    // console.log("set value: " + this.searchTags.value);
     this.router.navigate(['/list']);
   }
 
