@@ -35,7 +35,7 @@ fullData2 = []
 path = os.getcwd()
 top5Final = []
 s3 = boto3.resource('s3')
-bucket = s3.Bucket('qac-txt-csv')
+bucket = s3.Bucket('qac-txt-csv2')
 
 
 # function that takes in parameter a list and sort its elements in alphabetical order
@@ -272,6 +272,7 @@ fullTime_dict = dict()
 # this function get the start and end time from csv files that are all in a given list of words
 
 def timeData(filename, stwords):
+    temp_dictionary = dict()
     # timeData(csvCorpora, i, word)
     # print('filename is:',filename)
     tempfullData = []
@@ -320,13 +321,15 @@ def timeData(filename, stwords):
         # f = codecs.open(filename, 'r3', encoding='utf-8')
         # print("value of f is:", f)
         # for sentence in f:
-        for sentence in contents.splitlines():
-            # print(line)
-            # print(f)
+        sentences_list = []
+        sentences_list = contents.splitlines()
+        for sentence in sentences_list:
+            lowers = []
+           # print(type(contents.splitlines()))
             # for sentence in open(filename, encoding='utf-8'):
             # print(sentence)
             line = sentence.split()
-            # print(line)
+            #print(line)
             for each in line:
                 filesName = []
                 linkName = []
@@ -334,14 +337,16 @@ def timeData(filename, stwords):
                 line2 = each.lower()
                 line2 = line2.strip("!@#$%^&*(()_+=)")
                 line3 = line2.split(":")
+                #print(line3)
                 # store dictionary in json file
                 topword = []
 
                 if len(line3) <= 1:
                     continue
                 comparedword = line3[1].lower()
-                if line3[0] == "word" and lower == comparedword and lower not in foundWords:
-                    # print(line3)
+
+                if line3[0] == "word" and lower == comparedword:
+                    #print(comparedword)
                     temptopword = []
                     name = lower
                     startTime = line[1]
@@ -352,16 +357,22 @@ def timeData(filename, stwords):
                     # print(startFin)
                     # fullTime_dict[lower] = startFin + " "
 
-                    if lower in fullTime_dict.keys():
+                    if lower in temp_dictionary.keys():
+                    #if lower in fullTime_dict.keys():
+                        # print(lower)
+                        #print(fullTime_dict.keys())
                         # append the new number to the existing array at this slot
                         # fullTime_dict[lower].append(startFin+" ")
-                        fullTime_dict[lower] += startFin + " " \
-                                                           ""
+                        #fullTime_dict[lower] += startFin + " "  #\
+                                                           #""
+                        temp_dictionary[lower] += startFin + " "
 
                     else:
                         # create a new array in this slot
                         # fullTime_dict[lower] = startFin+" "
-                        fullTime_dict[lower] = startFin + " "
+                        #fullTime_dict[lower] = startFin + " "
+                        temp_dictionary[lower] = startFin + " "
+                        #print(temp_dictionary)
                     # print("first time adding time is:",fullTime_dict[lower])
                     # print('from the root',fullTime_dict[lower])
 
@@ -369,6 +380,7 @@ def timeData(filename, stwords):
                     end = endTime.split("end_time:")
                     endFin = end[1]
                     val2 = line3[0:2]
+                    #lowers = lower
                     foundWords.append(lower)
                     temptopword.append(lower)
                     tempfullData.append(temptopword)
@@ -408,19 +420,24 @@ def timeData(filename, stwords):
                         title.append(sentence[6:])
                     elif (len(title) > 0):
                         continue
-
+    foundWords = remove_redundant_elements(foundWords)
+    #print(foundWords)
     if len(foundWords) < 5:
         tempfullData = []
+        remove_key_value(temp_dictionary,stwords)
         return
 
-    if foundWords in testWord:
+    elif foundWords in testWord:
         tempfullData = []
+        remove_key_value(temp_dictionary,stwords)
         return
     testWord.append(foundWords)
     if (len(tempfullData) <= 2):
         tempfullData = []
+        remove_key_value(temp_dictionary,stwords)
     if (len(tempfullData) < 5):
         tempfullData = []
+        remove_key_value(temp_dictionary,stwords)
     if link not in listLinks and len(tempfullData) >= 5:
         listLinks.append(link)
 
@@ -430,7 +447,9 @@ def timeData(filename, stwords):
     if len(tempfullData) >= 5:
         listTitles.append(title)
     # print(listTitles)
-    fullData.append(tempfullData)
+    removedup = [tempfullData[i] for i in range(len(tempfullData)) if i == 0 or tempfullData[i] != tempfullData[i - 1]]
+    fullData.append(removedup)
+    fullTime_dict.update(temp_dictionary)
 
 
 # print(fullData)
@@ -462,6 +481,14 @@ def dictionary_cleanup(wordArray):
            fullTime_dict[w] = time_array
 
 """
+
+
+def remove_key_value(dictionary_delete,key_list):
+    for word in key_list:
+        #print('word to be removed:',word)
+        dictionary_delete.pop(word,None)
+        #print('dictionary after')
+        #print(dictionary_delete)
 
 
 def weights():
@@ -575,6 +602,7 @@ def words_time_weights():
             temptopword = []
             # print(words[0])
             temptopword.append(words[0])
+           # print(fullTime_dict)
             time_data1 = fullTime_dict[words[0]]
             time_data = remove_redundant_elements(time_data1)
             # print(time_data)
@@ -594,6 +622,7 @@ def words_time_weights():
 
     lengthLimit = len(listweights)
     fulLeng = len(fullData2)
+    """
     for i in fullData2:
         # print(i)
         incr = 0
@@ -605,6 +634,7 @@ def words_time_weights():
                 incr += 1
         count += 1
     # print(listFiles)
+    """
     count = 0
     my_dict = {}
 
@@ -642,7 +672,10 @@ def TFIDF():
     weights()
     top5 = words_time_weights()
     new_map()
-    print("top5 words before the return")
+    #print("top5 words before the return")
+    print()
+    print()
+    print()
     print(top5)
     # print()
     # print()

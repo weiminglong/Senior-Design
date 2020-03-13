@@ -15,9 +15,9 @@ app = Flask(__name__)
 
 # configure database
 app.config["MONGODB_NAME"] = "qa-classifier"
-#app.config["MONGO_URI"] = "mongodb+srv://Larissa:spring2020@cluster0-nkghg.mongodb.net/test?retryWrites=true&w=majority"
+app.config["MONGO_URI"] = "mongodb+srv://Larissa:spring2020@cluster0-nkghg.mongodb.net/test?retryWrites=true&w=majority"
 #app.config["MONGO_URI"] = "mongodb+srv://longweiming:leaf1234@cluster0-i1gqv.mongodb.net/test?retryWrites=true&w=majority"
-app.config["MONGO_URI"] = "mongodb+srv://rachell:leaf1234@cluster0-hu9je.mongodb.net/qa-classifier?retryWrites=true&w=majority"
+#app.config["MONGO_URI"] = "mongodb+srv://rachell:leaf1234@cluster0-hu9je.mongodb.net/qa-classifier?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 
 CORS(app)
@@ -125,10 +125,10 @@ def upload_and_process():
             f.write(video.read())
 
         s3 = boto3.client('s3')
-        s3.upload_file(filename, 'qa-classifier', video_name, ExtraArgs={'ACL':'public-read'})
+        s3.upload_file(filename, 'qa-classifier2', video_name, ExtraArgs={'ACL':'public-read'})
 
         # get object url
-        video_url = "https://qa-classifier.s3.amazonaws.com/%s" % (video_name)
+        video_url = "https://qa-classifier2.s3.amazonaws.com/%s" % (video_name)
         print(video_url)
 
         '''JSON CATEGORY'''
@@ -169,7 +169,7 @@ def retrieve_video():
     s3 = boto3.client('s3')
 
     with open("testing-download.mp4", "wb") as video:
-        s3.download_fileobj("qa-classifier", "test-video.mp4", video)
+        s3.download_fileobj("qa-classifier2", "test-video.mp4", video)
 
     print(video)
 
@@ -180,7 +180,7 @@ def retrieve_video():
 def get_video():
 
     # get object url
-    video_url = "https://qa-classifier.s3.amazonaws.com/IntroductiontoWorkandEnergy.mp4"
+    video_url = "https://qa-classifier2.s3.amazonaws.com/IntroductiontoWorkandEnergy.mp4"
     print("sending link...")
     return json.dumps(video_url)
 
