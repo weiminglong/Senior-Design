@@ -46,16 +46,22 @@ export class ViewerComponent implements OnInit {
     console.log("value of time is:")
     console.log(time)
 
-    time = ""+time
-    console.log(time)
+    const index = time.indexOf(":");
+
+    const minutes = time.substring(0, index);
+    const seconds = time.substring(index+1);
+    console.log(time.indexOf(":"));
+    console.log(time.substring(0, index));
+    console.log(time.substring(index+1));
+
     let totalSec;
-    let minToSec = (+time.charAt(0)) * 60;
-    let sec = +time.substring(2);
+    let minToSec = (+minutes) * 60;
+    let sec = +seconds;
     console.log("seconds:",sec)
     totalSec = minToSec + sec;
 
     (<HTMLMediaElement>document.getElementById('video1')).currentTime = totalSec;
-  
+
   }
 
   jumpTo10sec() {
