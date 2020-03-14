@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({
@@ -9,6 +9,7 @@ export class InfoService {
   private link: string;
   private timeFrames: string[][];
   private title: string;
+  private query: string;
 
   constructor() { }
 
@@ -35,4 +36,13 @@ export class InfoService {
   getTitle(){
     return this.title;
   }
+
+  setQuery(query: string){
+    this.query = query;
+  }
+
+  getQuery(){
+    return this.query;
+  }
+
 }

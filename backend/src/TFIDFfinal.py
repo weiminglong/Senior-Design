@@ -80,7 +80,7 @@ def read_all_csv_txt_files():
 def read_all_txt_files():
     corpus = []
     # s3 = boto3.resource('s3')
-    # bucket = s3.Bucket('qac-txt-csv')
+    # bucket = s3.Bucket('qac-txt-csv2')
 
     # the key here represent the files names
     for obj in bucket.objects.all():

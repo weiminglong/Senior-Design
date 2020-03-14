@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { InfoService } from '../services/info.service';
-import { Subscription } from 'rxjs';
-import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-viewer',
@@ -9,7 +7,6 @@ import { stringify } from 'querystring';
   styleUrls: ['./viewer.component.css']
 })
 export class ViewerComponent implements OnInit {
-
   videoURL = {};
   timeFrames: string[][] = [];
   timeArray: string[] = [];
@@ -19,6 +16,7 @@ export class ViewerComponent implements OnInit {
   constructor(private infoService: InfoService) {
     const link = this.infoService.getLink();
     this.title = this.infoService.getTitle();
+    console.log("in viewer component:");
     console.log(link);
     console.log(this.title);
 
@@ -39,9 +37,6 @@ export class ViewerComponent implements OnInit {
       this.timeFrames[i][0] = word;
       //console.log(this.timeFrames[i]);
     }
-
-    //console.log("times: ");
-    //console.log(this.timeFrames);
   }
 
   ngOnInit() {
@@ -62,7 +57,6 @@ export class ViewerComponent implements OnInit {
     (<HTMLMediaElement>document.getElementById('video1')).currentTime = totalSec;
   
   }
-
 
   jumpTo10sec() {
     const video = <HTMLMediaElement>document.getElementById('video1');

@@ -13,6 +13,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { UploadComponent } from './upload/upload.component';
 import { ViewerComponent } from './viewer/viewer.component';
 import { UploadDialogComponent } from './upload-dialog/upload-dialog.component';
+import { ListComponent } from './list/list.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { UploadDialogComponent } from './upload-dialog/upload-dialog.component';
     ToolbarComponent,
     UploadComponent,
     ViewerComponent,
-    UploadDialogComponent
+    UploadDialogComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
