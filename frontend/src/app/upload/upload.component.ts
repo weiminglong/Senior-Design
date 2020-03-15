@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { FlaskapiService } from '../services/flaskapi.service';
+import { MatDialog } from '@angular/material';
+import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component';
 
 @Component({
   selector: 'app-upload',
@@ -19,7 +21,8 @@ export class UploadComponent implements OnInit {
   videoSubject = new FormControl('', Validators.required);
   newSubject = new FormControl('', Validators.required);
 
-  constructor(private flaskService: FlaskapiService) { }
+  constructor(private flaskService: FlaskapiService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -59,6 +62,11 @@ export class UploadComponent implements OnInit {
       }
     )
 
+    this.dialog.open(UploadDialogComponent, {
+      data: {
+        message: "Your video will be uploaded shortly. Please check back later!"
+      }
+    });
 
   }
 

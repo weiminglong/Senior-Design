@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips'; 
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -36,6 +37,10 @@ const MaterialComponents = [
   ],
   exports: [ 
     MaterialComponents
+  ],
+  entryComponents: [
+    UploadDialogComponent
   ]
+  
 })
 export class MaterialsModule { }
