@@ -30,13 +30,10 @@
     margin-bottom: 10px;
 }
 
-.new-category {
-    margin-top: 35px;
-}
-
 .upload-button {
     display: flex;
     justify-content: flex-end;
+    margin-top: 20px;
 }
 
 .file-browser-span {

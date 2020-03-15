@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { FlaskapiService } from '../services/flaskapi.service';
 import { MatDialog } from '@angular/material';
 import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component';
+import categoriesJson from '../../../../backend/src/categories.json';
 
 @Component({
   selector: 'app-upload',
@@ -12,14 +13,13 @@ import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component'
 export class UploadComponent implements OnInit {
 
   videoToUpload: File = null;
-  categories: String[] = ["Math", "Physics", "Computer Science", "English", "History"];
+  categories: String[] = categoriesJson['categories'];
   selectedVideo: string = "";
   isChecked: boolean = false;
 
   videoFile = new FormControl('', Validators.required);
   videoTitle = new FormControl('', Validators.required);
   videoSubject = new FormControl('', Validators.required);
-  newSubject = new FormControl('', Validators.required);
 
   constructor(private flaskService: FlaskapiService,
     private dialog: MatDialog) { }
@@ -43,17 +43,7 @@ export class UploadComponent implements OnInit {
     console.log(this.videoToUpload);
     console.log(this.videoTitle.value);
 
-    let category;
-
-    if (this.newSubject.value === ""){
-      console.log(this.videoSubject.value);
-      category = this.videoSubject.value;
-    } else {
-      console.log(this.newSubject.value);
-      category = this.newSubject.value;
-    }
-
-    this.flaskService.upload(this.videoToUpload, this.videoTitle.value, category).subscribe(
+    this.flaskService.upload(this.videoToUpload, this.videoTitle.value, this.videoSubject.value).subscribe(
       resp => {
         console.log(resp); // print
       },
@@ -72,7 +62,6 @@ export class UploadComponent implements OnInit {
 
   resetForms(){
     this.videoSubject.reset();
-    this.newSubject.reset();
   }
 
 }

@@ -26,15 +26,9 @@
                 <mat-select *ngIf="isChecked"></mat-select>
             </mat-form-field>
 
-            <mat-checkbox style="margin-right: 10px;" [(ngModel)]="isChecked" (ngModelChange)="resetForms()">Create a new subject</mat-checkbox>
-
-            <mat-form-field class="new-category" *ngIf="isChecked" style="width: 600px;">
-                <input matInput placeholder="Name of new course" [formControl]="newSubject">
-            </mat-form-field>
-
             <div class="upload-button"> 
                 <button mat-raised-button (click)="onUpload()" color="accent" style="width: 100px;"
-                [disabled]="!videoFile.valid || !videoTitle.valid || !(videoSubject.valid || newSubject.valid)">Upload</button>
+                [disabled]="!videoFile.valid || !videoTitle.valid || !videoSubject.valid">Upload</button>
             </div>
         </div>
     </div>
