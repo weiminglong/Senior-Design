@@ -589,6 +589,7 @@ def txt_string_to_csv_str(txt_name):
     return string3
 
 def  get_data_of_word(word_input,csv_name):
+    #print("word input is:",word_input)
     top5 = {}
     data = word_input.split(" ")
     #print(data)
@@ -617,7 +618,7 @@ def word2vec(input):
     dataFound = {}
     if firstValue>0:
        dataFound= get_data_of_word(input,csvname)
-       return firstEle,dataFound
+       return input,dataFound
       # print()
        #print()
        #print(dataFound)
@@ -642,7 +643,7 @@ def word2vec(input):
         with open('similarFound.json', 'w') as filehandle:
             json.dump(dataFound, filehandle, indent=5)
         # print('first element',firstEle,'first value',firstValue)
-        return firstEle, dataFound
+        return new_input, dataFound
 
 
        # a.insert(len(a), 5)
@@ -680,7 +681,7 @@ def word2vec(input):
 data_els = {}
 firstEl = ""
 input = 'history'
-firstEl,data_els = word2vec(input)
+#firstEl,data_els = word2vec(input)
 
 #print("The first element is : %%%%%%%%%%%:",firstEl)
 #print("the data of that first element is: \n")

@@ -7,7 +7,7 @@ import json
 import auto as auto
 import TFIDFfinal as nlp
 import jsonCheck
-
+import word2vec as wv3
 # handle requests and allow front end to access backend
 from flask_cors import CORS
 
@@ -15,9 +15,9 @@ app = Flask(__name__)
 
 # configure database
 app.config["MONGODB_NAME"] = "qa-classifier"
-#app.config["MONGO_URI"] = "mongodb+srv://Larissa:spring2020@cluster0-nkghg.mongodb.net/test?retryWrites=true&w=majority"
+app.config["MONGO_URI"] = "mongodb+srv://Larissa:spring2020@cluster0-nkghg.mongodb.net/test?retryWrites=true&w=majority"
 #app.config["MONGO_URI"] = "mongodb+srv://longweiming:leaf1234@cluster0-i1gqv.mongodb.net/test?retryWrites=true&w=majority"
-app.config["MONGO_URI"] = "mongodb+srv://rachell:leaf1234@cluster0-hu9je.mongodb.net/qa-classifier?retryWrites=true&w=majority"
+#app.config["MONGO_URI"] = "mongodb+srv://rachell:leaf1234@cluster0-hu9je.mongodb.net/qa-classifier?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 
 CORS(app)
@@ -54,11 +54,28 @@ def search_tags():
 
         tags_collection = mongo.db.tags
         videos = tags_collection.find({"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
+        print('video is: ',videos)
+        #if there aren't videos in the database for the word searched
+        if videos.count() == 0:
+            firstElement, eleData = wv3.word2vec(tag)
+            print('@@@@@@@@@@@@@@data to be inserted in the document is@@@@@@@@@@@@@@@@@@@:',eleData)
+            #store the videoData in the database
+            tags_collection.insertone(eleData)
+            #tags_collection.save(eleData)
+            #mongo.db.update(tags_collection,eleData)
+            #FirstElement is either the same value of tag or the word most similar to tag
+            tag = firstElement
+            videos = tags_collection.find({"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
+
+        print("old value of tag is: ", tag)
+        print("new value of tag is: ", tag)
+        print('videos are:',videos.count())
 
         linkArray = []
         wordArray = []
         titleArray = []
         for i in videos:
+            print('value of i is:',i)
             # append video link and keywords/timestamps to create 2D array
             linkArray.append(i["link"])
             wordArray.append(i["words"])
