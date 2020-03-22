@@ -27,6 +27,8 @@ import sys
 import time
 import boto3
 
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 
 
 #global variable definition
@@ -560,12 +562,14 @@ def word_similarity(word,all_words):
             #print(all_words)
             #word2vec= Word2Vec(all_words, min_count=1,sg=0)
             #word2vec = gensim.models.Word2Vec(all_words, size=150, window=10, min_count=1, workers=3, iter=10,sg=1)
-            print(all_words)
-            print()
+            #print(all_words)
+            #print()
             #word2vec = gensim.models.Word2Vec(all_words,min_count=1,workers=3, iter=10, sg=1)
-            word2vec = gensim.models.Word2Vec(all_words, window=10, min_count=1, workers=3, iter=10, sg=1)
+            #word2vec = gensim.models.Word2Vec(all_words, window=10, min_count=1, workers=3, iter=10, sg=1)
+            #model2 = gensim.models.Word2Vec([all_words], min_count=1, size=100,window=5, sg=1)
+            model2 = gensim.models.Word2Vec([all_words], min_count=1,size=32,sg=1)
             #print(word2vec)
-            result = word2vec.wv.most_similar(word,topn =5)
+            result = model2.wv.most_similar(word,topn =5)
             #print(result)
             #print(result[0][0])
             #result = word2vec.wv.similar_by_word(word)
@@ -573,11 +577,11 @@ def word_similarity(word,all_words):
             print()
             print()
             print()
-            print('results')
+            #print('results')
             print()
             print()
             print('result%%%%%%%%%%%%%',result)
-            return word2vec, result
+            return model2, result
 
 def first_elem_value(dictionary):
 
@@ -589,7 +593,7 @@ def txt_string_to_csv_str(txt_name):
     print('string1',string1)
     string2 = ".csv"
     string3 = f"{string1}{string2}"
-    print(string3)
+    #print(string3)
     return string3
 
 def  get_data_of_word(word_input,csv_name):
@@ -599,6 +603,9 @@ def  get_data_of_word(word_input,csv_name):
     top5 = words_time_weights(data,csv_name)
     return top5
     #print(top5)
+def remove_stop_words_list(list_with_sw):
+    filtered_words = [word for word in list_with_sw if word not in stopwords.words('english')]
+    return filtered_words
 if __name__ == '__main__':
 
     fullDiction = dict()
@@ -617,12 +624,24 @@ if __name__ == '__main__':
     dataFound = {}
     if firstValue>0:
        dataFound= get_data_of_word(input,csvname)
-       print()
-       print()
-       print(dataFound)
+      # print()
+       #print()
+       #print(dataFound)
     else:
-        print(corpus)
+        #print(corpus)
+        # using list comprehension to
+        # perform removal of empty element in a list
+        corpus1 = corpus[0]
+        corpus1 = corpus1[:-1]
+        corpus1.insert(len(corpus1), input)
+        corpus1 = remove_stop_words_list(corpus1)
+        #corpus = [i for i in corpus if i]
+        #print(corpus)
+        model, output = word_similarity(input, corpus1)
+        print(output)
+        print(model)
        # a.insert(len(a), 5)
+        """
         corpus1 = corpus[0]
         corpus1 = corpus1[:-1]
         corpus1.insert(len(corpus1),input)
@@ -632,7 +651,7 @@ if __name__ == '__main__':
         similar_elements = []
         for el in output:
             similar_elements.append(el[0])
-
+        """
 
     """
     max_value = max(dictionary_frequency, key=dictionary_frequency.get)
