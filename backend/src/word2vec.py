@@ -257,26 +257,26 @@ def words_time_weights(input_word,filename):
 
     tempfullData2 = []
     for list in fullData2:
-        print('list',list)
+        #print('list',list)
         tempfullData = []
         for words in list:
-            print('words',words)
+           # print('words',words)
             temptopword = []
             # print(words[0])
             temptopword.append(words[0])
-            print('temptopword',temptopword)
+            #print('temptopword',temptopword)
             time_data1 = fullTime_dict[words[0]]
-            print('time_data1',time_data1)
+            #print('time_data1',time_data1)
             time_data = remove_redundant_elements(time_data1)
             # print(time_data)
-            print('time_data no redundant',time_data)
+            #print('time_data no redundant',time_data)
             temptopword.append(time_data)
             # tempdata2.append(temptopword)
             tempfullData.append(temptopword)
         tempfullData2.append(tempfullData)
-        print('temp full data 2',tempfullData2)
+        #print('temp full data 2',tempfullData2)
     fullData3.append(tempfullData2)
-    print('full data 3', fullData3)
+    #print('full data 3', fullData3)
     # print(fullData3)
     dictCorpus = {}
     # print("value of full data 2 is:")
@@ -303,7 +303,7 @@ def words_time_weights(input_word,filename):
     my_dict = {}
 
     for i in fullData3[0]:
-        print('i',i)
+        #print('i',i)
         #if count == len(listLinks) - 1:
           #  print()
           #  break
@@ -484,7 +484,7 @@ def timeData(filename, stwords):
                     elif (len(title) > 0):
                         continue
     foundWords = remove_redundant_elements(foundWords)
-    print(foundWords)
+    #print(foundWords)
     if len(foundWords) < 1:
         tempfullData = []
         remove_key_value(temp_dictionary, stwords)
@@ -509,11 +509,11 @@ def timeData(filename, stwords):
     if len(tempfullData) >= 1:
         listTitles.append(title)
     # print(listTitles)
-    print('tempfulldata',tempfullData)
+    #print('tempfulldata',tempfullData)
     removedup = [tempfullData[i] for i in range(len(tempfullData)) if i == 0 or tempfullData[i] != tempfullData[i - 1]]
     fullData.append(removedup)
     fullTime_dict.update(temp_dictionary)
-    print('full dictionary',fullTime_dict)
+    #print('full dictionary',fullTime_dict)
 
 
 def listToString(s):
@@ -567,20 +567,12 @@ def word_similarity(word,all_words):
             #word2vec = gensim.models.Word2Vec(all_words,min_count=1,workers=3, iter=10, sg=1)
             #word2vec = gensim.models.Word2Vec(all_words, window=10, min_count=1, workers=3, iter=10, sg=1)
             #model2 = gensim.models.Word2Vec([all_words], min_count=1, size=100,window=5, sg=1)
-            model2 = gensim.models.Word2Vec([all_words], min_count=1,size=32,sg=1)
+            model2 = gensim.models.Word2Vec([all_words], min_count=1,size=50,sg=1)
             #print(word2vec)
-            result = model2.wv.most_similar(word,topn =5)
+            result = model2.wv.most_similar(word,topn =3)
             #print(result)
             #print(result[0][0])
             #result = word2vec.wv.similar_by_word(word)
-           # print(result)
-            print()
-            print()
-            print()
-            #print('results')
-            print()
-            print()
-            print('result%%%%%%%%%%%%%',result)
             return model2, result
 
 def first_elem_value(dictionary):
@@ -590,7 +582,7 @@ def first_elem_value(dictionary):
 
 def txt_string_to_csv_str(txt_name):
     string1 = txt_name[:-4]
-    print('string1',string1)
+    #print('string1',string1)
     string2 = ".csv"
     string3 = f"{string1}{string2}"
     #print(string3)
@@ -606,14 +598,15 @@ def  get_data_of_word(word_input,csv_name):
 def remove_stop_words_list(list_with_sw):
     filtered_words = [word for word in list_with_sw if word not in stopwords.words('english')]
     return filtered_words
-if __name__ == '__main__':
+
+def word2vec(input):
 
     fullDiction = dict()
     corpus = []
     fullDictionary,corpus = read_all_txt_files()
 
     dictionary_frequency = dict()
-    input = 'migrant'
+
     #print(fullDictionary)
     dictionary_frequency = frequency_word_infiles(input, fullDictionary)
     firstEle, firstValue = first_elem_value(dictionary_frequency)
@@ -624,6 +617,7 @@ if __name__ == '__main__':
     dataFound = {}
     if firstValue>0:
        dataFound= get_data_of_word(input,csvname)
+       return firstEle,dataFound
       # print()
        #print()
        #print(dataFound)
@@ -638,8 +632,19 @@ if __name__ == '__main__':
         #corpus = [i for i in corpus if i]
         #print(corpus)
         model, output = word_similarity(input, corpus1)
-        print(output)
-        print(model)
+        new_input = output[0][0]
+        dictionary_frequency = frequency_word_infiles(new_input, fullDictionary)
+        firstEle, firstValue = first_elem_value(dictionary_frequency)
+        csvname = txt_string_to_csv_str(firstEle)
+        dataFound = get_data_of_word(new_input, csvname)
+        #print(dataFound)
+        # store dictionary in json file
+        with open('similarFound.json', 'w') as filehandle:
+            json.dump(dataFound, filehandle, indent=5)
+        # print('first element',firstEle,'first value',firstValue)
+        return firstEle, dataFound
+
+
        # a.insert(len(a), 5)
         """
         corpus1 = corpus[0]
@@ -671,3 +676,12 @@ if __name__ == '__main__':
     maxWord, maxPercentage = closest_cosine_value(model, input_word, similar_elements, 0.8)
 
    """
+
+data_els = {}
+firstEl = ""
+input = 'history'
+firstEl,data_els = word2vec(input)
+
+#print("The first element is : %%%%%%%%%%%:",firstEl)
+#print("the data of that first element is: \n")
+#print(data_els)
