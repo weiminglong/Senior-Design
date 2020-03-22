@@ -19,8 +19,8 @@ from scipy.sparse.csr import csr_matrix  # need this if you want to save tfidf_m
 from nltk.stem import PorterStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import WordNetLemmatizer
-
-
+import operator
+import collections
 from nltk.corpus import wordnet as wn
 from itertools import product
 import sys
@@ -75,18 +75,30 @@ def read_all_txt_files():
             #print(list(texRead))
             list_words_files = texRead.split('\n')
             file_words_diction[key] = list_words_files
-            corpus.append(texRead)
-    return file_words_diction
+            corpus.append(list_words_files)
+
+    return file_words_diction,corpus
 
 
 def frequency_word_infiles(word,files_dictionary):
 
     occurence_dictionay = dict()
+    sorted_x = dict()
     for key in files_dictionary:
         file_words = files_dictionary[key]
         freq_word = file_words.count(word)
         #print(freq_word)
         occurence_dictionay[key] = freq_word
+    #sorted_x = sorted(occurence_dictionay.items(), key=lambda kv: kv[1])
+    sorted_x = {k: v for k, v in sorted(occurence_dictionay.items(), key=lambda item: item[1],reverse = True)}
+    occurence_dictionay = sorted_x
+    #for key in occurence_dictionay.keys():
+        #print(key,occurence_dictionay[key])
+    reverse_dict = dict()
+    #reverse_dict = sorted_x.reverse()
+
+
+
     return occurence_dictionay
 
 # function that takes in parameter a list and sort its elements in alphabetical order
@@ -198,34 +210,8 @@ def words_time_weights(listwords):
 
 
 
-def word_similarity(word):
-    corpus = []
-    article_text = ""
-    result = []
-    all_words = []
-    # append each file with .txt extension to the corpus
+def word_similarity(word,all_words):
 
-    for filename in sorted(glob.glob(os.path.join(path, 'e.txt'))):
-        #filename = sorted(glob.glob(os.path.join(path, 'e.txt')
-        with open(filename, 'r') as f:
-            text = f.read()
-            corpus.append(text)
-            article_text += text
-
-            # Cleaing the text
-            processed_article = article_text.lower()
-            processed_article = re.sub('[^a-zA-Z]', ' ', processed_article )
-            processed_article = re.sub(r'\s+', ' ', processed_article)
-
-            # Preparing the dataset
-            all_sentences = nltk.sent_tokenize(processed_article)
-
-            all_words = [nltk.word_tokenize(sent) for sent in all_sentences]
-
-            # Removing Stop Words
-            from nltk.corpus import stopwords
-            for i in range(len(all_words)):
-                all_words[i] = [w for w in all_words[i] if w not in stopwords.words('english')]
             #cleprint(all_words)
             #word2vec = Word2Vec(all_words, min_count=2)
             #word2vec = Word2Vec(all_words,min_count=1)
@@ -241,38 +227,47 @@ def word_similarity(word):
            # print(result)
             return word2vec, result
 
+def first_elem_value(dictionary):
 
-#model = list(model[0])
-#print(type(model))
-#print(cosine_distance('reaction',similar_elements,0.8))
+    for key in dictionary.keys():
+        return key,dictionary[key]
+
+def  get_data_of_word(word_input):
+    print()
 
 if __name__ == '__main__':
 
     fullDiction = dict()
-    fullDictionary = read_all_txt_files()
+    corpus = []
+    fullDictionary,corpus = read_all_txt_files()
 
     dictionary_frequency = dict()
-    input = 'yes'
+    input = 'history'
     #print(fullDictionary)
     dictionary_frequency = frequency_word_infiles(input, fullDictionary)
-    #print(dictionary_frequency)
+    firstEle, firstValue = first_elem_value(dictionary_frequency)
+    print('first element',firstEle,'first value',firstValue)
+    if firstValue>0:
+        get_data_of_word(input)
+    else:
+        print()
 
-    max_value = max(dictionary_frequency, key=dictionary_frequency.get)
-    print('maximum key', max_value)
-    print('maximum value', dictionary_frequency[max_value])
-    print()
-    print(sorted(dictionary_frequency))
+
     """
     max_value = max(dictionary_frequency, key=dictionary_frequency.get)
     print('maximum key', max_value)
     print('maximum value', dictionary_frequency[max_value])
-     """
+    """
+    """
     # model = []
-    input_word = 'glucose'
-    model, output = word_similarity(input_word)
+    input_word = 'history'
+    #print(corpus)
+    model, output = word_similarity(input_word,corpus)
     print(output)
     similar_elements = []
     for el in output:
         similar_elements.append(el[0])
 
     maxWord, maxPercentage = closest_cosine_value(model, input_word, similar_elements, 0.8)
+
+   """
