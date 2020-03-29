@@ -300,6 +300,7 @@ def words_time_weights(input_word,filename):
     # print(listFiles)
     """
     count = 0
+    counter = 500
     my_dict = {}
 
     for i in fullData3[0]:
@@ -323,14 +324,17 @@ def words_time_weights(input_word,filename):
         indv_dict["link"] = listLinks[count]
         indv_dict["category"] = listCategory[count]
         indv_dict["title"] = listTitles[count]
-        my_dict[str(count)] = indv_dict
+        #print('value of counter is:',counter)
+        #my_dict[str(counter)] = indv_dict
+        counter +=1
         count += 1
 
     # store dictionary in json file
     with open('foundWord.json', 'w') as filehandle:
-        json.dump(my_dict, filehandle, indent=5)
+        json.dump(indv_dict, filehandle, indent=5)
     # print(my_dict)
-    return my_dict
+    #return my_dict
+    return indv_dict
 
 
 # this function get the start and end time from csv files that are all in a given list of words

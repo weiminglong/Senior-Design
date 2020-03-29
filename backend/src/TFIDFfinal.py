@@ -83,7 +83,6 @@ def read_all_txt_files():
     # bucket = s3.Bucket('qac-txt-csv2')
 
     # the key here represent the files names
-   # k = []
     for obj in bucket.objects.all():
         key = obj.key
         # check for files that end with certain extension precisely .csv extension
@@ -93,11 +92,7 @@ def read_all_txt_files():
             # print()
             # print()
             # print()
-            #texRead = texRead.split()
             corpus.append(texRead)
-
-    #type(print(type(corpus)))
-    #print(corpus.split('\n'))
     return corpus
 
 
@@ -118,7 +113,6 @@ def top5words():
     vectorizer = TfidfVectorizer(analyzer='word', stop_words='english')
     tfidf_matrix = vectorizer.fit_transform(corpus)
 
-
     stop_words = set(stopwords.words('english'))
 
     # ps = PorterStemmer()
@@ -136,7 +130,7 @@ def top5words():
 
     count_vector = cv.transform(corpus)
     tf_idf_vector = tfidf_transformer.transform(count_vector)
-    #print(count_vector)
+
     feature_names = cv.get_feature_names()
 
     top10 = []
@@ -235,10 +229,14 @@ def group_high_similarity(target_list, lowerbound):
 def remove_duplicate(target_list, remove_list):
     # using list comprehension to perform task
     res = [i for i in target_list if i not in remove_list]
+    # printing result
+    # print ("The list after performing remove operation is : " + str(res))
     return res
 
 
 def hash_list(list_to_hash):
+    # print('list to hash')
+    # print()
     list = []
     list = list_to_hash[0]
     # print(list)
@@ -246,7 +244,11 @@ def hash_list(list_to_hash):
     for i in range(0, len(list)):
         if i % 2 == 0 and i != len(list):
             data_value[list[i]] = list[i + 1]
-
+            # if list[i] == 'learning':
+            # print(list[i])
+            # print(list[i+1])
+    # print('value of hashed \n')
+    # print(data_value)
     return data_value
 
 
@@ -551,6 +553,7 @@ def remove_redundant_elements(test_list):
 
 
 def remove_redundant_elements(duplicate):
+    #print(duplicate)
     final_list = []
     for num in duplicate:
         if num not in final_list:
@@ -602,6 +605,9 @@ def words_time_weights():
             temptopword.append(words[0])
            # print(fullTime_dict)
             time_data1 = fullTime_dict[words[0]]
+            if(type(time_data1)) == None:
+                print('%^%%%%%%%%#@@@@@@@@@@@@@@@@@@ None type detected:',time_data1)
+                continue
             time_data = remove_redundant_elements(time_data1)
             # print(time_data)
             # print()
@@ -671,9 +677,9 @@ def TFIDF():
     top5 = words_time_weights()
     new_map()
     #print("top5 words before the return")
-    print()
-    print()
-    print()
+   # print()
+   # print()
+   # print()
     #print(top5)
     # print()
     # print()
@@ -682,7 +688,7 @@ def TFIDF():
     return top5
 
 
-TFIDF()
+#TFIDF()
 
 #tops = {}
 #tops = TFIDF()
