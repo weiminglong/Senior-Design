@@ -650,38 +650,6 @@ def word2vec(input):
         return new_input, dataFound
 
 
-       # a.insert(len(a), 5)
-        """
-        corpus1 = corpus[0]
-        corpus1 = corpus1[:-1]
-        corpus1.insert(len(corpus1),input)
-        #print(corpus1)
-        model, output = word_similarity(input, corpus1)
-        #print(output)
-        similar_elements = []
-        for el in output:
-            similar_elements.append(el[0])
-        """
-
-    """
-    max_value = max(dictionary_frequency, key=dictionary_frequency.get)
-    print('maximum key', max_value)
-    print('maximum value', dictionary_frequency[max_value])
-    """
-    """
-    # model = []
-    input_word = 'history'
-    #print(corpus)
-    model, output = word_similarity(input_word,corpus)
-    print(output)
-    similar_elements = []
-    for el in output:
-        similar_elements.append(el[0])
-
-    maxWord, maxPercentage = closest_cosine_value(model, input_word, similar_elements, 0.8)
-
-   """
-
 data_els = {}
 firstEl = ""
 input = 'history'
