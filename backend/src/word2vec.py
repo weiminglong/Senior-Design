@@ -653,7 +653,7 @@ def word2vec(input):
 data_els = {}
 firstEl = ""
 input = 'history'
-firstEl,data_els = word2vec(input)
+#firstEl,data_els = word2vec(input)
 
 #print("The first element is : %%%%%%%%%%%:",firstEl)
 #print("the data of that first element is: \n")

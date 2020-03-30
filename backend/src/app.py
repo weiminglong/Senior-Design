@@ -50,32 +50,32 @@ def search_tags():
     if request.method == "POST":
         text = request.json
         tag = text["search"]
-        print()
-
+        #print()
         tags_collection = mongo.db.tags
         videos = tags_collection.find({"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
-        print('video is: ',videos)
+        #print('video is: ',videos)
         #if there aren't videos in the database for the word searched
         if videos.count() == 0:
             firstElement, eleData = wv3.word2vec(tag)
-            print('@@@@@@@@@@@@@@data to be inserted in the document is@@@@@@@@@@@@@@@@@@@:',eleData)
+           # print('@@@@@@@@@@@@@@data to be inserted in the document is@@@@@@@@@@@@@@@@@@@:',eleData)
             #store the videoData in the database
-            tags_collection.insertone(eleData)
+            #tags_collection.insert(eleData)
+            tags_collection.insert_one(eleData)
             #tags_collection.save(eleData)
             #mongo.db.update(tags_collection,eleData)
             #FirstElement is either the same value of tag or the word most similar to tag
             tag = firstElement
             videos = tags_collection.find({"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
 
-        print("old value of tag is: ", tag)
-        print("new value of tag is: ", tag)
-        print('videos are:',videos.count())
+        #print("old value of tag is: ", tag)
+        #print("new value of tag is: ", tag)
+        #print('videos are:',videos.count())
 
         linkArray = []
         wordArray = []
         titleArray = []
         for i in videos:
-            print('value of i is:',i)
+            #print('value of i is:',i)
             # append video link and keywords/timestamps to create 2D array
             linkArray.append(i["link"])
             wordArray.append(i["words"])
