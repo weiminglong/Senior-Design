@@ -9,7 +9,6 @@ import categoriesJson from '../../../../backend/src/categories.json';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-  //categories: String[] = ["Math", "Physics", "Computer Science", "English", "History"];
   categories: String[] = categoriesJson['categories'];
   constructor(
     private flaskService: FlaskapiService,
