@@ -86,6 +86,9 @@ def read_all_csv_txt_files():
             txtFiles.append(key)
     sortCaseIns(csvFiles)
     sortCaseIns(txtFiles)
+    #print('csv files: \n',csvFiles)
+    #print('csvcorpus is:\n',csvCorpus)
+    #print('txtFiles are: \n',txtFiles)
     return csvFiles, txtFiles, csvCorpus
 
 # read all txt files and return a corpus of all the files read
@@ -138,24 +141,27 @@ def sortCaseIns(lst):
     for i in range(0, len(lst)):
         lst[i] = lst2[i][1]
 
-
+"""
 def words_time_weights(listwords):
     csvCorpora = []
     csvCollection, txtCollection, csvCorpora = read_all_csv_txt_files()
     # print(fullTime_dict)
     # parameter to be passed in time_data function
-
+    print('################the list of words is:',listwords)
     for i in listwords:
         # parse through file and get time stamp
         for filename in csvCollection:
             # print(filename)
             timeData(filename, i)
     """
+"""
     for word in listwords:
         for i in range(len(csvCorpora)):
             timeData(csvCorpora,i,word,csvCollection[i])
     """
+"""
     # print(listLinks)
+    print('full time dictionary is: ',fullTime_dict)
     # stip empty list within a list
     fullData3 = []
     fullData2 = [e for e in fullData if e]
@@ -193,6 +199,7 @@ def words_time_weights(listwords):
     lengthLimit = len(listweights)
     fulLeng = len(fullData2)
     """
+"""
     for i in fullData2:
         # print(i)
         incr = 0
@@ -205,6 +212,7 @@ def words_time_weights(listwords):
         count += 1
     # print(listFiles)
     """
+"""
     count = 0
     my_dict = {}
 
@@ -235,8 +243,10 @@ def words_time_weights(listwords):
     # print(my_dict)
     return my_dict
 
+"""
 
 def words_time_weights(input_word,filename):
+    print('inputword is: \n', input_word)
     csvCorpora = []
     csvCollection, txtCollection, csvCorpora = read_all_csv_txt_files()
 
@@ -250,33 +260,46 @@ def words_time_weights(input_word,filename):
     """
     # print(listLinks)
     # stip empty list within a list
+
     fullData3 = []
     fullData2 = [e for e in fullData if e]
+    print('full Data2 pres is :',fullData2)
+    if len(fullData2) >1:
+        #tempfull2 = []
+        lengthData = len(fullData2)
+        print('length is:',len(fullData2))
+        tempfull2 = fullData2[lengthData -1]
+        fullData2 = []
+        fullData2.append(tempfull2)
+        print('between full data2\n', fullData2)
     string_list_value_dictionary()
     print('full data2\n',fullData2[0][0])
 
     tempfullData2 = []
     for list in fullData2:
-        #print('list',list)
+        print('list',list)
         tempfullData = []
         for words in list:
-           # print('words',words)
+            print('words',words)
             temptopword = []
-            # print(words[0])
+            print(words[0])
             temptopword.append(words[0])
-            #print('temptopword',temptopword)
+            print('temptopword',temptopword)
+            print('temp fullTime_dict is:\n',fullTime_dict)
             time_data1 = fullTime_dict[words[0]]
-            #print('time_data1',time_data1)
+            print('time_data1',time_data1)
             time_data = remove_redundant_elements(time_data1)
             # print(time_data)
-            #print('time_data no redundant',time_data)
+            print('time_data no redundant',time_data)
             temptopword.append(time_data)
             # tempdata2.append(temptopword)
             tempfullData.append(temptopword)
         tempfullData2.append(tempfullData)
-        #print('temp full data 2',tempfullData2)
+        print('temp full data 2',tempfullData2)
+    if len(tempfullData2)>1 :
+        fullData3.append(tempfullData2[0])
     fullData3.append(tempfullData2)
-    #print('full data 3', fullData3)
+    print('full data 3', fullData3)
     # print(fullData3)
     dictCorpus = {}
     # print("value of full data 2 is:")
@@ -339,14 +362,15 @@ def words_time_weights(input_word,filename):
 
 # this function get the start and end time from csv files that are all in a given list of words
 listFiles = []
-testWord = []
+
 listLinks = []
 listCategory = []
 listTitles = []
-
+testWord = []
 fullTime_dict = dict()
 
 def get_contents(filename):
+
     contents = ""
     for obj in bucket.objects.all():
         # the key here represent the files names
@@ -497,9 +521,10 @@ def timeData(filename, stwords):
     elif foundWords in testWord:
         print('test word',testWord)
         tempfullData = []
+        #testWord.clear()
         remove_key_value(temp_dictionary, stwords)
         return
-    testWord.append(foundWords)
+    #testWord.append(foundWords)
     #print(testWord)
     if (len(tempfullData) < 1):
         tempfullData = []
@@ -509,9 +534,10 @@ def timeData(filename, stwords):
 
     if len(tempfullData) >= 1:
         listCategory.append(category)
-        # print(listCategory)
-    if len(tempfullData) >= 1:
         listTitles.append(title)
+        # print(listCategory)
+    #if len(tempfullData) >= 1:
+        #listTitles.append(title)
     # print(listTitles)
     #print('tempfulldata',tempfullData)
     removedup = [tempfullData[i] for i in range(len(tempfullData)) if i == 0 or tempfullData[i] != tempfullData[i - 1]]
@@ -525,6 +551,8 @@ def listToString(s):
     str1 = ""
 
     # traverse in the string
+   # if type(s) is None:
+        #return
     for ele in s:
         str1 += ele
         # return string
@@ -593,9 +621,10 @@ def txt_string_to_csv_str(txt_name):
     return string3
 
 def  get_data_of_word(word_input,csv_name):
-    #print("word input is:",word_input)
+    print("word input is:",word_input)
     top5 = {}
     data = word_input.split(" ")
+    print("word input is:", data)
     #print(data)
     top5 = words_time_weights(data,csv_name)
     return top5
@@ -615,17 +644,17 @@ def word2vec(input):
     #print(fullDictionary)
     dictionary_frequency = frequency_word_infiles(input, fullDictionary)
     firstEle, firstValue = first_elem_value(dictionary_frequency)
-    #print('first element',firstEle,'first value',firstValue)
+    print('first element',firstEle,'first value',firstValue)
 
     csvname = txt_string_to_csv_str(firstEle)
     #print('csvname of first element',csvname)
     dataFound = {}
     if firstValue>0:
-       dataFound= get_data_of_word(input,csvname)
-       return input,dataFound
-      # print()
-       #print()
-       #print(dataFound)
+        print('first element', firstEle, 'first value', firstValue)
+        print('input value is:@@@@@@@@@@@',input)
+        dataFound= get_data_of_word(input,csvname)
+        print('dataFound is: ',dataFound)
+        return input,dataFound
     else:
         #print(corpus)
         # using list comprehension to
@@ -633,6 +662,8 @@ def word2vec(input):
         corpus1 = corpus[0]
         corpus1 = corpus1[:-1]
         corpus1.insert(len(corpus1), input)
+        #print('value of corpus 1 is:',corpus1)
+        #print('value of corpus 0 is: ',corpus[0])
         corpus1 = remove_stop_words_list(corpus1)
         #corpus = [i for i in corpus if i]
         #print(corpus)
@@ -652,7 +683,7 @@ def word2vec(input):
 
 data_els = {}
 firstEl = ""
-input = 'history'
+input = 'data'
 #firstEl,data_els = word2vec(input)
 
 #print("The first element is : %%%%%%%%%%%:",firstEl)
