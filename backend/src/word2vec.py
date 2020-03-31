@@ -59,8 +59,8 @@ def closest_cosine_value(model,word,similarity_list,lowerbound):
         return_percentage = cosine_distance(model,word,el)
         dictionary_percentage[el] = return_percentage
     max_key = max(dictionary_percentage, key=dictionary_percentage.get)
-    print('maximum key', max_key)
-    print('maximum value', dictionary_percentage[max_key])
+    #print('maximum key', max_key)
+   # print('maximum value', dictionary_percentage[max_key])
     #if dictionary_percentage[max_key] >=lowerbound:
     return max_key,dictionary_percentage[max_key]
 # read the files names in a bucket both csv and txt file and return two lists

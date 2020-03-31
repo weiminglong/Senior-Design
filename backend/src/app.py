@@ -54,7 +54,7 @@ def search_tags():
         tags_collection = mongo.db.tags
         videos = tags_collection.find({"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
         print('types of video are:',type(videos))
-        print('video is: ',videos)
+        #print('video is: ',videos)
         #if there aren't videos in the database for the word searched
         if videos.count() == 0:
             firstElement, eleData = wv3.word2vec(tag)
