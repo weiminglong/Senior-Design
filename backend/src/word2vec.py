@@ -687,5 +687,5 @@ input = 'data'
 #firstEl,data_els = word2vec(input)
 
 #print("The first element is : %%%%%%%%%%%:",firstEl)
-#print("the data of that first element is: \n")
+print("the data of that first element is: \n")
 #print(data_els)
