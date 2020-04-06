@@ -39,6 +39,10 @@ export class ListComponent implements OnInit {
         console.log("resp:"); // print returned video name
         console.log(resp);
 
+        if (resp[0].length === 0){
+          // **** TODO: show to user there are zero query results
+        }
+
         this.videoNames = resp[0];
         this.timeFrames = resp[1];
         this.titles = resp[2];
@@ -61,6 +65,10 @@ export class ListComponent implements OnInit {
     this.flaskService.searchVideosByCategory(category).subscribe(
       resp => {
         console.log(resp);
+
+        if (resp[0].length === 0){
+          // **** TODO: show to user there are zero query results
+        }
 
         this.videoNames = resp[0];
         this.timeFrames = resp[1];
