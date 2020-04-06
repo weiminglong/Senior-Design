@@ -39,4 +39,9 @@ export class FlaskapiService {
 
     return this.httpClient.get<string>(this.server + "play");
   }
+
+  public searchVideosByCategory(category: string) {
+    let testObj: Test = { search: category }
+    return this.httpClient.post<any[]>(this.server + "categorySearch", testObj);
+  }
 }

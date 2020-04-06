@@ -1,9 +1,9 @@
 <mat-toolbar color="primary" class="toolbar">
     <mat-form-field [floatLabel]="'never'" style="width: 150px;">
-        <mat-label class="mat-h4">Subjects</mat-label> <!-- test and find what actually changes rendering upon 'upload' button hit -->
-        <mat-select panelClass="subject-select">
+        <mat-label class="mat-h4">Subjects</mat-label>
+        <mat-select panelClass="subject-select" [formControl]="selectedCategory">
             <mat-option>-- None --</mat-option>
-            <mat-option *ngFor="let category of categories" [value]="category">
+            <mat-option *ngFor="let category of categories" [value]="category" (click)="onSelectedCategory()">
                 {{ category }}
             </mat-option>
         </mat-select>

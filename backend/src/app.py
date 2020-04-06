@@ -15,9 +15,9 @@ app = Flask(__name__)
 
 # configure database
 app.config["MONGODB_NAME"] = "qa-classifier"
-app.config["MONGO_URI"] = "mongodb+srv://Larissa:spring2020@cluster0-nkghg.mongodb.net/test?retryWrites=true&w=majority"
+#app.config["MONGO_URI"] = "mongodb+srv://Larissa:spring2020@cluster0-nkghg.mongodb.net/test?retryWrites=true&w=majority"
 #app.config["MONGO_URI"] = "mongodb+srv://longweiming:leaf1234@cluster0-i1gqv.mongodb.net/test?retryWrites=true&w=majority"
-#app.config["MONGO_URI"] = "mongodb+srv://rachell:leaf1234@cluster0-hu9je.mongodb.net/qa-classifier?retryWrites=true&w=majority"
+app.config["MONGO_URI"] = "mongodb+srv://rachell:leaf1234@cluster0-hu9je.mongodb.net/qa-classifier?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 
 CORS(app)
@@ -78,6 +78,38 @@ def search_tags():
         for i in videos:
             #print('value of i is:',i)
             # append video link and keywords/timestamps to create 2D array
+            linkArray.append(i["link"])
+            wordArray.append(i["words"])
+            titleArray.append(i["title"])
+
+        array = []
+        array.append(linkArray)
+        array.append(wordArray)
+        array.append(titleArray)
+
+        print("final array:")
+        print(array)
+
+    return json.dumps(array)
+
+
+@app.route("/api/categorySearch", methods=['GET', "POST"])
+def search_by_category():
+    if request.method == "POST":
+        text = request.json
+        category = text["search"].lower()
+
+        print(category)
+
+        tags_collection = mongo.db.tags
+        videos = tags_collection.find({"category": {"$elemMatch": {"$in": [category]}}})
+
+        print(videos)
+
+        linkArray = []
+        wordArray = []
+        titleArray = []
+        for i in videos:
             linkArray.append(i["link"])
             wordArray.append(i["words"])
             titleArray.append(i["title"])

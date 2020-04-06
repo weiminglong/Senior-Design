@@ -10,6 +10,7 @@ export class InfoService {
   private timeFrames: string[][];
   private title: string;
   private query: string;
+  private category: number;
 
   constructor() { }
 
@@ -45,4 +46,15 @@ export class InfoService {
     return this.query;
   }
 
+  setCategoryFlag(){
+    this.category = 1;
+  }
+
+  unsetCategoryFlag(){
+    this.category = 0;
+  }
+
+  getCategoryFlag(){
+    return this.category;
+  }
 }

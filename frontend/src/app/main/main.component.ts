@@ -20,7 +20,11 @@ export class MainComponent implements OnInit {
 
   constructor(
     private infoService: InfoService,
-    private router: Router) { }
+    private router: Router) {
+      this.router.routeReuseStrategy.shouldReuseRoute = function(){
+        return false;
+      };
+     }
  
   ngOnInit() {
   }
