@@ -580,11 +580,12 @@ def remove_key_value(dictionary_delete,key_list):
 def string_list_value_dictionary():
     k = " "
     value = []
-    for i in fullTime_dict:
-        k = listToString(fullTime_dict[i])
-        value = k.split(" ")
-        value = remove_emptyEl_list(value)
-        fullTime_dict[i] = value
+    """dict error with [i]"""
+    # for i in fullTime_dict:
+    #     k = listToString(fullTime_dict[i])
+    #     value = k.split(" ")
+    #     value = remove_emptyEl_list(value)
+    #     fullTime_dict[i] = value
 
 def word_similarity(word,all_words):
 

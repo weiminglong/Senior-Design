@@ -16,8 +16,8 @@ app = Flask(__name__)
 # configure database
 app.config["MONGODB_NAME"] = "qa-classifier"
 #app.config["MONGO_URI"] = "mongodb+srv://Larissa:spring2020@cluster0-nkghg.mongodb.net/test?retryWrites=true&w=majority"
-#app.config["MONGO_URI"] = "mongodb+srv://longweiming:leaf1234@cluster0-i1gqv.mongodb.net/test?retryWrites=true&w=majority"
-app.config["MONGO_URI"] = "mongodb+srv://rachell:leaf1234@cluster0-hu9je.mongodb.net/qa-classifier?retryWrites=true&w=majority"
+app.config["MONGO_URI"] = "mongodb+srv://longweiming:leaf1234@cluster0-i1gqv.mongodb.net/test?retryWrites=true&w=majority"
+#app.config["MONGO_URI"] = "mongodb+srv://rachell:leaf1234@cluster0-hu9je.mongodb.net/qa-classifier?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 
 CORS(app)
