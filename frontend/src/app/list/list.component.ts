@@ -87,7 +87,7 @@ export class ListComponent implements OnInit {
   setVideo(index: number){
     console.log("passing index: " + index);
     console.log("passing url: " + this.videoNames[index]);
-    console.log("passing time frames: " + this.timeFrames[index][0]);
+    console.log("passing time frames: " + this.timeFrames[index][0][0]);
     console.log("passing title: " + this.titles[index]);
     
     this.infoService.sendLink(this.videoNames[index]);

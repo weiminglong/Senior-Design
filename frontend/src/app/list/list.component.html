@@ -14,10 +14,22 @@
         <div class="results" *ngFor="let vid of titles; let i = index">
             <mat-list>
                 <span class="icon-link">
-                    <mat-icon>video_library</mat-icon>
-                    <mat-list-item routerLink="viewer" (click)="setVideo(i)">{{vid}}</mat-list-item>
+                    <img src="assets/thumbnail-placeholder.jpg" style="width: 150px;">
+                    <mat-list-item class="list-item" routerLink="viewer" (click)="setVideo(i)">
+                        <div style="width: 20px;"></div>
+                        <div mat-line>{{vid}}</div>
+                        <span mat-line>
+                            Keywords: 
+                            <span *ngFor="let time of timeFrames[i]; let j = index">
+                                {{time[0]}}
+                            </span>
+                        </span>
+                    </mat-list-item>
                 </span>
-                <mat-divider style="width: 500px;"></mat-divider>
+                <br>
+                <br>
+                <mat-divider style="width: 580px;"></mat-divider>
+                <br>
             </mat-list>
         </div>
     </div>

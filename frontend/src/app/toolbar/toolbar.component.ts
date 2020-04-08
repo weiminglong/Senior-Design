@@ -30,4 +30,8 @@ export class ToolbarComponent implements OnInit {
     this.infoService.setQuery(this.selectedCategory.value);
     this.router.navigate(['/list']);
   }
+
+  goUpload(){
+    this.router.navigate(['/upload']);
+  }
 }
