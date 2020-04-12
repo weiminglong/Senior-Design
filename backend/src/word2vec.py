@@ -272,8 +272,8 @@ def words_time_weights(input_word,filename):
         fullData2 = []
         fullData2.append(tempfull2)
         print('between full data2\n', fullData2)
-    string_list_value_dictionary()
-    print('full data2\n',fullData2[0][0])
+    ##string_list_value_dictionary()
+    print('full data2\n',fullData2[0])
 
     tempfullData2 = []
     for list in fullData2:
@@ -551,8 +551,9 @@ def listToString(s):
     str1 = ""
 
     # traverse in the string
-   # if type(s) is None:
-        #return
+    #if type(s) is None:
+      #  return
+    print('value of s is: \n',s)
     for ele in s:
         str1 += ele
         # return string
@@ -565,10 +566,18 @@ def remove_emptyEl_list(test_list):
         return test_list
 
 def remove_redundant_elements(duplicate):
+    if isinstance(duplicate, str):
+        li = list(duplicate.split(" "))
+        duplicate = []
+        duplicate = li
     final_list = []
     for num in duplicate:
         if num not in final_list:
             final_list.append(num)
+    print('before emprty removal final list is: ',final_list)
+    final_list = list(filter(None, final_list))
+    print('$$$######after emprty removal final list is: ', final_list)
+    ##final_list = [i for i in final_list if i]
     return final_list
 
 
@@ -581,6 +590,7 @@ def string_list_value_dictionary():
     k = " "
     value = []
     for i in fullTime_dict:
+        print('the full list in loop is: ',fullTime_dict[i],'\n')
         k = listToString(fullTime_dict[i])
         value = k.split(" ")
         value = remove_emptyEl_list(value)
