@@ -554,6 +554,8 @@ def remove_redundant_elements(test_list):
 
 def remove_redundant_elements(duplicate):
     #print(duplicate)
+    if(type(duplicate) == 'None'):
+        return
     final_list = []
     for num in duplicate:
         if num not in final_list:
@@ -563,15 +565,25 @@ def remove_redundant_elements(duplicate):
 def string_list_value_dictionary():
     k = " "
     value = []
-    for i in fullTime_dict:
+   # for i in fullTime_dict:
         # print(fullTime_dict[i])
-        k = listToString(fullTime_dict[i])
-        value = k.split(" ")
-        value = remove_emptyEl_list(value)
-        fullTime_dict[i] = value
+      #  k = listToString(fullTime_dict[i])
+     #   value = k.split(" ")
+      #  value = remove_emptyEl_list(value)
+      #  fullTime_dict[i] = value
         # print(fullTime_dict[i])
         # print()
-
+def string_to_list(dict):
+    k = " "
+    value = []
+    for i in dict:
+        #print('inside of the string to list fucntion',dict[i])
+        k = listToString(dict[i])
+        value = k.split(" ")
+        value = remove_emptyEl_list(value)
+        dict[i] = value
+        print(dict[i])
+        print()
 
 def words_time_weights():
     csvCorpora = []
@@ -593,8 +605,10 @@ def words_time_weights():
     # stip empty list within a list
     fullData3 = []
     fullData2 = [e for e in fullData if e]
-    string_list_value_dictionary()
+    print(fullData2)
+    #string_list_value_dictionary()
     # print(fullData2)
+    string_to_list(fullTime_dict)
 
     tempfullData2 = []
     for list in fullData2:
@@ -603,7 +617,7 @@ def words_time_weights():
             temptopword = []
             # print(words[0])
             temptopword.append(words[0])
-           # print(fullTime_dict)
+            #print('full time dictionary',fullTime_dict[words[0]])
             time_data1 = fullTime_dict[words[0]]
             if(type(time_data1)) == None:
                 print('%^%%%%%%%%#@@@@@@@@@@@@@@@@@@ None type detected:',time_data1)
@@ -666,7 +680,9 @@ def words_time_weights():
     # store dictionary in json file
     with open('top5Words.json', 'w') as filehandle:
         json.dump(my_dict, filehandle, indent=5)
-    # print(my_dict)
+    print()
+    print()
+    print(my_dict)
     return my_dict
 
 
@@ -676,14 +692,6 @@ def TFIDF():
     weights()
     top5 = words_time_weights()
     new_map()
-    #print("top5 words before the return")
-   # print()
-   # print()
-   # print()
-    #print(top5)
-    # print()
-    # print()
-    # print()
     # print(fullTime_dict)
     return top5
 

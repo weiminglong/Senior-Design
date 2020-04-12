@@ -339,14 +339,20 @@ def words_time_weights(input_word,filename):
             "title": ""
         }
         # print(listFiles[count])
-        # print(i)
-        indv_dict["words"] = i
+        #print(i)
+        if type(i[0][0][0]) == None:
+             array = []
+             array.append(i)
+             indv_dict["words"] = array
+        else:
+            indv_dict["words"] = i
         # print(i)
         # print()
         # indv_dict["filename"] = listFiles[count]
-        indv_dict["link"] = listLinks[count]
-        indv_dict["category"] = listCategory[count]
-        indv_dict["title"] = listTitles[count]
+        size = len(listLinks)
+        indv_dict["link"] = listLinks[size-1]
+        indv_dict["category"] = listCategory[size-1]
+        indv_dict["title"] = listTitles[size-1]
         #print('value of counter is:',counter)
         #my_dict[str(counter)] = indv_dict
         counter +=1
@@ -408,7 +414,7 @@ def timeData(filename, stwords):
         count = 0
         # print(open(filename, encoding='utf-8'))
         # print(filename)
-        # print(filename)
+        print('file name is: \n',filename)
         # f = codecs.open(filename, 'r3', encoding='utf-8')
         # print("value of f is:", f)
         # for sentence in f:
@@ -442,10 +448,10 @@ def timeData(filename, stwords):
                     name = lower
                     startTime = line[1]
                     start = startTime[11:]
-                    # print(start)
+                    #print(start)
                     startFin = start
                     # print(type)
-                    # print(startFin)
+                    print('start time is: \n',startFin)
                     # fullTime_dict[lower] = startFin + " "
 
                     if lower in temp_dictionary.keys():
@@ -464,8 +470,8 @@ def timeData(filename, stwords):
                         # fullTime_dict[lower] = startFin + " "
                         temp_dictionary[lower] = startFin + " "
                         # print(temp_dictionary)
-                    # print("first time adding time is:",fullTime_dict[lower])
-                    # print('from the root',fullTime_dict[lower])
+                    #print('first time adding time is:',fullTime_dict[lower])
+                    #print('from the root',fullTime_dict[lower])
 
                     endTime = line[2]
                     end = endTime.split("end_time:")
@@ -531,6 +537,7 @@ def timeData(filename, stwords):
         remove_key_value(temp_dictionary, stwords)
     if link not in listLinks and len(tempfullData) >= 1:
         listLinks.append(link)
+        print('the list of links is: ',listLinks)
 
     if len(tempfullData) >= 1:
         listCategory.append(category)
@@ -543,7 +550,7 @@ def timeData(filename, stwords):
     removedup = [tempfullData[i] for i in range(len(tempfullData)) if i == 0 or tempfullData[i] != tempfullData[i - 1]]
     fullData.append(removedup)
     fullTime_dict.update(temp_dictionary)
-    #print('full dictionary',fullTime_dict)
+    print('full dictionary in time data is:\n',fullTime_dict)
 
 
 def listToString(s):
