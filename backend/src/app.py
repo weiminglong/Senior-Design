@@ -53,7 +53,7 @@ def search_tags():
         #print()
         tags_collection = mongo.db.tags
         videos = tags_collection.find({"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
-        print('types of video are:',type(videos))
+        print(' video are:',videos)
         #print('video is: ',videos)
         #if there aren't videos in the database for the word searched
         if videos.count() == 0:
@@ -66,6 +66,7 @@ def search_tags():
             #mongo.db.update(tags_collection,eleData)
             #FirstElement is either the same value of tag or the word most similar to tag
             tag = firstElement
+            print('value of tag is:\n',tag)
             videos = tags_collection.find({"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
 
         print("old value of tag is: ", tag)
