@@ -1,25 +1,22 @@
 {
      "words": [
           [
-               "plate",
+               "whether",
                [
-                    "6:53",
-                    "11:32",
-                    "12:7",
-                    "12:27",
-                    "12:40",
-                    "12:46",
-                    "12:53"
+                    "11:8",
+                    "13:6",
+                    "15:34",
+                    "19:0"
                ]
           ]
      ],
      "link": [
-          "https://qa-classifier2.s3.amazonaws.com/Platetectonics.mp4"
+          "https://qa-classifier2.s3.amazonaws.com/UsainBolt.mp4"
      ],
      "category": [
-          "physics"
+          "history"
      ],
      "title": [
-          "PlateTectonics"
+          "Bolt"
      ]
 }
