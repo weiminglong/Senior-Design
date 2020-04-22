@@ -148,6 +148,7 @@ def aws_upload_file(file_name, bucket, object_name=None):
     return True
 
 if __name__ == '__main__':
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/mike/credentials/cloudkey.json"
     parser = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter)
