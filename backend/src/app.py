@@ -53,12 +53,9 @@ def search_tags():
         #print()
         tags_collection = mongo.db.tags
         videos = tags_collection.find({"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
-        print(' video are:',videos)
-        #print('video is: ',videos)
         #if there aren't videos in the database for the word searched
         if videos.count() == 0:
             firstElement, eleData = wv3.word2vec(tag)
-            print('@@@@@@@@@@@@@@data to be inserted in the document is@@@@@@@@@@@@@@@@@@@:',eleData)
             #store the videoData in the database
             #tags_collection.insert(eleData)
             tags_collection.insert_one(eleData)
@@ -66,12 +63,7 @@ def search_tags():
             #mongo.db.update(tags_collection,eleData)
             #FirstElement is either the same value of tag or the word most similar to tag
             tag = firstElement
-            print('value of tag is:\n',tag)
             videos = tags_collection.find({"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
-
-        print("old value of tag is: ", tag)
-        print("new value of tag is: ", tag)
-        print('videos are:',videos.count())
 
         linkArray = []
         wordArray = []
@@ -87,9 +79,6 @@ def search_tags():
         array.append(linkArray)
         array.append(wordArray)
         array.append(titleArray)
-
-        print("final array:")
-        print(array)
 
     return json.dumps(array)
 
@@ -168,14 +157,6 @@ def upload_and_process():
         top5 = nlp.TFIDF()
 
         tags_collection = mongo.db.tags
-        print("printing the top5 in app.py")
-        print()
-        print(top5)
-        print()
-        print()
-        print("inside of the app.py, testing the values of top5 being inserted")
-        print()
-        print()
         for i in top5:
             print(top5[i])
             tags_collection.insert_one(top5[i])

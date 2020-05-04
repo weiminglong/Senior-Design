@@ -394,8 +394,7 @@ def string_to_list(dict):
         value = k.split(" ")
         value = remove_emptyEl_list(value)
         dict[i] = value
-        print(dict[i])
-        print()
+
 
 def words_time_weights():
     csvCorpora = []
@@ -410,7 +409,6 @@ def words_time_weights():
     # stip empty list within a list
     fullData3 = []
     fullData2 = [e for e in fullData if e]
-    print(fullData2)
     string_to_list(fullTime_dict)
 
     tempfullData2 = []
@@ -455,9 +453,6 @@ def words_time_weights():
     # store dictionary in json file
     with open('top5Words.json', 'w') as filehandle:
         json.dump(my_dict, filehandle, indent=5)
-    print()
-    print()
-    print(my_dict)
     return my_dict
 
 

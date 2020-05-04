@@ -101,7 +101,6 @@ def sortCaseIns(lst):
 
 
 def words_time_weights(input_word,filename):
-    print('inputword is: \n', input_word)
     csvCorpora = []
     csvCollection, txtCollection, csvCorpora = read_all_csv_txt_files()
     timeData(filename, input_word)
@@ -118,11 +117,9 @@ def words_time_weights(input_word,filename):
         tempfullData = []
         for words in list:
             temptopword = []
-            print(words[0])
             temptopword.append(words[0])
             time_data1 = fullTime_dict[words[0]]
             time_data = remove_redundant_elements(time_data1)
-            print('time_data no redundant',time_data)
             temptopword.append(time_data)
             tempfullData.append(temptopword)
         tempfullData2.append(tempfullData)
@@ -198,7 +195,6 @@ def timeData(filename, stwords):
     linkval = ""
     linktemp = []
     link = []
-    # print(read)
     word_time_array = {}
     category = []
     title = []
@@ -281,7 +277,6 @@ def timeData(filename, stwords):
         return
 
     elif foundWords in testWord:
-        print('test word',testWord)
         tempfullData = []
         remove_key_value(temp_dictionary, stwords)
         return
@@ -290,7 +285,6 @@ def timeData(filename, stwords):
         remove_key_value(temp_dictionary, stwords)
     if link not in listLinks and len(tempfullData) >= 1:
         listLinks.append(link)
-        print('the list of links is: ',listLinks)
 
     if len(tempfullData) >= 1:
         listCategory.append(category)
@@ -335,7 +329,6 @@ def string_list_value_dictionary():
     k = " "
     value = []
     for i in fullTime_dict:
-        print('the full list in loop is: ',fullTime_dict[i],'\n')
         k = listToString(fullTime_dict[i])
         value = k.split(" ")
         value = remove_emptyEl_list(value)
