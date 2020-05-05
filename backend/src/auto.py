@@ -1,39 +1,29 @@
 import os
-from gcloud import storage
-#import script
 import upload
 import offset
 
 
 def convert_auto(title, video_name, video_url, category):
-    # gcloud authetification
-    #os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/rachell/Documents/SD/gcloud-key/cloudkey.json"
-    #os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/mike/credentials/cloudkey.json"
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/larissaba/credentials/cloudkey.json"
-    # script.printHello()
+    # gcloud authentication
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "Add Cloud Key"
 
     # path variables
-    videoPath = 'video/'
-    audioPath = 'audio/'
-    txtPath = 'txt/'
+    audio_path = 'audio/'
 
     # gcloud storage variables
     bucket = 'qaclassifier'
-    fileName = title  # change to title
-    audioFile = title + '.flac'  # change this to title + .flac
+    file_name = title  # change to title
+    audio_file = title + '.flac'  # change this to title + .flac
 
-    print(fileName)
-    print(audioFile)
-    print('ffmpeg -i video/' + video_name + ' -f flac -ac 2 -vn ' + audioPath + audioFile)
+    print(file_name)
+    print(audio_file)
+    print('ffmpeg -i video/' + video_name + ' -f flac -ac 2 -vn ' + audio_path + audio_file)
 
     # ffmpeg extract audio from video
-    os.system('ffmpeg -i video/' + video_name + ' -f flac -ac 2 -vn ' + audioPath + audioFile)  # remove hard coded .mp4 and use video name
+    os.system('ffmpeg -i video/' + video_name + ' -f flac -ac 2 -vn ' + audio_path + audio_file)  # remove hard coded .mp4 and use video name
 
     # call upload function in upload.py
-    upload.upload_blob(bucket, audioPath + audioFile, audioFile)
+    upload.upload_blob(bucket, audio_path + audio_file, audio_file)
 
     # call transcribe function in offset.py
-    offset.transcribe_gcs_with_word_time_offsets('gs://' + bucket + '/' + audioFile, fileName, video_url, category)
-
-    # os way
-    # os.system('python offset.py gs://' + bucket + '/' + audioFile)
+    offset.transcribe_gcs_with_word_time_offsets('gs://' + bucket + '/' + audio_file, file_name, video_url, category)

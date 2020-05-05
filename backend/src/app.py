@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request
 from flask_pymongo import PyMongo, MongoClient
 
 import boto3
@@ -8,7 +8,7 @@ import auto as auto
 import TFIDFfinal as nlp
 import jsonCheck
 import word2vec as wv3
-# handle requests and allow front end to access backend
+
 from flask_cors import CORS
 from pymongo import MongoClient
 
@@ -16,34 +16,10 @@ app = Flask(__name__)
 
 # configure database
 app.config["MONGODB_NAME"] = "qa-classifier"
-app.config["MONGO_URI"] = "mongodb+srv://Larissa:spring2020@cluster0-nkghg.mongodb.net/test?retryWrites=true&w=majority"
-#app.config["MONGO_URI"] = "mongodb+srv://longweiming:leaf1234@cluster0-i1gqv.mongodb.net/test?retryWrites=true&w=majority"
-#app.config["MONGO_URI"] = "mongodb+srv://rachell:leaf1234@cluster0-hu9je.mongodb.net/qa-classifier?retryWrites=true&w=majority"
+app.config["MONGO_URI"] = "<Add Mongo URI>"
 mongo = PyMongo(app)
 
 CORS(app)
-
-
-@app.route("/")
-def index():
-    # return "<h1>Hello World</h1>"
-    categories = mongo.db.categories
-    result = categories.find({"categories": {}})
-    print("final categories array:")
-    print(result)
-
-    return json.dumps(result)
-
-
-@app.route("/test")
-def add_tags():
-
-    # post = {"title": "harold the cat part 2", "duration": 120, "tags": "cat"}
-    # collection.insert_one(post)
-
-    tags_collection = mongo.db.tags
-    tags_collection.insert_one({"title": "Physics 2: Electromagnetism, Lecture 3", "duration": 90, "tags": ["charge", "force", "work"]})
-    return "<h1>added new video tags</h1>"
 
 
 @app.route("/api/tags", methods=['GET', "POST"])
@@ -51,71 +27,55 @@ def search_tags():
     if request.method == "POST":
         text = request.json
         tag = text["search"]
-        #print()
+
         tags_collection = mongo.db.tags
         videos = tags_collection.find({"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
-        #if there aren't videos in the database for the word searched
+
+        # if there aren't videos in the database for the word searched
         if videos.count() == 0:
             firstElement, eleData = wv3.word2vec(tag)
-            #store the videoData in the database
-            #tags_collection.insert(eleData)
+
+            # store the videoData in the database
             tags_collection.insert_one(eleData)
             tags_collection.save(eleData)
-            #mongo.db.update(tags_collection,eleData)
-            #FirstElement is either the same value of tag or the word most similar to tag
+
+            # FirstElement is either the same value of tag or the word most similar to tag
             tag = firstElement
             videos = tags_collection.find({"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
 
-        linkArray = []
-        wordArray = []
-        titleArray = []
+        link_array = []
+        word_array = []
+        title_array = []
         for i in videos:
-            #print('value of i is:',i)
             # append video link and keywords/timestamps to create 2D array
-            linkArray.append(i["link"])
-            wordArray.append(i["words"])
-            titleArray.append(i["title"])
+            link_array.append(i["link"])
+            word_array.append(i["words"])
+            title_array.append(i["title"])
 
         array = []
-        array.append(linkArray)
-        array.append(wordArray)
-        array.append(titleArray)
+        array.append(link_array)
+        array.append(word_array)
+        array.append(title_array)
 
     return json.dumps(array)
+
 
 @app.route("/api/toolbar", methods=['GET', "POST"])
 def get_categories():
     if 1:#request.method == "POST":
-        # text = request.json
-        # tag = text["search"]
-        # print()
 
         categories = mongo.db.categories
-        result = categories.find({"categories": {}}) #{"words": {"$elemMatch": {"$elemMatch": {"$in": [tag]}}}})
-
-        # linkArray = []
-        # wordArray = []
-        # for i in videos:
-        #     # append video link and keywords/timestamps to create 2D array
-        #     linkArray.append(i["link"])
-        #     wordArray.append(i["words"])
-        #
-        # array = []
-        # array.append(linkArray)
-        # array.append(wordArray)
-
-        # categoriesList = []
-        # for i in result:
+        result = categories.find({"categories": {}})
 
         print("final categories array:")
         print(result)
 
     return json.dumps(result)
 
+
 @app.route("/api/upload", methods=['GET', "POST"])
 def upload_and_process():
     if request.method == "POST":
-        print("here")
         video = request.files["video"]
         title = request.form["title"].replace(" ", "")
         video_name = video.filename.replace(" ", "")
@@ -138,7 +98,6 @@ def upload_and_process():
 
         # get object url
         video_url = "https://qa-classifier2.s3.amazonaws.com/%s" % (video_name)
-        print(video_url)
 
         '''JSON CATEGORY'''
         # Call function to check if the category exist or not in the json file
@@ -166,27 +125,6 @@ def upload_and_process():
             tags_collection.insert_one(top5[i])
 
         return json.dumps("Successfully uploaded and processed video " + video.filename)
-
-
-def retrieve_video():
-
-    s3 = boto3.client('s3')
-
-    with open("testing-download.mp4", "wb") as video:
-        s3.download_fileobj("qa-classifier2", "test-video.mp4", video)
-
-    print(video)
-
-    return 0
-
-
-@app.route("/api/play", methods=['GET', "POST"])
-def get_video():
-
-    # get object url
-    video_url = "https://qa-classifier2.s3.amazonaws.com/IntroductiontoWorkandEnergy.mp4"
-    print("sending link...")
-    return json.dumps(video_url)
 
 
 if __name__ == "__main__":
