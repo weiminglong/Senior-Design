@@ -1,0 +1,25 @@
+.video-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.time-frame-container {
+    display: flex;
+    justify-content: center;
+}
+
+.frame-container-2 {
+    display: flex;
+    flex-direction: column;
+    width: 720px;
+}
+
+.times{
+    margin: 5px;
+}
+
+.title-container{
+    display: flex;
+    justify-content: center;
+}

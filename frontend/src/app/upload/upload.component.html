@@ -1,0 +1,35 @@
+<div class="upload-container">
+    <div class="upload-container-2">
+        <div class="upload-title"><h2>Upload Panel</h2></div>
+        <div class="forms">
+            <span class="file-browser-span">
+                <mat-form-field class="video-name" style="width: 460px;" appearance="fill">
+                    <input matInput placeholder="No file selected" [value]="selectedVideo" readonly>
+                </mat-form-field>
+                <button class="video-button" mat-raised-button color="primary" (click)="videoInput.click()">Select video
+                    <input hidden type="file" #videoInput accept="video/mp4" (change)="onVideoSelect($event.target.files)" [formControl]="videoFile">
+                </button>
+            </span>
+
+            <mat-form-field class="title" style="width: 600px;">
+                <input matInput placeholder="Choose a title" [formControl]="videoTitle">
+            </mat-form-field>
+
+            <mat-form-field class="subject" style="width: 600px;">
+                <mat-label class="label">Subject</mat-label>
+                <mat-select *ngIf="!isChecked" [formControl]="videoSubject">
+                    <mat-option *ngFor="let category of categories" [value]="category">
+                        {{ category }}
+                    </mat-option>
+                </mat-select>
+            
+                <mat-select *ngIf="isChecked"></mat-select>
+            </mat-form-field>
+
+            <div class="upload-button"> 
+                <button mat-raised-button (click)="onUpload()" color="accent" style="width: 100px;"
+                [disabled]="!videoFile.valid || !videoTitle.valid || !videoSubject.valid">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>

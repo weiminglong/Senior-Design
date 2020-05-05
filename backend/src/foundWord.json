@@ -1,0 +1,25 @@
+{
+     "words": [
+          [
+               "plate",
+               [
+                    "6:53",
+                    "11:32",
+                    "12:7",
+                    "12:27",
+                    "12:40",
+                    "12:46",
+                    "12:53"
+               ]
+          ]
+     ],
+     "link": [
+          "https://qa-classifier2.s3.amazonaws.com/Platetectonics.mp4"
+     ],
+     "category": [
+          "physics"
+     ],
+     "title": [
+          "PlateTectonics"
+     ]
+}

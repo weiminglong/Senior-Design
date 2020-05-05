@@ -1,0 +1,24 @@
+
+<div class="video-container">
+    <video id="video1" class="video" *ngIf="videoURL" width="700" [src] = 'videoURL' controls>
+        Your browser does not support HTML5 video.
+    </video>
+</div>
+
+<div class="title-container">
+  <h3 class="title">{{title}}</h3>
+</div>
+
+<div class="time-frame-container">
+  <div class="frame-container-2">
+    <div class="times" *ngFor="let word of timeFrames; let i = index">
+      <mat-chip-list>
+          <h4>{{ word[0] }} </h4>
+          <span *ngFor="let time of timeFrames[i][1]; let j = index">
+            <mat-chip (click)="changeTime(word[1][j])">{{ word[1][j] }}</mat-chip>
+          </span>
+      </mat-chip-list>
+    </div>
+  </div>
+
+</div>
