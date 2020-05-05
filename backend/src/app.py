@@ -1,16 +1,14 @@
 from flask import Flask, request
-from flask_pymongo import PyMongo, MongoClient
+from flask_pymongo import PyMongo
+from flask_cors import CORS
+from pymongo import MongoClient
 
 import boto3
 import json
-
 import auto as auto
 import TFIDFfinal as nlp
 import jsonCheck
 import word2vec as wv3
-
-from flask_cors import CORS
-from pymongo import MongoClient
 
 app = Flask(__name__)
 
