@@ -114,7 +114,7 @@ def upload_and_process():
 
         top5 = nlp.TFIDF()
 
-        client = MongoClient("mongodb+srv://rachell:leaf1234@cluster0-hu9je.mongodb.net/test?retryWrites=true&w=majority", ssl=True)
+        client = MongoClient("<Add Mongo URI>", ssl=True)
         client.drop_database("qa-classifier")
 
         tags_collection = mongo.db.tags
