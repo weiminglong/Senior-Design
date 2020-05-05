@@ -10,6 +10,7 @@ import jsonCheck
 import word2vec as wv3
 # handle requests and allow front end to access backend
 from flask_cors import CORS
+from pymongo import MongoClient
 
 app = Flask(__name__)
 
@@ -155,6 +156,9 @@ def upload_and_process():
         auto.convert_auto(title, video_name, video_url, category)
 
         top5 = nlp.TFIDF()
+
+        client = MongoClient("mongodb+srv://rachell:leaf1234@cluster0-hu9je.mongodb.net/test?retryWrites=true&w=majority", ssl=True)
+        client.drop_database("qa-classifier")
 
         tags_collection = mongo.db.tags
         for i in top5:
