@@ -12,3 +12,4 @@
 - Frontend
   - Install node.js and npm
   - Install Angular CLI and Angular Material 
+- Run `flask run` for the backend and `ng serve` in the frontend to test if the application has installed correctly.
