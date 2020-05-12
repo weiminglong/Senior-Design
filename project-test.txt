@@ -1,0 +1,11 @@
+** How to test if all dependencies have been installed correctly:
+
+- Simply running the frontend and backend applications can help determine if all dependencies have been correctly installed within the application. 
+- First, install all dependencies following the instructions on the README.md page or Section 7 of the QA Classifier Final Report (Found at: https://weiminglong.github.io/QA-Classifier/files/Final-Report.pdf)
+- Next, execute commands `flask run` for the backend, and `ng s -o` for the frontend applications to run the applications
+- It should run with zero error reports if all dependencies have been installed correctly
+
+** Configuring Google Cloud and MongoDB
+
+- One common error that may occur when running the QA Classifier is the misconfiguration of classpaths and database users for Google Cloud and MongoDB.
+- In the event that an upload or search fails, please check if the classpath to your cloud key json file has been set correctly, as well as the whitelists/database user configurations within the MongoDB console.
